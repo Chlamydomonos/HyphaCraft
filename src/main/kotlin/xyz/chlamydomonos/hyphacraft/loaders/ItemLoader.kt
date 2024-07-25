@@ -5,8 +5,10 @@ import net.minecraft.world.item.Item
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
+import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import java.util.PriorityQueue
+import xyz.chlamydomonos.hyphacraft.items.DebugStickItem
+import java.util.*
 
 object ItemLoader {
     class ItemInTab (
@@ -35,4 +37,6 @@ object ItemLoader {
     fun register(bus: IEventBus) {
         ITEMS.register(bus)
     }
+
+    val DEBUG_STICK by register("debug_stick", ::DebugStickItem)
 }

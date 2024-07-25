@@ -7,6 +7,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockTagsProvider
+import xyz.chlamydomonos.hyphacraft.datagen.ModItemModelProvider
 import xyz.chlamydomonos.hyphacraft.datagen.ModLootTableProvider
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -18,15 +19,19 @@ object DataGenLoader {
 
         event.generator.addProvider(
             event.includeClient(),
-            DataProvider.Factory { output -> ModBlockStateProvider(output, efh) }
+            DataProvider.Factory { ModBlockStateProvider(it, efh) }
         )
         event.generator.addProvider(
             event.includeServer(),
-            DataProvider.Factory { output -> ModLootTableProvider(output, lp) }
+            DataProvider.Factory { ModLootTableProvider(it, lp) }
         )
         event.generator.addProvider(
             event.includeServer(),
-            DataProvider.Factory { output -> ModBlockTagsProvider(output, lp, efh) }
+            DataProvider.Factory { ModBlockTagsProvider(it, lp, efh) }
+        )
+        event.generator.addProvider(
+            event.includeClient(),
+            DataProvider.Factory { ModItemModelProvider(it, efh) }
         )
     }
 }

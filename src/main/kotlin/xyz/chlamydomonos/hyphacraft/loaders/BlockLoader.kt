@@ -9,37 +9,37 @@ import net.minecraft.world.level.block.state.BlockBehaviour
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
+import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import kotlin.reflect.KProperty
+import xyz.chlamydomonos.hyphacraft.blocks.XenolichenBlock
+import xyz.chlamydomonos.hyphacraft.blocks.XenolichenHiddenBlock
 
 object BlockLoader {
     class BlockAndItsItem<T : Block>(
-        val block: T,
-        val item: BlockItem
-    )
-    class LoadedBlock<T : Block>(
-        private val block: DeferredHolder<Block, T>,
-        private val item: DeferredHolder<Item, BlockItem>
+        blockHolder: DeferredHolder<Block, T>,
+        itemHolder: DeferredHolder<Item, BlockItem>
     ) {
-        private val blockAndItsItem by lazy { BlockAndItsItem(block.get(), item.get()) }
-        operator fun getValue(thisRef: Any?, property: KProperty<*>) = blockAndItsItem
+        val block by blockHolder
+        val item by itemHolder
     }
 
     val BLOCKS = DeferredRegister.create(Registries.BLOCK, HyphaCraft.MODID)
 
-    val ALIEN_ROCK by register("alien_rock") { Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)) }
-
-    fun <T : Block> register(name: String, block: () -> T): LoadedBlock<T> {
+    fun <T : Block> register(name: String, block: () -> T): BlockAndItsItem<T> {
         return register(name, 0, block)
     }
 
-    fun <T : Block> register(name: String, priority: Int, block: () -> T): LoadedBlock<T> {
+    fun <T : Block> register(name: String, priority: Int, block: () -> T): BlockAndItsItem<T> {
         val registeredBlock = BLOCKS.register(name, block)
         val registeredItem = ItemLoader.register(name, priority) { BlockItem(registeredBlock.get(), Item.Properties()) }
-        return LoadedBlock(registeredBlock, registeredItem)
+        return BlockAndItsItem(registeredBlock, registeredItem)
     }
 
     fun register(bus: IEventBus) {
         BLOCKS.register(bus)
     }
+
+    val ALIEN_ROCK = register("alien_rock") { Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)) }
+    val XENOLICHEN by BLOCKS.register("xenolichen", ::XenolichenBlock)
+    val XENOLICHEN_HIDDEN_BLOCK by BLOCKS.register("xenolichen_hidden_block", ::XenolichenHiddenBlock)
 }
