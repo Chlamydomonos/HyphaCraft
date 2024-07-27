@@ -2,12 +2,15 @@ package xyz.chlamydomonos.hyphacraft
 
 import net.neoforged.fml.ModLoadingContext
 import net.neoforged.fml.common.Mod
+import org.apache.logging.log4j.LogManager
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import xyz.chlamydomonos.hyphacraft.loaders.*
 
 @Mod(HyphaCraft.MODID)
 object HyphaCraft {
     const val MODID = "hyphacraft"
+
+    val LOGGER = LogManager.getLogger(MODID)
 
     init {
         ConfigLoader.register(ModLoadingContext.get())

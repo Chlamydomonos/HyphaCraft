@@ -17,6 +17,8 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         simpleBlockWithItem(BlockLoader.ALIEN_ROCK.block, cubeAll(BlockLoader.ALIEN_ROCK.block))
         hyphaLike(BlockLoader.XENOLICHEN)
         hyphaLike(BlockLoader.XENOLICHEN_HIDDEN_BLOCK, "xenolichen")
+        simpleBlockWithItem(BlockLoader.ALIEN_SOIL.block, cubeAll(BlockLoader.ALIEN_SOIL.block))
+        simpleBlockWithItem(BlockLoader.HYPHACOTTA.block, cubeAll(BlockLoader.HYPHACOTTA.block))
     }
 
     private fun hyphaLike(block: Block) {
@@ -34,10 +36,10 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
             ).renderType("translucent")
         }
 
-        for(phase in 0..31) {
+        for(phase in 0..14) {
             getVariantBuilder(block).partialState().with(HyphaCraftProperties.PHASE, phase)
                 .modelForState().modelFile(
-                    if (phase < 9) models[0] else if (phase < 18) models[1] else models[2]
+                    if (phase < 5) models[0] else if (phase < 10) models[1] else models[2]
                 ).addModel()
         }
     }

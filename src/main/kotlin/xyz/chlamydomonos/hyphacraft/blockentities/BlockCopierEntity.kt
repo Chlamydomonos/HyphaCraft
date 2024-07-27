@@ -1,11 +1,11 @@
 package xyz.chlamydomonos.hyphacraft.blockentities
 
-import net.minecraft.client.Minecraft
 import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.Registries
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtUtils
+import net.minecraft.network.Connection
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket
@@ -20,6 +20,10 @@ open class BlockCopierEntity(
     blockState: BlockState
 ) : BlockEntity(type, pos, blockState) {
     var copiedState = Blocks.AIR.defaultBlockState()
+        set(value) {
+            field = value
+            setChanged()
+        }
 
     override fun saveAdditional(tag: CompoundTag, registries: HolderLookup.Provider) {
         super.saveAdditional(tag, registries)
@@ -29,8 +33,9 @@ open class BlockCopierEntity(
 
     override fun loadAdditional(tag: CompoundTag, registries: HolderLookup.Provider) {
         super.loadAdditional(tag, registries)
+
         copiedState = NbtUtils.readBlockState(
-            Minecraft.getInstance().level!!.holderLookup(Registries.BLOCK),
+            registries.lookupOrThrow(Registries.BLOCK),
             tag.getCompound("copied_state")
         )
     }
@@ -42,4 +47,16 @@ open class BlockCopierEntity(
     }
 
     override fun getUpdatePacket(): Packet<ClientGamePacketListener>? = ClientboundBlockEntityDataPacket.create(this)
+
+    override fun onDataPacket(
+        net: Connection,
+        pkt: ClientboundBlockEntityDataPacket,
+        lookupProvider: HolderLookup.Provider
+    ) {
+        val oldState = copiedState
+        super.onDataPacket(net, pkt, lookupProvider)
+        if(copiedState.block != oldState.block) {
+            level?.setBlocksDirty(blockPos, copiedState, blockState)
+        }
+    }
 }

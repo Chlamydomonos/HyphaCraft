@@ -1,4 +1,8 @@
 {
-  "tab.hyphacraft": "菌丝工艺",
-  "block.hyphacraft.alien_rock": "外星岩石"
+  "block.hyphacraft.alien_rock": "外星岩石",
+  "block.hyphacraft.alien_soil": "外星土壤",
+  "block.hyphacraft.hyphacotta": "菌瓷",
+  "block.hyphacraft.xenolichen": "异星幽苔",
+  "item.hyphacraft.debug_stick": "调试杖",
+  "tab.hyphacraft": "菌丝工艺"
 }

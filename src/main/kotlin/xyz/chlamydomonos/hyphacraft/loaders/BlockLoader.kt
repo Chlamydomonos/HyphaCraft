@@ -11,8 +11,7 @@ import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import xyz.chlamydomonos.hyphacraft.blocks.XenolichenBlock
-import xyz.chlamydomonos.hyphacraft.blocks.XenolichenHiddenBlock
+import xyz.chlamydomonos.hyphacraft.blocks.*
 
 object BlockLoader {
     class BlockAndItsItem<T : Block>(
@@ -39,7 +38,11 @@ object BlockLoader {
         BLOCKS.register(bus)
     }
 
-    val ALIEN_ROCK = register("alien_rock") { Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)) }
+    private fun copy(block: Block) = BlockBehaviour.Properties.ofFullCopy(block)
+
+    val ALIEN_ROCK = register("alien_rock") { Block(copy(Blocks.STONE)) }
+    val ALIEN_SOIL = register("alien_soil", ::AlienSoilBlock)
     val XENOLICHEN by BLOCKS.register("xenolichen", ::XenolichenBlock)
     val XENOLICHEN_HIDDEN_BLOCK by BLOCKS.register("xenolichen_hidden_block", ::XenolichenHiddenBlock)
+    val HYPHACOTTA = register("hyphacotta") { Block(copy(Blocks.TERRACOTTA)) }
 }

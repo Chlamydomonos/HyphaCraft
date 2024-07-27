@@ -10,11 +10,15 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
     BlockLootSubProvider(emptySet(), FeatureFlags.REGISTRY.allFlags(), provider) {
     override fun generate() {
         dropSelf(BlockLoader.ALIEN_ROCK.block)
+        dropSelf(BlockLoader.HYPHACOTTA.block)
+        dropSelf(BlockLoader.ALIEN_SOIL.block)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
         return mutableSetOf(
-            BlockLoader.ALIEN_ROCK.block
+            BlockLoader.ALIEN_ROCK.block,
+            BlockLoader.HYPHACOTTA.block,
+            BlockLoader.ALIEN_SOIL.block
         )
     }
 }

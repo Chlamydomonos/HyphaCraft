@@ -1,4 +1,8 @@
 {
   "tab.hyphacraft": "HyphaCraft",
-  "block.hyphacraft.alien_rock": "Alien Rock"
+  "block.hyphacraft.alien_rock": "Alien Rock",
+  "item.hyphacraft.debug_stick": "Debug Stick",
+  "block.hyphacraft.alien_soil": "Alien Soil",
+  "block.hyphacraft.hyphacotta": "Hyphacotta",
+  "block.hyphacraft.xenolichen": "Xenolichen"
 }
