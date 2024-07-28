@@ -18,5 +18,6 @@ object HyphaCraft {
         CreativeTabLoader.register(MOD_BUS)
         BlockLoader.register(MOD_BUS)
         BlockEntityLoader.register(MOD_BUS)
+        LootLoader.register(MOD_BUS)
     }
 }

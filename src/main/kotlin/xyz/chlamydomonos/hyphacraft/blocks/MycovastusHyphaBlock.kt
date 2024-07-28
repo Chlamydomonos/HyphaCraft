@@ -1,0 +1,84 @@
+package xyz.chlamydomonos.hyphacraft.blocks
+
+import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.util.RandomSource
+import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
+import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
+
+class MycovastusHyphaBlock : BaseEntityBlock(
+    Properties.ofFullCopy(Blocks.DIRT)
+        .mapColor(MapColor.PLANT)
+        .ignitedByLava()
+        .randomTicks()
+        .instabreak()
+        .sound(SoundType.SLIME_BLOCK)
+), BurnableHypha {
+    init {
+        registerDefaultState(defaultBlockState().setValue(HyphaCraftProperties.PHASE, 0))
+    }
+
+    companion object {
+        val CODEC = simpleCodec { MycovastusHyphaBlock() }
+    }
+    override fun codec() = CODEC
+
+    override fun newBlockEntity(pos: BlockPos, state: BlockState) = MycovastusHyphaBlockEntity(pos, state)
+
+    override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
+        builder.add(HyphaCraftProperties.PHASE)
+    }
+
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean) {
+        val phase = state.getValue(HyphaCraftProperties.PHASE)
+        if(phase < 10) {
+            val be = level.getBlockEntity(pos) as MycovastusHyphaBlockEntity
+            level.setBlock(pos, be.copiedState, 3)
+        } else {
+            level.setBlock(pos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
+        }
+    }
+
+    @Suppress("OVERRIDE_DEPRECATION")
+    override fun getRenderShape(state: BlockState) = RenderShape.MODEL
+
+    override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
+        val phase = state.getValue(HyphaCraftProperties.PHASE)
+        for (i in -1..1) {
+            for(j in -1..1) {
+                for(k in -1..1) {
+                    val newPos = pos.offset(i, j, k)
+                    if(random.nextFloat() < MycovastusUtil.EXPAND_RATE && MycovastusUtil.canHyphaGrow(level, newPos)) {
+                        MycovastusUtil.setHypha(level, newPos)
+                    }
+                }
+            }
+        }
+        if(random.nextFloat() < MycovastusUtil.MUSHROOM_RATE && level.getBlockState(pos.above()).isAir) {
+            MycovastusUtil.growMushroom(level, pos, random)
+        }
+        if(phase < 14) {
+            MycovastusUtil.setHypha(level, pos, phase + 1)
+        } else {
+            val abovePos = pos.above()
+            if (level.getBlockState(abovePos).`is`(BlockLoader.MYCOVASTUS.block)) {
+                level.setBlock(abovePos, BlockLoader.ROTTEN_FUNGUS_HEAP.block.defaultBlockState(), 3)
+            }
+            level.setBlock(pos, BlockLoader.ALIEN_SOIL.block.defaultBlockState(), 3)
+        }
+    }
+}

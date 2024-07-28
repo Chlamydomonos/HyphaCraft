@@ -1,5 +1,6 @@
 package xyz.chlamydomonos.hyphacraft.loaders
 
+import net.minecraft.client.color.block.BlockColor
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
@@ -7,12 +8,16 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.neoforged.bus.api.IEventBus
+import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.fml.common.EventBusSubscriber
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent
 import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blocks.*
 
+@EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object BlockLoader {
     class BlockAndItsItem<T : Block>(
         blockHolder: DeferredHolder<Block, T>,
@@ -42,7 +47,18 @@ object BlockLoader {
 
     val ALIEN_ROCK = register("alien_rock") { Block(copy(Blocks.STONE)) }
     val ALIEN_SOIL = register("alien_soil", ::AlienSoilBlock)
-    val XENOLICHEN by BLOCKS.register("xenolichen", ::XenolichenBlock)
+    val XENOLICHEN_BLOCK by BLOCKS.register("xenolichen_block", ::XenolichenBlock)
     val XENOLICHEN_HIDDEN_BLOCK by BLOCKS.register("xenolichen_hidden_block", ::XenolichenHiddenBlock)
     val HYPHACOTTA = register("hyphacotta") { Block(copy(Blocks.TERRACOTTA)) }
+    val MYCOVASTUS_HYPHA by BLOCKS.register("mycovastus_hypha", ::MycovastusHyphaBlock)
+    val MYCOVASTUS_HYPHA_HIDDEN_BLOCK by BLOCKS.register("mycovastus_hypha_hidden_block", ::MycovastusHyphaHiddenBlock)
+    val MYCOVASTUS = register("mycovastus", ::MycovastusBlock)
+    val ROTTEN_FUNGUS_HEAP = register("rotten_fungus_heap", ::RottenFungusHeapBlock)
+
+    @SubscribeEvent
+    fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {
+        val hyphaColor = BlockColor { _, _, _, _ -> 0x34b169 }
+        event.register(hyphaColor, XENOLICHEN_BLOCK)
+        event.register(hyphaColor, MYCOVASTUS_HYPHA)
+    }
 }

@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.items.DebugStickItem
+import xyz.chlamydomonos.hyphacraft.items.XenolichenItem
 import java.util.*
 
 object ItemLoader {
@@ -34,9 +35,13 @@ object ItemLoader {
         return registeredItem
     }
 
+    fun simpleItem(name: String, priority: Int = 0) = register(name, priority) { Item(Item.Properties()) }
+
     fun register(bus: IEventBus) {
         ITEMS.register(bus)
     }
 
     val DEBUG_STICK by register("debug_stick", ::DebugStickItem)
+    val XENOLICHEN by register("xenolichen", ::XenolichenItem)
+    val ROTTEN_FUNGUS_BALL by simpleItem("rotten_fungus_ball")
 }

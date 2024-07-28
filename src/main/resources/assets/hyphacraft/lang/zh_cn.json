@@ -2,7 +2,12 @@
   "block.hyphacraft.alien_rock": "外星岩石",
   "block.hyphacraft.alien_soil": "外星土壤",
   "block.hyphacraft.hyphacotta": "菌瓷",
-  "block.hyphacraft.xenolichen": "异星幽苔",
+  "block.hyphacraft.mycovastus": "蔓生丝蕈",
+  "block.hyphacraft.mycovastus_hypha": "蔓生丝蕈菌丝",
+  "block.hyphacraft.rotten_fungus_heap": "腐败真菌堆",
+  "block.hyphacraft.xenolichen_block": "异星幽苔",
   "item.hyphacraft.debug_stick": "调试杖",
+  "item.hyphacraft.rotten_fungus_ball": "腐败真菌团",
+  "item.hyphacraft.xenolichen": "异星幽苔",
   "tab.hyphacraft": "菌丝工艺"
 }

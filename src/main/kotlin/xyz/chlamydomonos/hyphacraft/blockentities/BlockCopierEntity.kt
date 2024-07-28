@@ -19,7 +19,7 @@ open class BlockCopierEntity(
     pos: BlockPos,
     blockState: BlockState
 ) : BlockEntity(type, pos, blockState) {
-    var copiedState = Blocks.AIR.defaultBlockState()
+    var copiedState = Blocks.STONE.defaultBlockState()
         set(value) {
             field = value
             setChanged()

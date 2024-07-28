@@ -12,6 +12,8 @@ class ModItemModelProvider(
 ) : ItemModelProvider(output, HyphaCraft.MODID, existingFileHelper) {
     override fun registerModels() {
         basicItem(ItemLoader.DEBUG_STICK)
+        basicItem(ItemLoader.XENOLICHEN)
+        basicItem(ItemLoader.ROTTEN_FUNGUS_BALL)
     }
 
 }

@@ -16,5 +16,6 @@ class ModBlockTagsProvider(
 ) : BlockTagsProvider(output, lookupProvider, HyphaCraft.MODID, existingFileHelper) {
     override fun addTags(p0: HolderLookup.Provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockLoader.ALIEN_ROCK.block)
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.ALIEN_SOIL.block)
     }
 }

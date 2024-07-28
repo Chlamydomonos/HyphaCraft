@@ -11,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
+import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blockentities.XenolichenBlockEntity
 
 object BlockEntityLoader {
@@ -42,5 +43,6 @@ object BlockEntityLoader {
         BLOCK_ENTITIES.register(bus)
     }
 
-    val XENOLICHEN by register("xenolichen", ::XenolichenBlockEntity) { BlockLoader.XENOLICHEN }
+    val XENOLICHEN by register("xenolichen", ::XenolichenBlockEntity) { BlockLoader.XENOLICHEN_BLOCK }
+    val MYCOVASTUS_HYPHA by register("mycovastus_hypha", ::MycovastusHyphaBlockEntity) { BlockLoader.MYCOVASTUS_HYPHA }
 }

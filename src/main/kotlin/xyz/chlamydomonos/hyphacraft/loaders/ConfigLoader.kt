@@ -6,9 +6,9 @@ import net.neoforged.neoforge.common.ModConfigSpec
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 object ConfigLoader {
-    val BUILDER = ModConfigSpec.Builder()
+    private val BUILDER = ModConfigSpec.Builder()
 
-    val PLANTS_BUILDER = BUILDER
+    private val PLANTS_BUILDER = BUILDER
         .comment("Plants Config")
         .push("plants")
 
@@ -33,8 +33,24 @@ object ConfigLoader {
         .comment("Block blacklist for Xenolichen")
         .defineListAllowEmpty("xenolichen_blacklist", mutableListOf<String>(), NameUtil::validateBlockName)
 
+    val MYCOVASTUS_TAGS = PLANTS_BUILDER
+        .comment("Tags of blocks erodible by Mycovastus")
+        .defineListAllowEmpty("mycovastus_tags", mutableListOf(
+            "minecraft:dirt"
+        ), NameUtil::validateTagName)
+
+    val MYCOVASTUS_BLOCKS = PLANTS_BUILDER
+        .comment("Additional blocks erodible by Mycovastus besides mycovastus_tags")
+        .defineListAllowEmpty("mycovastus_blocks", mutableListOf<String>(), NameUtil::validateBlockName)
+
+    val MYCOVASTUS_BLACKLIST = PLANTS_BUILDER
+        .comment("Block blacklist for Mycovastus")
+        .defineListAllowEmpty("mycovastus_blacklist", mutableListOf<String>(), NameUtil::validateBlockName)
+
+    private val FINAL_BUILDER = PLANTS_BUILDER.pop()
+
     fun register(context: ModLoadingContext) {
         val container = context.activeContainer
-        container.registerConfig(ModConfig.Type.COMMON, BUILDER.build())
+        container.registerConfig(ModConfig.Type.COMMON, FINAL_BUILDER.build())
     }
 }
