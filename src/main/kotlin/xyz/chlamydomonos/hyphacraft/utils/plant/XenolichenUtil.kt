@@ -73,7 +73,6 @@ object XenolichenUtil {
         for(direction in Direction.stream()) {
             val neighbor = pos.offset(direction.normal)
             if(level.isLoaded(neighbor)) {
-                val neighborState = level.getBlockState(neighbor)
                 if (level.getRawBrightness(neighbor, 0) >= 8) {
                     hasLight = true
                 }
