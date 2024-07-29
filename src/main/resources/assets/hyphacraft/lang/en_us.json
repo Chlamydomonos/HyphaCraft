@@ -9,5 +9,10 @@
   "block.hyphacraft.mycovastus": "Mycovastus",
   "block.hyphacraft.mycovastus_hypha": "Mycovastus Hypha",
   "block.hyphacraft.rotten_fungus_heap": "Rotten Fungus Heap",
-  "item.hyphacraft.rotten_fungus_ball": "Rotten Fungus Ball"
+  "item.hyphacraft.rotten_fungus_ball": "Rotten Fungus Ball",
+  "block.hyphacraft.test_block": "Test Block",
+  "block.hyphacraft.tumidusio_hypha": "Tumidusio Hypha",
+  "block.hyphacraft.tumidusio": "Tumidusio",
+  "item.hyphacraft.moldy_cork_dust": "Moldy Cork Dust",
+  "block.hyphacraft.hyphacoal_block": "Hyphacoal Block"
 }

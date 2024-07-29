@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import xyz.chlamydomonos.hyphacraft.HyphaCraft;
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha;
 
 @Mixin(FireBlock.class)
@@ -34,8 +33,10 @@ public class FireBlockMixin {
     ) {
         var state = level.getBlockState(pos);
         if(state.getBlock() instanceof BurnableHypha burnableHypha) {
-            burnableHypha.onBurnt(state, level, pos, false);
-            callbackInfo.cancel();
+            var result = burnableHypha.onBurnt(state, level, pos, false, random);
+            if(result == BurnableHypha.VanillaBehaviourHandler.CANCEL) {
+                callbackInfo.cancel();
+            }
         }
     }
 
@@ -58,8 +59,10 @@ public class FireBlockMixin {
     ) {
         var state = level.getBlockState(pos);
         if(state.getBlock() instanceof BurnableHypha burnableHypha) {
-            burnableHypha.onBurnt(state, level, pos, true);
-            callbackInfo.cancel();
+            var result = burnableHypha.onBurnt(state, level, pos, true, random);
+            if(result == BurnableHypha.VanillaBehaviourHandler.CANCEL) {
+                callbackInfo.cancel();
+            }
         }
     }
 }

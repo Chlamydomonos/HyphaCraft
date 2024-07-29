@@ -45,6 +45,7 @@ object BlockLoader {
 
     private fun copy(block: Block) = BlockBehaviour.Properties.ofFullCopy(block)
 
+    val TEST_BLOCK by BLOCKS.register("test_block", ::TestBlock)
     val ALIEN_ROCK = register("alien_rock") { Block(copy(Blocks.STONE)) }
     val ALIEN_SOIL = register("alien_soil", ::AlienSoilBlock)
     val XENOLICHEN_BLOCK by BLOCKS.register("xenolichen_block", ::XenolichenBlock)
@@ -54,11 +55,16 @@ object BlockLoader {
     val MYCOVASTUS_HYPHA_HIDDEN_BLOCK by BLOCKS.register("mycovastus_hypha_hidden_block", ::MycovastusHyphaHiddenBlock)
     val MYCOVASTUS = register("mycovastus", ::MycovastusBlock)
     val ROTTEN_FUNGUS_HEAP = register("rotten_fungus_heap", ::RottenFungusHeapBlock)
+    val TUMIDUSIO_HYPHA by BLOCKS.register("tumidusio_hypha", ::TumidusioHyphaBlock)
+    val TUMIDUSIO_HYPHA_HIDDEN_BLOCK by BLOCKS.register("tumidusio_hypha_hidden_block", ::TumidusioHyphaHiddenBlock)
+    val HYPHACOAL_BLOCK = register("hyphacoal_block") { Block(copy(Blocks.COAL_BLOCK)) }
+    val TUMIDUSIO = register("tumidusio", ::TumidusioBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {
         val hyphaColor = BlockColor { _, _, _, _ -> 0x34b169 }
         event.register(hyphaColor, XENOLICHEN_BLOCK)
         event.register(hyphaColor, MYCOVASTUS_HYPHA)
+        event.register(hyphaColor, TUMIDUSIO_HYPHA)
     }
 }

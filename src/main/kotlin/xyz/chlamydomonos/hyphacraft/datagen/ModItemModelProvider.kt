@@ -14,6 +14,7 @@ class ModItemModelProvider(
         basicItem(ItemLoader.DEBUG_STICK)
         basicItem(ItemLoader.XENOLICHEN)
         basicItem(ItemLoader.ROTTEN_FUNGUS_BALL)
+        basicItem(ItemLoader.MOLDY_CORK_DUST)
     }
 
 }

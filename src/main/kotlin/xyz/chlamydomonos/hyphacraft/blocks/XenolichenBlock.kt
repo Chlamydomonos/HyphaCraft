@@ -19,7 +19,6 @@ import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 class XenolichenBlock : BaseEntityBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .mapColor(MapColor.PLANT)
-        .instabreak()
         .sound(SoundType.SLIME_BLOCK)
         .ignitedByLava()
         .randomTicks()
@@ -66,9 +65,9 @@ class XenolichenBlock : BaseEntityBlock(
 
     override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 
-    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean) {
+    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean, random: RandomSource): BurnableHypha.VanillaBehaviourHandler {
         val phase = state.getValue(HyphaCraftProperties.PHASE)
         if(phase < 10) {
             val be = level.getBlockEntity(pos) as XenolichenBlockEntity
@@ -76,5 +75,6 @@ class XenolichenBlock : BaseEntityBlock(
         } else {
             level.setBlock(pos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
         }
+        return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
 }

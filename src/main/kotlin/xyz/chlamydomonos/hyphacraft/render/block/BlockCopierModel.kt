@@ -61,6 +61,7 @@ open class BlockCopierModel(private val customModel: BakedModel) : BakedModel by
     }
 
     override fun getRenderTypes(state: BlockState, rand: RandomSource, data: ModelData): ChunkRenderTypeSet {
-        return ChunkRenderTypeSet.of(RenderType.SOLID, RenderType.TRANSLUCENT)
+        val superTypes = super.getRenderTypes(state, rand, data)
+        return ChunkRenderTypeSet.union(superTypes, ChunkRenderTypeSet.of(RenderType.TRANSLUCENT))
     }
 }

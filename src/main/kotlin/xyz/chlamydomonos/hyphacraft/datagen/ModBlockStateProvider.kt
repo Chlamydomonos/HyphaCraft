@@ -16,24 +16,29 @@ import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
     BlockStateProvider(output, HyphaCraft.MODID, exFileHelper) {
     override fun registerStatesAndModels() {
+        simpleBlock(BlockLoader.TEST_BLOCK, cubeAll(BlockLoader.TEST_BLOCK))
         simpleBlockWithItem(BlockLoader.ALIEN_ROCK.block, cubeAll(BlockLoader.ALIEN_ROCK.block))
-        hyphaLike(BlockLoader.XENOLICHEN_BLOCK)
-        hyphaLike(BlockLoader.XENOLICHEN_HIDDEN_BLOCK, "xenolichen_block")
+        blockCopier(BlockLoader.XENOLICHEN_BLOCK)
+        blockCopier(BlockLoader.XENOLICHEN_HIDDEN_BLOCK, "xenolichen_block")
         simpleBlockWithItem(BlockLoader.ALIEN_SOIL.block, cubeAll(BlockLoader.ALIEN_SOIL.block))
         simpleBlockWithItem(BlockLoader.HYPHACOTTA.block, cubeAll(BlockLoader.HYPHACOTTA.block))
-        hyphaLike(BlockLoader.MYCOVASTUS_HYPHA)
-        hyphaLike(BlockLoader.MYCOVASTUS_HYPHA_HIDDEN_BLOCK, "mycovastus_hypha")
+        blockCopier(BlockLoader.MYCOVASTUS_HYPHA)
+        blockCopier(BlockLoader.MYCOVASTUS_HYPHA_HIDDEN_BLOCK, "mycovastus_hypha")
         candleLike(BlockLoader.MYCOVASTUS.block, HyphaCraftProperties.MUSHROOM_COUNT)
         simpleBlockItem(BlockLoader.MYCOVASTUS.block, existingModel("mycovastus_1"))
         simpleBlockWithItem(BlockLoader.ROTTEN_FUNGUS_HEAP.block, carpet(BlockLoader.ROTTEN_FUNGUS_HEAP.block))
+        blockCopier(BlockLoader.TUMIDUSIO_HYPHA)
+        blockCopier(BlockLoader.TUMIDUSIO_HYPHA_HIDDEN_BLOCK, "tumidusio_hypha")
+        simpleBlockWithItem(BlockLoader.HYPHACOAL_BLOCK.block, cubeAll(BlockLoader.HYPHACOAL_BLOCK.block))
+        simpleBlockWithItem(BlockLoader.TUMIDUSIO.block, cubeAll(BlockLoader.TUMIDUSIO.block))
     }
 
-    private fun hyphaLike(block: Block) {
+    private fun blockCopier(block: Block) {
         val blockName = BuiltInRegistries.BLOCK.getKey(block).path
-        hyphaLike(block, blockName)
+        blockCopier(block, blockName)
     }
 
-    private fun hyphaLike(block: Block, customName: String) {
+    private fun blockCopier(block: Block, customName: String) {
         val models = List(3) {
             models().cubeAll(
                 "${customName}_level_${it}",

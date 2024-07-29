@@ -1,12 +1,17 @@
 {
   "block.hyphacraft.alien_rock": "外星岩石",
   "block.hyphacraft.alien_soil": "外星土壤",
+  "block.hyphacraft.hyphacoal_block": "菌炭块",
   "block.hyphacraft.hyphacotta": "菌瓷",
   "block.hyphacraft.mycovastus": "蔓生丝蕈",
   "block.hyphacraft.mycovastus_hypha": "蔓生丝蕈菌丝",
   "block.hyphacraft.rotten_fungus_heap": "腐败真菌堆",
+  "block.hyphacraft.test_block": "测试方块",
+  "block.hyphacraft.tumidusio": "肿胀腐霉",
+  "block.hyphacraft.tumidusio_hypha": "肿胀腐霉菌丝",
   "block.hyphacraft.xenolichen_block": "异星幽苔",
   "item.hyphacraft.debug_stick": "调试杖",
+  "item.hyphacraft.moldy_cork_dust": "发霉木屑",
   "item.hyphacraft.rotten_fungus_ball": "腐败真菌团",
   "item.hyphacraft.xenolichen": "异星幽苔",
   "tab.hyphacraft": "菌丝工艺"

@@ -47,6 +47,21 @@ object ConfigLoader {
         .comment("Block blacklist for Mycovastus")
         .defineListAllowEmpty("mycovastus_blacklist", mutableListOf<String>(), NameUtil::validateBlockName)
 
+    val TUMIDUSIO_TAGS = PLANTS_BUILDER
+        .comment("Tags of blocks erodible by Tumidusio")
+        .defineListAllowEmpty("tumidusio_tags", mutableListOf(
+            "minecraft:logs_that_burn",
+            "minecraft:leaves"
+        ), NameUtil::validateTagName)
+
+    val TUMIDUSIO_BLOCKS = PLANTS_BUILDER
+        .comment("Additional blocks erodible by Tumidusio besides tumidusio_tags")
+        .defineListAllowEmpty("tumidusio_blocks", mutableListOf<String>(), NameUtil::validateBlockName)
+
+    val TUMIDUSIO_BLACKLIST = PLANTS_BUILDER
+        .comment("Block blacklist for Tumidusio")
+        .defineListAllowEmpty("tumidusio_blacklist", mutableListOf<String>(), NameUtil::validateBlockName)
+
     private val FINAL_BUILDER = PLANTS_BUILDER.pop()
 
     fun register(context: ModLoadingContext) {

@@ -21,7 +21,6 @@ class MycovastusHyphaBlock : BaseEntityBlock(
         .mapColor(MapColor.PLANT)
         .ignitedByLava()
         .randomTicks()
-        .instabreak()
         .sound(SoundType.SLIME_BLOCK)
 ), BurnableHypha {
     init {
@@ -41,9 +40,9 @@ class MycovastusHyphaBlock : BaseEntityBlock(
 
     override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 
-    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean) {
+    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean, random: RandomSource): BurnableHypha.VanillaBehaviourHandler {
         val phase = state.getValue(HyphaCraftProperties.PHASE)
         if(phase < 10) {
             val be = level.getBlockEntity(pos) as MycovastusHyphaBlockEntity
@@ -51,6 +50,7 @@ class MycovastusHyphaBlock : BaseEntityBlock(
         } else {
             level.setBlock(pos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
         }
+        return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
 
     @Suppress("OVERRIDE_DEPRECATION")
@@ -68,7 +68,7 @@ class MycovastusHyphaBlock : BaseEntityBlock(
                 }
             }
         }
-        if(random.nextFloat() < MycovastusUtil.MUSHROOM_RATE && level.getBlockState(pos.above()).isAir) {
+        if(random.nextFloat() < MycovastusUtil.MUSHROOM_RATE && level.getBlockState(pos.above()).isEmpty) {
             MycovastusUtil.growMushroom(level, pos, random)
         }
         if(phase < 14) {

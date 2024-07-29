@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 
 class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), BurnableHypha {
@@ -19,13 +20,14 @@ class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), 
         val EXPAND_RATE = 1.0f / 20.0f
     }
 
-    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean) {
+    override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean, random: RandomSource): BurnableHypha.VanillaBehaviourHandler {
         level.setBlock(pos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
+        return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
 
     override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         if(random.nextFloat() < EXPAND_RATE) {
@@ -45,6 +47,8 @@ class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), 
             XenolichenUtil.setXenolichen(level, newPos)
         } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
             MycovastusUtil.setHypha(level, newPos)
+        } else if (TumidusioUtil.canHyphaGrow(level, newPos)) {
+            TumidusioUtil.setHypha(level, newPos)
         }
     }
 }

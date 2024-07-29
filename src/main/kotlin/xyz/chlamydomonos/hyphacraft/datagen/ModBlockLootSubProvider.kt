@@ -32,6 +32,8 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
         blockCopier(BlockLoader.MYCOVASTUS_HYPHA, Items.AIR, 0)
         candleLike(BlockLoader.MYCOVASTUS.block, HyphaCraftProperties.MUSHROOM_COUNT)
         rateDrop(BlockLoader.ROTTEN_FUNGUS_HEAP.block, ItemLoader.ROTTEN_FUNGUS_BALL, -6.0f, 2.0f)
+        rateDrop(BlockLoader.TUMIDUSIO_HYPHA, ItemLoader.MOLDY_CORK_DUST, -2.0f, 3.0f)
+        candleLike(BlockLoader.TUMIDUSIO.block, HyphaCraftProperties.DENSITY)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
@@ -42,7 +44,9 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
             BlockLoader.XENOLICHEN_BLOCK,
             BlockLoader.MYCOVASTUS_HYPHA,
             BlockLoader.MYCOVASTUS.block,
-            BlockLoader.ROTTEN_FUNGUS_HEAP.block
+            BlockLoader.ROTTEN_FUNGUS_HEAP.block,
+            BlockLoader.TUMIDUSIO_HYPHA,
+            BlockLoader.TUMIDUSIO.block
         )
     }
 

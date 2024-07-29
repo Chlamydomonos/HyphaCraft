@@ -44,4 +44,5 @@ object ItemLoader {
     val DEBUG_STICK by register("debug_stick", ::DebugStickItem)
     val XENOLICHEN by register("xenolichen", ::XenolichenItem)
     val ROTTEN_FUNGUS_BALL by simpleItem("rotten_fungus_ball")
+    val MOLDY_CORK_DUST by simpleItem("moldy_cork_dust")
 }
