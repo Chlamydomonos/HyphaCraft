@@ -9,7 +9,7 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
@@ -24,7 +24,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         simpleBlockWithItem(BlockLoader.HYPHACOTTA.block, cubeAll(BlockLoader.HYPHACOTTA.block))
         blockCopier(BlockLoader.MYCOVASTUS_HYPHA)
         blockCopier(BlockLoader.MYCOVASTUS_HYPHA_HIDDEN_BLOCK, "mycovastus_hypha")
-        candleLike(BlockLoader.MYCOVASTUS.block, HyphaCraftProperties.MUSHROOM_COUNT)
+        candleLike(BlockLoader.MYCOVASTUS.block, ModProperties.MUSHROOM_COUNT)
         simpleBlockItem(BlockLoader.MYCOVASTUS.block, existingModel("mycovastus_1"))
         simpleBlockWithItem(BlockLoader.ROTTEN_FUNGUS_HEAP.block, carpet(BlockLoader.ROTTEN_FUNGUS_HEAP.block))
         blockCopier(BlockLoader.TUMIDUSIO_HYPHA)
@@ -47,7 +47,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         }
 
         for(phase in 0..14) {
-            getVariantBuilder(block).partialState().with(HyphaCraftProperties.PHASE, phase)
+            getVariantBuilder(block).partialState().with(ModProperties.PHASE, phase)
                 .modelForState().modelFile(
                     if (phase < 5) models[0] else if (phase < 10) models[1] else models[2]
                 ).addModel()

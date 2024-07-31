@@ -15,7 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.event.config.ModConfigEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import java.util.stream.Collectors
@@ -79,7 +79,7 @@ object MycovastusUtil {
 
         level.setBlock(
             pos,
-            BlockLoader.MYCOVASTUS_HYPHA.defaultBlockState().setValue(HyphaCraftProperties.PHASE, phase),
+            BlockLoader.MYCOVASTUS_HYPHA.defaultBlockState().setValue(ModProperties.PHASE, phase),
             3
         )
         val be = level.getBlockEntity(pos) as MycovastusHyphaBlockEntity
@@ -97,11 +97,11 @@ object MycovastusUtil {
         val randomNum = random.nextDouble().pow(1.0 / hyphaCount)
         val state = BlockLoader.MYCOVASTUS.block.defaultBlockState()
         if(randomNum < 1.0f / 3.0f) {
-            level.setBlock(pos.above(), state.setValue(HyphaCraftProperties.MUSHROOM_COUNT, 1), 3)
+            level.setBlock(pos.above(), state.setValue(ModProperties.MUSHROOM_COUNT, 1), 3)
         } else if(randomNum < 2.0f / 3.0f) {
-            level.setBlock(pos.above(), state.setValue(HyphaCraftProperties.MUSHROOM_COUNT, 2), 3)
+            level.setBlock(pos.above(), state.setValue(ModProperties.MUSHROOM_COUNT, 2), 3)
         } else {
-            level.setBlock(pos.above(), state.setValue(HyphaCraftProperties.MUSHROOM_COUNT, 3), 3)
+            level.setBlock(pos.above(), state.setValue(ModProperties.MUSHROOM_COUNT, 3), 3)
         }
     }
 }

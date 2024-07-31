@@ -59,6 +59,12 @@ object BlockLoader {
     val TUMIDUSIO_HYPHA_HIDDEN_BLOCK by BLOCKS.register("tumidusio_hypha_hidden_block", ::TumidusioHyphaHiddenBlock)
     val HYPHACOAL_BLOCK = register("hyphacoal_block") { Block(copy(Blocks.COAL_BLOCK)) }
     val TUMIDUSIO = register("tumidusio", ::TumidusioBlock)
+    val GRANDISPORIA_STIPE by BLOCKS.register("grandisporia_stipe", ::GrandisporiaStipeBlock)
+    val GRANDISPORIA_SMALL_CAP by BLOCKS.register("grandisporia_small_cap", ::GrandisporiaSmallCapBlock)
+    val GRANDISPORIA_CAP_CENTER by BLOCKS.register("grandisporia_cap_center", ::GrandisporiaCapCenterBlock)
+    val GRANDISPORIA_CAP by BLOCKS.register("grandisporia_cap", ::GrandisporiaCapBlock)
+    val GRANDISPORIA_WITHERED_CAP = register("grandisporia_withered_cap", ::GrandisporiaWitheredCapBlock)
+    val GRANDISPORIA_WITHERED_STIPE = register("grandisporia_withered_stipe") { Block(copy(Blocks.OAK_LOG)) }
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

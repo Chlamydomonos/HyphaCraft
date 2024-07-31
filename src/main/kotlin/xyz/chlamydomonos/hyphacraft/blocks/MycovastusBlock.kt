@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.material.Fluids
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 
@@ -38,20 +38,19 @@ class MycovastusBlock : Block(
     init {
         registerDefaultState(
             defaultBlockState()
-                .setValue(HyphaCraftProperties.MUSHROOM_COUNT, 1)
+                .setValue(ModProperties.MUSHROOM_COUNT, 1)
                 .setValue(BlockStateProperties.WATERLOGGED, false)
         )
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(HyphaCraftProperties.MUSHROOM_COUNT)
-        builder.add(BlockStateProperties.WATERLOGGED)
+        builder.add(ModProperties.MUSHROOM_COUNT, BlockStateProperties.WATERLOGGED)
     }
 
     override fun getStateForPlacement(context: BlockPlaceContext): BlockState? {
         val oldState = context.level.getBlockState(context.clickedPos)
         if(oldState.`is`(this)) {
-            return oldState.cycle(HyphaCraftProperties.MUSHROOM_COUNT)
+            return oldState.cycle(ModProperties.MUSHROOM_COUNT)
         } else {
             val fluidState = context.level.getFluidState(context.clickedPos)
             val flag = fluidState.type == Fluids.WATER
@@ -63,7 +62,7 @@ class MycovastusBlock : Block(
         return if (
             !useContext.isSecondaryUseActive
             && useContext.itemInHand.item === asItem()
-            && state.getValue(HyphaCraftProperties.MUSHROOM_COUNT) < 3
+            && state.getValue(ModProperties.MUSHROOM_COUNT) < 3
         ) {
             true
         } else {
@@ -91,7 +90,7 @@ class MycovastusBlock : Block(
     }
 
     override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape {
-        val count = state.getValue(HyphaCraftProperties.MUSHROOM_COUNT)
+        val count = state.getValue(ModProperties.MUSHROOM_COUNT)
         return when (count) {
             1 -> {
                 SHAPE_1

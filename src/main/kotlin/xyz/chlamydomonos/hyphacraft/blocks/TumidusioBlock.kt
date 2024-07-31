@@ -12,8 +12,9 @@ import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
@@ -24,10 +25,10 @@ class TumidusioBlock : Block(
     init {
         registerDefaultState(
             defaultBlockState()
-                .setValue(HyphaCraftProperties.DENSITY, 1)
-                .setValue(HyphaCraftProperties.EXPAND_X, 1)
-                .setValue(HyphaCraftProperties.EXPAND_Y, 1)
-                .setValue(HyphaCraftProperties.EXPAND_Z, 1)
+                .setValue(ModProperties.DENSITY, 1)
+                .setValue(ModProperties.EXPAND_X, 1)
+                .setValue(ModProperties.EXPAND_Y, 1)
+                .setValue(ModProperties.EXPAND_Z, 1)
         )
     }
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
@@ -55,6 +56,10 @@ class TumidusioBlock : Block(
         } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
             MycovastusUtil.setHypha(level, newPos)
         }
+
+        if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
+            GrandisporiaUtil.tryGrowInitialStipe(level, pos)
+        }
     }
 
     override fun tick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
@@ -62,10 +67,10 @@ class TumidusioBlock : Block(
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(HyphaCraftProperties.DENSITY)
-        builder.add(HyphaCraftProperties.EXPAND_X)
-        builder.add(HyphaCraftProperties.EXPAND_Y)
-        builder.add(HyphaCraftProperties.EXPAND_Z)
+        builder.add(ModProperties.DENSITY)
+        builder.add(ModProperties.EXPAND_X)
+        builder.add(ModProperties.EXPAND_Y)
+        builder.add(ModProperties.EXPAND_Z)
     }
 
     override fun neighborChanged(
@@ -80,7 +85,7 @@ class TumidusioBlock : Block(
         if(level.isClientSide) {
             return
         }
-        val density = state.getValue(HyphaCraftProperties.DENSITY)
+        val density = state.getValue(ModProperties.DENSITY)
         if(density > 1) {
             level.scheduleTick(pos, this, 1)
         }

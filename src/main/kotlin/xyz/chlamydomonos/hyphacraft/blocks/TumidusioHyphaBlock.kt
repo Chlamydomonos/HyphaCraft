@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import xyz.chlamydomonos.hyphacraft.blockentities.TumidusioHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 
@@ -22,7 +22,7 @@ class TumidusioHyphaBlock : BaseEntityBlock(
         .randomTicks()
 ), BurnableHypha {
     init {
-        registerDefaultState(defaultBlockState().setValue(HyphaCraftProperties.PHASE, 0))
+        registerDefaultState(defaultBlockState().setValue(ModProperties.PHASE, 0))
     }
 
     companion object {
@@ -34,7 +34,7 @@ class TumidusioHyphaBlock : BaseEntityBlock(
     override fun newBlockEntity(pos: BlockPos, state: BlockState) = TumidusioHyphaBlockEntity(pos, state)
 
     override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean, random: RandomSource): BurnableHypha.VanillaBehaviourHandler {
-        val phase = state.getValue(HyphaCraftProperties.PHASE)
+        val phase = state.getValue(ModProperties.PHASE)
         if (phase < 10) {
             return BurnableHypha.VanillaBehaviourHandler.DO
         }
@@ -48,7 +48,7 @@ class TumidusioHyphaBlock : BaseEntityBlock(
     override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(HyphaCraftProperties.PHASE)
+        builder.add(ModProperties.PHASE)
     }
 
     @Suppress("OVERRIDE_DEPRECATION")
@@ -57,7 +57,7 @@ class TumidusioHyphaBlock : BaseEntityBlock(
     }
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
-        val phase = state.getValue(HyphaCraftProperties.PHASE)
+        val phase = state.getValue(ModProperties.PHASE)
         for (i in -1..1) {
             for(j in -1..1) {
                 for(k in -1..1) {
@@ -74,7 +74,7 @@ class TumidusioHyphaBlock : BaseEntityBlock(
         } else {
             level.setBlock(
                 pos,
-                BlockLoader.TUMIDUSIO.block.defaultBlockState().setValue(HyphaCraftProperties.DENSITY, 3),
+                BlockLoader.TUMIDUSIO.block.defaultBlockState().setValue(ModProperties.DENSITY, 3),
                 3
             )
             level.scheduleTick(pos, BlockLoader.TUMIDUSIO.block, 1)

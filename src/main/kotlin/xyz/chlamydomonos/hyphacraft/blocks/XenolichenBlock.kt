@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blockentities.XenolichenBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 
@@ -24,7 +24,7 @@ class XenolichenBlock : BaseEntityBlock(
         .randomTicks()
 ), BurnableHypha {
     init {
-        registerDefaultState(defaultBlockState().setValue(HyphaCraftProperties.PHASE, 0))
+        registerDefaultState(defaultBlockState().setValue(ModProperties.PHASE, 0))
     }
 
     companion object {
@@ -32,7 +32,7 @@ class XenolichenBlock : BaseEntityBlock(
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(HyphaCraftProperties.PHASE)
+        builder.add(ModProperties.PHASE)
     }
 
     override fun codec() = CODEC
@@ -40,7 +40,7 @@ class XenolichenBlock : BaseEntityBlock(
     override fun newBlockEntity(p0: BlockPos, p1: BlockState) = XenolichenBlockEntity(p0, p1)
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
-        val phase = state.getValue(HyphaCraftProperties.PHASE)
+        val phase = state.getValue(ModProperties.PHASE)
         for (i in -1..1) {
             for (j in -1..1) {
                 for (k in -1..1) {
@@ -68,7 +68,7 @@ class XenolichenBlock : BaseEntityBlock(
     override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 
     override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean, random: RandomSource): BurnableHypha.VanillaBehaviourHandler {
-        val phase = state.getValue(HyphaCraftProperties.PHASE)
+        val phase = state.getValue(ModProperties.PHASE)
         if(phase < 10) {
             val be = level.getBlockEntity(pos) as XenolichenBlockEntity
             level.setBlock(pos, be.copiedState, 3)

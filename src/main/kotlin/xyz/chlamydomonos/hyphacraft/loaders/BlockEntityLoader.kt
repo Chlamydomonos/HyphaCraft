@@ -29,17 +29,6 @@ object BlockEntityLoader {
         }
     }
 
-    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    fun <T : BlockEntity> register(
-        name: String,
-        blockEntity: (BlockPos, BlockState) -> T,
-        block: BlockLoader.BlockAndItsItem<*>
-    ): DeferredHolder<BlockEntityType<*>, BlockEntityType<T>> {
-        return BLOCK_ENTITIES.register(name) { ->
-            BlockEntityType.Builder.of(blockEntity, block.block).build(null)
-        }
-    }
-
     fun register(bus: IEventBus) {
         BLOCK_ENTITIES.register(bus)
     }

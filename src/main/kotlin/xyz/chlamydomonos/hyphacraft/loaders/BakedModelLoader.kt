@@ -6,7 +6,7 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.client.event.ModelEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.render.block.BlockCopierModel
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -16,7 +16,7 @@ object BakedModelLoader {
         hiddenBlock: Block
     ) {
         for(state in block.stateDefinition.possibleStates) {
-            val property = HyphaCraftProperties.PHASE
+            val property = ModProperties.PHASE
             val phase = state.getValue(property)
             val newState = hiddenBlock.defaultBlockState().setValue(property, phase)
             val oldLocation = BlockModelShaper.stateToModelLocation(state)

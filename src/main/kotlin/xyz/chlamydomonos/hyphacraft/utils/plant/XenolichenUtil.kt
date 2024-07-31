@@ -14,7 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.event.config.ModConfigEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.XenolichenBlockEntity
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import java.util.stream.Collectors
@@ -91,7 +91,7 @@ object XenolichenUtil {
 
         level.setBlock(
             pos,
-            BlockLoader.XENOLICHEN_BLOCK.defaultBlockState().setValue(HyphaCraftProperties.PHASE, phase),
+            BlockLoader.XENOLICHEN_BLOCK.defaultBlockState().setValue(ModProperties.PHASE, phase),
             3
         )
         val be = level.getBlockEntity(pos) as XenolichenBlockEntity

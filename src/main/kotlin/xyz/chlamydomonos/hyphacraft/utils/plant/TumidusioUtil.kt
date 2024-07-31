@@ -18,7 +18,7 @@ import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.dot
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.unaryMinus
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.TumidusioHyphaBlockEntity
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import java.util.stream.Collectors
@@ -119,7 +119,7 @@ object TumidusioUtil {
 
         level.setBlock(
             pos,
-            BlockLoader.TUMIDUSIO_HYPHA.defaultBlockState().setValue(HyphaCraftProperties.PHASE, phase),
+            BlockLoader.TUMIDUSIO_HYPHA.defaultBlockState().setValue(ModProperties.PHASE, phase),
             3
         )
         val be = level.getBlockEntity(pos) as TumidusioHyphaBlockEntity
@@ -152,9 +152,9 @@ object TumidusioUtil {
     }
 
     private fun getExpandDirection(state: BlockState): Vec3i {
-        val x = state.getValue(HyphaCraftProperties.EXPAND_X) - 1
-        val y = state.getValue(HyphaCraftProperties.EXPAND_Y) - 1
-        val z = state.getValue(HyphaCraftProperties.EXPAND_Z) - 1
+        val x = state.getValue(ModProperties.EXPAND_X) - 1
+        val y = state.getValue(ModProperties.EXPAND_Y) - 1
+        val z = state.getValue(ModProperties.EXPAND_Z) - 1
         return Vec3i(x, y, z)
     }
 
@@ -163,9 +163,9 @@ object TumidusioUtil {
         val y = if(direction.y > 0) 2 else if(direction.y == 0) 1 else 0
         val z = if(direction.z > 0) 2 else if(direction.z == 0) 1 else 0
         return state
-            .setValue(HyphaCraftProperties.EXPAND_X, x)
-            .setValue(HyphaCraftProperties.EXPAND_Y, y)
-            .setValue(HyphaCraftProperties.EXPAND_Z, z)
+            .setValue(ModProperties.EXPAND_X, x)
+            .setValue(ModProperties.EXPAND_Y, y)
+            .setValue(ModProperties.EXPAND_Z, z)
     }
 
     private fun angleOf(a: Vec3i, b: Vec3i): Double {
@@ -200,7 +200,7 @@ object TumidusioUtil {
                 availableDirections.add(d)
             }
             if(newState.`is`(BlockLoader.TUMIDUSIO.block)) {
-                val density = newState.getValue(HyphaCraftProperties.DENSITY)
+                val density = newState.getValue(ModProperties.DENSITY)
                 if(density < 32) {
                     availableDirections.add(d)
                 }
@@ -245,7 +245,7 @@ object TumidusioUtil {
         scheduleTick: Boolean
     ): Boolean {
         val state = level.getBlockState(pos)
-        val stateDensity = state.getValue(HyphaCraftProperties.DENSITY)
+        val stateDensity = state.getValue(ModProperties.DENSITY)
         if(stateDensity == 32) {
             return false
         }
@@ -254,7 +254,7 @@ object TumidusioUtil {
             setExpandDirection(state, direction)
         } else {
             state
-        }.setValue(HyphaCraftProperties.DENSITY, min(stateDensity + 1, 32))
+        }.setValue(ModProperties.DENSITY, min(stateDensity + 1, 32))
         level.setBlock(pos, newState, 3)
         if(scheduleTick) {
             level.scheduleTick(pos, BlockLoader.TUMIDUSIO.block, 1)
@@ -263,7 +263,7 @@ object TumidusioUtil {
     }
 
     fun expand(level: ServerLevel, pos: BlockPos, state: BlockState, random: RandomSource) {
-        val density = state.getValue(HyphaCraftProperties.DENSITY)
+        val density = state.getValue(ModProperties.DENSITY)
         if(density <= 1) {
             return
         }
@@ -321,7 +321,7 @@ object TumidusioUtil {
         }
 
         if (successfulExpansions > 0) {
-            level.setBlock(pos, state.setValue(HyphaCraftProperties.DENSITY, density - successfulExpansions), 3)
+            level.setBlock(pos, state.setValue(ModProperties.DENSITY, density - successfulExpansions), 3)
         }
     }
 }

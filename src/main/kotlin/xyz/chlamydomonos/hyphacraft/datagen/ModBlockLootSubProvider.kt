@@ -17,7 +17,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator
-import xyz.chlamydomonos.hyphacraft.blocks.utils.HyphaCraftProperties
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ItemLoader
 import xyz.chlamydomonos.hyphacraft.loot.BlockCopierLoot
@@ -30,10 +30,10 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
         dropSelf(BlockLoader.ALIEN_SOIL.block)
         blockCopier(BlockLoader.XENOLICHEN_BLOCK, ItemLoader.XENOLICHEN)
         blockCopier(BlockLoader.MYCOVASTUS_HYPHA, Items.AIR, 0)
-        candleLike(BlockLoader.MYCOVASTUS.block, HyphaCraftProperties.MUSHROOM_COUNT)
+        candleLike(BlockLoader.MYCOVASTUS.block, ModProperties.MUSHROOM_COUNT)
         rateDrop(BlockLoader.ROTTEN_FUNGUS_HEAP.block, ItemLoader.ROTTEN_FUNGUS_BALL, -6.0f, 2.0f)
         rateDrop(BlockLoader.TUMIDUSIO_HYPHA, ItemLoader.MOLDY_CORK_DUST, -2.0f, 3.0f)
-        candleLike(BlockLoader.TUMIDUSIO.block, HyphaCraftProperties.DENSITY)
+        candleLike(BlockLoader.TUMIDUSIO.block, ModProperties.DENSITY)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
