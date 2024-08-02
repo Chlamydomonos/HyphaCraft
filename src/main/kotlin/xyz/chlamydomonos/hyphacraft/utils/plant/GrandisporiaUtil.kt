@@ -1,6 +1,7 @@
 package xyz.chlamydomonos.hyphacraft.utils.plant
 
 import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.core.Vec3i
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
@@ -186,7 +187,17 @@ object GrandisporiaUtil {
 
         if(age == 0 && height < 4 && pos.y < maxBuildHeight) {
             val growSuccess = growUp(level, pos, state, random, isAirBuffer, isThisBuffer)
-            val newState = state.cycle(ModProperties.AGE)
+            var newState = state.cycle(ModProperties.AGE)
+            for (dir in Direction.entries) {
+                val neighborPos = pos.offset(dir.normal)
+                newState = state.updateShape(
+                    dir,
+                    level.getBlockState(neighborPos),
+                    level,
+                    pos,
+                    neighborPos
+                )
+            }
             level.setBlock(pos, newState, 3)
 
             if(!growSuccess && isAirBuffer[2][3][2]) {

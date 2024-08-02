@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.neoforge.client.model.generators.ModelProvider
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
@@ -59,6 +60,7 @@ class GrandisporiaCapCenterBlock : Block(
                 if (canGrowBuffer[i][k]) {
                     val newPos = pos.offset(i - 2, 0, k - 2)
                     val newState = BlockLoader.GRANDISPORIA_WITHERED_CAP.block.defaultBlockState()
+                        .setValue(ModProperties.SPORE_AMOUNT, 3)
                     level.setBlock(newPos, newState, 3)
                 }
             }

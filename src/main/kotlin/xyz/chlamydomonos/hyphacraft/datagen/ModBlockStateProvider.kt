@@ -45,6 +45,8 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
             NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/grandisporia_withered_stipe_top")
         ))
         GrandisporiaWitheredCapBlock.genModel(this)
+        simpleBlockWithItem(BlockLoader.SPORE_HEAP.block, carpet(BlockLoader.SPORE_HEAP.block))
+        simpleBlockWithItem(BlockLoader.HUMUS_HEAP.block, carpet(BlockLoader.HUMUS_HEAP.block))
     }
 
     private fun blockCopier(block: Block) {
