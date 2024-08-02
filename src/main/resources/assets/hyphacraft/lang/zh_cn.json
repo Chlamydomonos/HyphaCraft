@@ -18,7 +18,7 @@
   "block.hyphacraft.test_block": "测试方块",
   "block.hyphacraft.tumidusio": "肿胀腐霉",
   "block.hyphacraft.tumidusio_hypha": "肿胀腐霉菌丝",
-  "block.hyphacraft.xenolichen_block": "异星幽苔",
+  "block.hyphacraft.xenolichen_block": "异星地衣",
   "item.hyphacraft.alien_orb": "天降之物",
   "item.hyphacraft.debug_stick": "调试杖",
   "item.hyphacraft.humus": "腐殖质",
@@ -27,7 +27,7 @@
   "item.hyphacraft.spore_powder": "孢子粉",
   "item.hyphacraft.tubular_hypha": "管状菌丝",
   "item.hyphacraft.white_hypha": "白色菌丝",
-  "item.hyphacraft.xenolichen": "异星幽苔",
+  "item.hyphacraft.xenolichen": "异星地衣",
   "tab.hyphacraft": "菌丝工艺",
   "tooltip.hyphacraft.alien_orb": "稍加扰动就会产生接近太阳表面的高温"
 }
