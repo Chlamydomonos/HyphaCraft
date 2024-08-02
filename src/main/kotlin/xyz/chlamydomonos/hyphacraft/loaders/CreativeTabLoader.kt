@@ -9,8 +9,9 @@ import net.neoforged.neoforge.registries.DeferredRegister
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 
 object CreativeTabLoader {
-    val CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HyphaCraft.MODID)
+    private val CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HyphaCraft.MODID)
 
+    @Suppress("unused")
     val HYPHACRAFT_TAB = CREATIVE_TABS.register("hyphacraft_tab") {
         ->
         CreativeModeTab.builder()
