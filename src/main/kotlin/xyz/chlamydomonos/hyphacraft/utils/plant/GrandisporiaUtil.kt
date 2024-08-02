@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.PipeBlock
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
@@ -33,7 +34,11 @@ object GrandisporiaUtil {
                 }
             }
         }
-        level.setBlock(pos, BlockLoader.GRANDISPORIA_STIPE.defaultBlockState(), 3)
+        level.setBlock(
+            pos,
+            BlockLoader.GRANDISPORIA_STIPE.defaultBlockState().setValue(BlockStateProperties.DOWN, true),
+            3
+        )
     }
 
     private fun canGrowTo(

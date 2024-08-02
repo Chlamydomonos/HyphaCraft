@@ -19,5 +19,6 @@ object HyphaCraft {
         BlockLoader.register(MOD_BUS)
         BlockEntityLoader.register(MOD_BUS)
         LootLoader.register(MOD_BUS)
+        DataComponentLoader.register(MOD_BUS)
     }
 }
