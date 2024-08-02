@@ -19,6 +19,7 @@ class ModItemModelProvider(
         basicItem(ItemLoader.WHITE_HYPHA)
         basicItem(ItemLoader.SPORE_POWDER)
         basicItem(ItemLoader.HUMUS)
+        basicItem(ItemLoader.ALIEN_ORB)
     }
 
 }

@@ -64,9 +64,10 @@ object BlockLoader {
     val GRANDISPORIA_CAP_CENTER by BLOCKS.register("grandisporia_cap_center", ::GrandisporiaCapCenterBlock)
     val GRANDISPORIA_CAP by BLOCKS.register("grandisporia_cap", ::GrandisporiaCapBlock)
     val GRANDISPORIA_WITHERED_CAP = register("grandisporia_withered_cap", ::GrandisporiaWitheredCapBlock)
-    val GRANDISPORIA_WITHERED_STIPE = register("grandisporia_withered_stipe") { Block(copy(Blocks.OAK_PLANKS)) }
+    val GRANDISPORIA_WITHERED_STIPE = register("grandisporia_withered_stipe", ::GrandisporiaWitheredStipeBlock)
     val SPORE_HEAP = register("spore_heap", ::SporeHeapBlock)
     val HUMUS_HEAP = register("humus_heap", ::HumusHeapBlock)
+    val ALIEN_EXPLOSIVE by BLOCKS.register("alien_explosive", ::AlienExplosiveBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

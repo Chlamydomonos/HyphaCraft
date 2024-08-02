@@ -44,6 +44,10 @@ class TumidusioBlock : Block(
             }
         }
 
+        if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
+            GrandisporiaUtil.tryGrowInitialStipe(level, pos.above())
+        }
+
         val randomX = random.nextIntBetweenInclusive(-1, 1)
         val randomY = random.nextIntBetweenInclusive(-1, 1)
         val randomZ = random.nextIntBetweenInclusive(-1, 1)
@@ -55,10 +59,6 @@ class TumidusioBlock : Block(
             XenolichenUtil.setXenolichen(level, newPos)
         } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
             MycovastusUtil.setHypha(level, newPos)
-        }
-
-        if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
-            GrandisporiaUtil.tryGrowInitialStipe(level, pos)
         }
     }
 

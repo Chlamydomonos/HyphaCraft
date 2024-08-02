@@ -26,5 +26,8 @@
   "block.hyphacraft.grandisporia_cap": "Grandisporia Cap",
   "block.hyphacraft.grandisporia_withered_cap": "Withered Grandisporia Cap",
   "block.hyphacraft.spore_heap": "Spore Heap",
-  "block.hyphacraft.humus_heap": "Humus Heap"
+  "block.hyphacraft.humus_heap": "Humus Heap",
+  "block.hyphacraft.alien_explosive": "Alien Explosive",
+  "item.hyphacraft.alien_orb": "Alien Orb",
+  "tooltip.hyphacraft.alien_orb": "Produces temperatures near the surface of the sun with only slight agitation"
 }

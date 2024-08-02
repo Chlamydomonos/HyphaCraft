@@ -47,6 +47,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         GrandisporiaWitheredCapBlock.genModel(this)
         simpleBlockWithItem(BlockLoader.SPORE_HEAP.block, carpet(BlockLoader.SPORE_HEAP.block))
         simpleBlockWithItem(BlockLoader.HUMUS_HEAP.block, carpet(BlockLoader.HUMUS_HEAP.block))
+        simpleBlock(BlockLoader.ALIEN_EXPLOSIVE, existingModel("alien_explosive"))
     }
 
     private fun blockCopier(block: Block) {
