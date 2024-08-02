@@ -9,6 +9,10 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
+import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaCapBlock
+import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaCapCenterBlock
+import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaStipeBlock
+import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaWitheredCapBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
@@ -31,6 +35,16 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         blockCopier(BlockLoader.TUMIDUSIO_HYPHA_HIDDEN_BLOCK, "tumidusio_hypha")
         simpleBlockWithItem(BlockLoader.HYPHACOAL_BLOCK.block, cubeAll(BlockLoader.HYPHACOAL_BLOCK.block))
         simpleBlockWithItem(BlockLoader.TUMIDUSIO.block, cubeAll(BlockLoader.TUMIDUSIO.block))
+        GrandisporiaStipeBlock.genModel(this)
+        simpleBlock(BlockLoader.GRANDISPORIA_SMALL_CAP, existingModel("grandisporia_small_cap"))
+        GrandisporiaCapCenterBlock.genModel(this)
+        GrandisporiaCapBlock.genModel(this)
+        simpleBlockWithItem(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block, models().cubeColumn(
+            "grandisporia_withered_stipe",
+            NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/grandisporia_withered_stipe"),
+            NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/grandisporia_withered_stipe_top")
+        ))
+        GrandisporiaWitheredCapBlock.genModel(this)
     }
 
     private fun blockCopier(block: Block) {
@@ -67,7 +81,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         }
     }
 
-    private fun existingModel(name: String) = models().getExistingFile(
+    fun existingModel(name: String) = models().getExistingFile(
         NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/$name")
     )
 

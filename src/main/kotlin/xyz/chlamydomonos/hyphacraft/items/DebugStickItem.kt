@@ -3,7 +3,6 @@ package xyz.chlamydomonos.hyphacraft.items
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.context.UseOnContext
-import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
 class DebugStickItem : Item(Properties()) {
@@ -14,8 +13,7 @@ class DebugStickItem : Item(Properties()) {
         }
 
         val pos = context.clickedPos
-        level.setBlock(pos, BlockLoader.TUMIDUSIO.block.defaultBlockState().setValue(ModProperties.DENSITY, 10), 3)
-        level.scheduleTick(pos, BlockLoader.TUMIDUSIO.block, 1)
+        level.setBlock(pos, BlockLoader.GRANDISPORIA_STIPE.defaultBlockState(), 3)
 
         return InteractionResult.SUCCESS
     }

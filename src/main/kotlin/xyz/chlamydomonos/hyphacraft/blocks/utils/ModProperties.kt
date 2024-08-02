@@ -10,8 +10,9 @@ object ModProperties {
     val EXPAND_X = IntegerProperty.create("expand_x", 0, 2)
     val EXPAND_Y = IntegerProperty.create("expand_y", 0, 2)
     val EXPAND_Z = IntegerProperty.create("expand_z", 0, 2)
-    val AGE = IntegerProperty.create("age", 0, 4)
+    val AGE = IntegerProperty.create("age", 0, 3)
     val HEIGHT = IntegerProperty.create("height", 0, 4)
     val CAN_GROW = BooleanProperty.create("can_grow")
     val SPORE_AMOUNT = IntegerProperty.create("spore_amount", 0, 3)
+    val IS_CORNER = BooleanProperty.create("is_corner")
 }
