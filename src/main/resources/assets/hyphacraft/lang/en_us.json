@@ -14,5 +14,17 @@
   "block.hyphacraft.tumidusio_hypha": "Tumidusio Hypha",
   "block.hyphacraft.tumidusio": "Tumidusio",
   "item.hyphacraft.moldy_cork_dust": "Moldy Cork Dust",
-  "block.hyphacraft.hyphacoal_block": "Hyphacoal Block"
+  "block.hyphacraft.hyphacoal_block": "Hyphacoal Block",
+  "item.hyphacraft.tubular_hypha": "Tubular Hypha",
+  "item.hyphacraft.white_hypha": "White Hypha",
+  "item.hyphacraft.spore_powder": "Spore Powder",
+  "item.hyphacraft.humus": "Humus",
+  "block.hyphacraft.grandisporia_stipe": "Grandisporia Stipe",
+  "block.hyphacraft.grandisporia_withered_stipe": "Withered Grandisporia Stipe",
+  "block.hyphacraft.grandisporia_small_cap": "Small Grandisporia Cap",
+  "block.hyphacraft.grandisporia_cap_center": "Grandisporia Cap Center",
+  "block.hyphacraft.grandisporia_cap": "Grandisporia Cap",
+  "block.hyphacraft.grandisporia_withered_cap": "Withered Grandisporia Cap",
+  "block.hyphacraft.spore_heap": "Spore Heap",
+  "block.hyphacraft.humus_heap": "Humus Heap"
 }

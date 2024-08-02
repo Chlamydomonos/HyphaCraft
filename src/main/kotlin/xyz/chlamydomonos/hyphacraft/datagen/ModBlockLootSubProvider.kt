@@ -12,6 +12,7 @@ import net.minecraft.world.level.storage.loot.IntRange
 import net.minecraft.world.level.storage.loot.LootPool
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.entries.LootItem
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer
 import net.minecraft.world.level.storage.loot.functions.LimitCount
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition
@@ -21,6 +22,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ItemLoader
 import xyz.chlamydomonos.hyphacraft.loot.BlockCopierLoot
+import xyz.chlamydomonos.hyphacraft.loot.GrandisporiaWitheredCapLoot
 
 class ModBlockLootSubProvider(provider: HolderLookup.Provider):
     BlockLootSubProvider(emptySet(), FeatureFlags.REGISTRY.allFlags(), provider) {
@@ -34,6 +36,14 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
         rateDrop(BlockLoader.ROTTEN_FUNGUS_HEAP.block, ItemLoader.ROTTEN_FUNGUS_BALL, -6.0f, 2.0f)
         rateDrop(BlockLoader.TUMIDUSIO_HYPHA, ItemLoader.MOLDY_CORK_DUST, -2.0f, 3.0f)
         candleLike(BlockLoader.TUMIDUSIO.block, ModProperties.DENSITY)
+        rateDrop(BlockLoader.GRANDISPORIA_STIPE, ItemLoader.TUBULAR_HYPHA, -3.0f, 1.0f)
+        rateDrop(BlockLoader.GRANDISPORIA_SMALL_CAP, ItemLoader.WHITE_HYPHA, -3.0f, 1.0f)
+        rateDrop(BlockLoader.GRANDISPORIA_CAP_CENTER, ItemLoader.WHITE_HYPHA, -3.0f, 1.0f)
+        rateDrop(BlockLoader.GRANDISPORIA_CAP, ItemLoader.WHITE_HYPHA, -3.0f, 1.0f)
+        dropSelf(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block)
+        specified(BlockLoader.GRANDISPORIA_WITHERED_CAP.block, GrandisporiaWitheredCapLoot.builder())
+        rateDrop(BlockLoader.SPORE_HEAP.block, ItemLoader.SPORE_POWDER, 1.0f, 4.0f)
+        rateDrop(BlockLoader.HUMUS_HEAP.block, ItemLoader.HUMUS, 1.0f, 6.0f)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
@@ -46,7 +56,15 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
             BlockLoader.MYCOVASTUS.block,
             BlockLoader.ROTTEN_FUNGUS_HEAP.block,
             BlockLoader.TUMIDUSIO_HYPHA,
-            BlockLoader.TUMIDUSIO.block
+            BlockLoader.TUMIDUSIO.block,
+            BlockLoader.GRANDISPORIA_STIPE,
+            BlockLoader.GRANDISPORIA_SMALL_CAP,
+            BlockLoader.GRANDISPORIA_CAP,
+            BlockLoader.GRANDISPORIA_CAP_CENTER,
+            BlockLoader.GRANDISPORIA_WITHERED_STIPE.block,
+            BlockLoader.GRANDISPORIA_WITHERED_CAP.block,
+            BlockLoader.SPORE_HEAP.block,
+            BlockLoader.HUMUS_HEAP.block
         )
     }
 
@@ -99,6 +117,15 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
                             .apply(LimitCount.limitCount(IntRange.lowerBound(0)))
                     )
             )
+        )
+        add(block, table)
+    }
+
+    private fun specified(block: Block, loot: LootPoolEntryContainer.Builder<*>) {
+        val table = LootTable.lootTable().withPool(
+            LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1.0f))
+                .add(loot)
         )
         add(block, table)
     }

@@ -15,7 +15,7 @@ object CreativeTabLoader {
         ->
         CreativeModeTab.builder()
             .title(Component.translatable("tab.hyphacraft"))
-            .icon {ItemStack.EMPTY}
+            .icon { ItemStack(ItemLoader.XENOLICHEN) }
             .displayItems { _, output -> ItemLoader.ITEMS_QUEUE.forEach{ output.accept(it.item.get()) } }
             .build()
     }

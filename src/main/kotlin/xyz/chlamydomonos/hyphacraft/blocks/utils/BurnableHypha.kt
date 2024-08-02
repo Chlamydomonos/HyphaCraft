@@ -13,5 +13,7 @@ interface BurnableHypha {
         pos: BlockPos,
         replacing: Boolean,
         random: RandomSource
-    ): VanillaBehaviourHandler
+    ): VanillaBehaviourHandler {
+        return VanillaBehaviourHandler.DO
+    }
 }

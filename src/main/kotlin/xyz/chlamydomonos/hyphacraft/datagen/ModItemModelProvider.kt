@@ -15,6 +15,10 @@ class ModItemModelProvider(
         basicItem(ItemLoader.XENOLICHEN)
         basicItem(ItemLoader.ROTTEN_FUNGUS_BALL)
         basicItem(ItemLoader.MOLDY_CORK_DUST)
+        basicItem(ItemLoader.TUBULAR_HYPHA)
+        basicItem(ItemLoader.WHITE_HYPHA)
+        basicItem(ItemLoader.SPORE_POWDER)
+        basicItem(ItemLoader.HUMUS)
     }
 
 }

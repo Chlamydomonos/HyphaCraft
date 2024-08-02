@@ -5,12 +5,18 @@ import net.minecraft.core.Direction
 import net.minecraft.core.Vec3i
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.level.block.PipeBlock
 import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
 
 object GrandisporiaUtil {
+    data class GrowResult(
+        val directions: List<Direction>,
+        val success: Boolean
+    )
+
     const val INITIAL_GROW_RATE = 1.0f / 30.0f
 
     fun tryGrowInitialStipe(level: ServerLevel, pos: BlockPos) {
@@ -80,7 +86,7 @@ object GrandisporiaUtil {
         random: RandomSource,
         isAirBuffer: Array<Array<BooleanArray>>,
         isThisBuffer: Array<Array<BooleanArray>>
-    ): Boolean {
+    ): GrowResult {
 
         val availableDirections = mutableSetOf<Vec3i>()
 
@@ -123,28 +129,31 @@ object GrandisporiaUtil {
                 if (canSplitX) {
                     level.setBlock(pos.offset(-1, 0, 0), tryIncreaseHeight(newState, random), 3)
                     level.setBlock(pos.offset(1, 0, 0), tryIncreaseHeight(newState, random), 3)
-                    return true
+                    return GrowResult(listOf(Direction.EAST, Direction.WEST), true)
                 }
 
                 level.setBlock(pos.offset(0, 0, -1), tryIncreaseHeight(newState, random), 3)
                 level.setBlock(pos.offset(0, 0, 1), tryIncreaseHeight(newState, random), 3)
-                return true
+                return GrowResult(listOf(Direction.NORTH, Direction.SOUTH), true)
             }
         }
 
-        if (random.nextInt(10) == 0) return false
+        if (random.nextInt(10) == 0) {
+            return GrowResult(emptyList(), false)
+        }
 
         if (canGrowUp && (random.nextBoolean() || !canGrowSide)) {
             level.setBlock(pos.above(), tryIncreaseHeight(newState, random), 3)
-            return true
+            return GrowResult(listOf(Direction.UP), true)
         }
 
         if (canGrowSide) {
-            val dir: Any = availableDirections.toTypedArray()[random.nextInt(availableDirections.size)]
-            level.setBlock(pos.offset(dir as Vec3i), tryIncreaseHeight(newState, random), 3)
+            val dir = availableDirections.toTypedArray()[random.nextInt(availableDirections.size)]
+            level.setBlock(pos.offset(dir), tryIncreaseHeight(newState, random), 3)
+            return GrowResult(listOf(Direction.fromDelta(dir.x, dir.y, dir.z)!!), false)
         }
 
-        return false
+        return GrowResult(emptyList(), false)
     }
 
     private fun isOlder(state: BlockState, age: Int): Boolean {
@@ -186,17 +195,12 @@ object GrandisporiaUtil {
         val maxBuildHeight = level.maxBuildHeight - 4
 
         if(age == 0 && height < 4 && pos.y < maxBuildHeight) {
-            val growSuccess = growUp(level, pos, state, random, isAirBuffer, isThisBuffer)
+            val growResult = growUp(level, pos, state, random, isAirBuffer, isThisBuffer)
+            val grownDirections = growResult.directions
+            val growSuccess = growResult.success
             var newState = state.cycle(ModProperties.AGE)
-            for (dir in Direction.entries) {
-                val neighborPos = pos.offset(dir.normal)
-                newState = state.updateShape(
-                    dir,
-                    level.getBlockState(neighborPos),
-                    level,
-                    pos,
-                    neighborPos
-                )
+            for (dir in grownDirections) {
+                newState = newState.setValue(PipeBlock.PROPERTY_BY_DIRECTION[dir]!!, true)
             }
             level.setBlock(pos, newState, 3)
 

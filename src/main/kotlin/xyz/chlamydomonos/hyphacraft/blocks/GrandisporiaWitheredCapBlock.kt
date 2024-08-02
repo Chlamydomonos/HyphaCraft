@@ -6,6 +6,7 @@ import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.ClipContext
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.client.model.generators.ModelProvider
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.plus
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.times
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -28,7 +30,7 @@ class GrandisporiaWitheredCapBlock : Block(
     Properties.ofFullCopy(Blocks.DIRT)
         .sound(SoundType.FUNGUS)
         .randomTicks()
-) {
+), BurnableHypha {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.SPORE_AMOUNT, 0))
     }
@@ -117,4 +119,22 @@ class GrandisporiaWitheredCapBlock : Block(
             level.addParticle(PARTICLE, randomX, randomY, randomZ, 0.0, 0.0, 0.0)
         }
     }
+
+    override fun onBurnt(
+        state: BlockState,
+        level: Level,
+        pos: BlockPos,
+        replacing: Boolean,
+        random: RandomSource
+    ): BurnableHypha.VanillaBehaviourHandler {
+        if(!replacing && random.nextInt(3) == 0) {
+            level.setBlock(pos, BlockLoader.HYPHACOAL_BLOCK.block.defaultBlockState(), 3)
+            return BurnableHypha.VanillaBehaviourHandler.CANCEL
+        }
+        return BurnableHypha.VanillaBehaviourHandler.DO
+    }
+
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 }

@@ -56,7 +56,9 @@ object ConfigLoader {
 
     val TUMIDUSIO_BLOCKS = PLANTS_BUILDER
         .comment("Additional blocks erodible by Tumidusio besides tumidusio_tags")
-        .defineListAllowEmpty("tumidusio_blocks", mutableListOf<String>(), NameUtil::validateBlockName)
+        .defineListAllowEmpty("tumidusio_blocks", mutableListOf(
+            "minecraft:pumpkin"
+        ), NameUtil::validateBlockName)
 
     val TUMIDUSIO_BLACKLIST = PLANTS_BUILDER
         .comment("Block blacklist for Tumidusio")

@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.material.Fluids
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
@@ -28,7 +29,7 @@ class MycovastusBlock : Block(
         .noOcclusion()
         .randomTicks()
         .sound(SoundType.SLIME_BLOCK)
-), SimpleWaterloggedBlock {
+), SimpleWaterloggedBlock, BurnableHypha {
     companion object {
         val SHAPE_1 = box(5.0, 0.0, 5.0, 11.0, 2.0, 11.0)
         val SHAPE_2 = box(1.0, 0.0, 1.0, 15.0, 2.0, 13.0)

@@ -18,7 +18,7 @@ import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 
 class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), BurnableHypha {
     companion object {
-        val EXPAND_RATE = 1.0f / 20.0f
+        const val EXPAND_RATE = 1.0f / 20.0f
     }
 
     override fun onBurnt(state: BlockState, level: Level, pos: BlockPos, replacing: Boolean, random: RandomSource): BurnableHypha.VanillaBehaviourHandler {

@@ -45,4 +45,8 @@ object ItemLoader {
     val XENOLICHEN by register("xenolichen", ::XenolichenItem)
     val ROTTEN_FUNGUS_BALL by simpleItem("rotten_fungus_ball")
     val MOLDY_CORK_DUST by simpleItem("moldy_cork_dust")
+    val TUBULAR_HYPHA by simpleItem("tubular_hypha")
+    val WHITE_HYPHA by simpleItem("white_hypha")
+    val SPORE_POWDER by simpleItem("spore_powder")
+    val HUMUS by simpleItem("humus")
 }

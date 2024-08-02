@@ -4,12 +4,14 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
@@ -18,7 +20,7 @@ class GrandisporiaSmallCapBlock : Block(
         .noOcclusion()
         .sound(SoundType.SLIME_BLOCK)
         .randomTicks()
-) {
+), BurnableHypha {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.CAN_GROW, false))
     }
@@ -67,4 +69,8 @@ class GrandisporiaSmallCapBlock : Block(
             level.setBlock(pos.offset(1, 0, -1), northWestState.setValue(facing, Direction.EAST), 3)
         }
     }
+
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 }

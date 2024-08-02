@@ -1,12 +1,15 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
+import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -16,7 +19,7 @@ class GrandisporiaCapBlock : HorizontalDirectionalBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .sound(SoundType.SLIME_BLOCK)
         .noOcclusion()
-) {
+), BurnableHypha {
     init {
         registerDefaultState(
             defaultBlockState()
@@ -58,4 +61,8 @@ class GrandisporiaCapBlock : HorizontalDirectionalBlock(
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(FACING, ModProperties.IS_CORNER)
     }
+
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
 }
