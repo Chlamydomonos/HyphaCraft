@@ -66,6 +66,7 @@ class AlienExplosiveBlock : Block(
             pos.y.toDouble(),
             pos.z.toDouble(),
             4f,
-            Level.ExplosionInteraction.BLOCK)
+            Level.ExplosionInteraction.BLOCK
+        )
     }
 }
