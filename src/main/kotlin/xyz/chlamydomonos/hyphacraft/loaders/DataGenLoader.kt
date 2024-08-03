@@ -34,6 +34,10 @@ object DataGenLoader {
             event.includeServer(),
             DataProvider.Factory { ModRecipeProvider(it, lp) }
         )
+        event.generator.addProvider(
+            event.includeServer(),
+            DataProvider.Factory { ModDatapackBuiltinEntriesProvider(it, lp) }
+        )
     }
 }
 

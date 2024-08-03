@@ -23,5 +23,14 @@ class ModBlockTagsProvider(
         tag(BlockTags.MINEABLE_WITH_HOE).add(BlockLoader.XENOLICHEN_BLOCK)
         tag(BlockTags.MINEABLE_WITH_HOE).add(BlockLoader.MYCOVASTUS_HYPHA)
         tag(ModBlockTags.PRESERVE_LEAVES).add(BlockLoader.TUMIDUSIO_HYPHA)
+        tag(BlockTags.MINEABLE_WITH_HOE).add(BlockLoader.GRANDISPORIA_STIPE)
+        tag(BlockTags.MINEABLE_WITH_HOE).add(BlockLoader.GRANDISPORIA_SMALL_CAP)
+        tag(BlockTags.MINEABLE_WITH_HOE).add(BlockLoader.GRANDISPORIA_CAP_CENTER)
+        tag(BlockTags.MINEABLE_WITH_HOE).add(BlockLoader.GRANDISPORIA_CAP)
+        tag(BlockTags.MINEABLE_WITH_AXE).add(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block)
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockLoader.GRANDISPORIA_WITHERED_CAP.block)
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.ROTTEN_FUNGUS_HEAP.block)
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.SPORE_HEAP.block)
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.HUMUS_HEAP.block)
     }
 }

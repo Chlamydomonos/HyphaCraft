@@ -27,13 +27,13 @@ object BlockLoader {
         val item by itemHolder
     }
 
-    val BLOCKS = DeferredRegister.create(Registries.BLOCK, HyphaCraft.MODID)
+    private val BLOCKS = DeferredRegister.create(Registries.BLOCK, HyphaCraft.MODID)
 
-    fun <T : Block> register(name: String, block: () -> T): BlockAndItsItem<T> {
+    private fun <T : Block> register(name: String, block: () -> T): BlockAndItsItem<T> {
         return register(name, 0, block)
     }
 
-    fun <T : Block> register(name: String, priority: Int, block: () -> T): BlockAndItsItem<T> {
+    private fun <T : Block> register(name: String, priority: Int, block: () -> T): BlockAndItsItem<T> {
         val registeredBlock = BLOCKS.register(name, block)
         val registeredItem = ItemLoader.register(name, priority) { BlockItem(registeredBlock.get(), Item.Properties()) }
         return BlockAndItsItem(registeredBlock, registeredItem)
@@ -50,14 +50,14 @@ object BlockLoader {
     val ALIEN_SOIL = register("alien_soil", ::AlienSoilBlock)
     val XENOLICHEN_BLOCK by BLOCKS.register("xenolichen_block", ::XenolichenBlock)
     val XENOLICHEN_HIDDEN_BLOCK by BLOCKS.register("xenolichen_hidden_block", ::XenolichenHiddenBlock)
-    val HYPHACOTTA = register("hyphacotta") { Block(copy(Blocks.TERRACOTTA)) }
+    val HYPHACOTTA = register("hyphacotta") { HyphaResidueBlock(copy(Blocks.TERRACOTTA)) }
     val MYCOVASTUS_HYPHA by BLOCKS.register("mycovastus_hypha", ::MycovastusHyphaBlock)
     val MYCOVASTUS_HYPHA_HIDDEN_BLOCK by BLOCKS.register("mycovastus_hypha_hidden_block", ::MycovastusHyphaHiddenBlock)
     val MYCOVASTUS = register("mycovastus", ::MycovastusBlock)
     val ROTTEN_FUNGUS_HEAP = register("rotten_fungus_heap", ::RottenFungusHeapBlock)
     val TUMIDUSIO_HYPHA by BLOCKS.register("tumidusio_hypha", ::TumidusioHyphaBlock)
     val TUMIDUSIO_HYPHA_HIDDEN_BLOCK by BLOCKS.register("tumidusio_hypha_hidden_block", ::TumidusioHyphaHiddenBlock)
-    val HYPHACOAL_BLOCK = register("hyphacoal_block") { Block(copy(Blocks.COAL_BLOCK)) }
+    val HYPHACOAL_BLOCK = register("hyphacoal_block") { HyphaResidueBlock(copy(Blocks.COAL_BLOCK)) }
     val TUMIDUSIO = register("tumidusio", ::TumidusioBlock)
     val GRANDISPORIA_STIPE by BLOCKS.register("grandisporia_stipe", ::GrandisporiaStipeBlock)
     val GRANDISPORIA_SMALL_CAP by BLOCKS.register("grandisporia_small_cap", ::GrandisporiaSmallCapBlock)
