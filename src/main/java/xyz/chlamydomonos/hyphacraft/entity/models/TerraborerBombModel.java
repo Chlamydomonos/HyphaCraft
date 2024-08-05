@@ -14,7 +14,7 @@ import net.minecraft.client.model.geom.builders.*;
 import xyz.chlamydomonos.hyphacraft.entity.entities.TerraborerBombEntity;
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil;
 
-public class TerraborerBombModel<T extends TerraborerBombEntity> extends EntityModel<T> {
+public class TerraborerBombModel extends EntityModel<TerraborerBombEntity> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(NameUtil.INSTANCE.getRL("terraborer_bomb"), "main");
 	private final ModelPart bb_main;
