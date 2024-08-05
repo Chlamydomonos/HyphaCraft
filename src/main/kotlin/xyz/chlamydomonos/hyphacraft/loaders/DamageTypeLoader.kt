@@ -28,5 +28,6 @@ object DamageTypeLoader {
         return { it.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(key) }
     }
 
-    val ALIEN_EXPLOSION = register("alien_explosion") { DamageType("alien_explosion", 0.0f) }
+    val ALIEN_EXPLOSION = register("alien_explosion") { DamageType("hyphacraft.alien_explosion", 0.0f) }
+    val HYPHA_EXPLOSION = register("hypha_explosion") { DamageType("hyphacraft.hypha_explosion", 0.0f) }
 }

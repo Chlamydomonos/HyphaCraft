@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.TagKey
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.Fluids
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.event.config.ModConfigEvent
@@ -75,10 +76,26 @@ object XenolichenUtil {
             if(level.isLoaded(neighbor)) {
                 if (level.getRawBrightness(neighbor, 0) >= 8) {
                     hasLight = true
+                    break
                 }
             }
         }
-        return hasLight
+        if (!hasLight) {
+            return false
+        }
+
+        for (i in -3..3) {
+            for (j in -3..3) {
+                for (k in -3..3) {
+                    val fluid = level.getFluidState(pos.offset(i, j, k))
+                    if (fluid.`is`(Fluids.LAVA) || fluid.`is`(Fluids.FLOWING_WATER)) {
+                        return false
+                    }
+                }
+            }
+        }
+
+        return true
     }
 
     fun setXenolichen(level: ServerLevel, pos: BlockPos, phase: Int = 0) {

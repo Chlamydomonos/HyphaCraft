@@ -32,5 +32,8 @@ class ModBlockTagsProvider(
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.ROTTEN_FUNGUS_HEAP.block)
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.SPORE_HEAP.block)
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockLoader.HUMUS_HEAP.block)
+        tag(ModBlockTags.HYPHA_TREE).add(BlockLoader.GRANDISPORIA_STIPE)
+        tag(ModBlockTags.HYPHA_TREE).add(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block)
+        tag(ModBlockTags.HYPHA_TREE).add(BlockLoader.LOOSE_FUNGUS_ROOT)
     }
 }

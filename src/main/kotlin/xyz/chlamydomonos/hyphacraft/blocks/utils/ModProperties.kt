@@ -15,4 +15,5 @@ object ModProperties {
     val CAN_GROW = BooleanProperty.create("can_grow")
     val SPORE_AMOUNT = IntegerProperty.create("spore_amount", 0, 3)
     val IS_CORNER = BooleanProperty.create("is_corner")
+    val CONTAINS_WATER = BooleanProperty.create("contains_water")
 }

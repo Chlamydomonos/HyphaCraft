@@ -44,6 +44,10 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
         specified(BlockLoader.GRANDISPORIA_WITHERED_CAP.block, GrandisporiaWitheredCapLoot.builder())
         rateDrop(BlockLoader.SPORE_HEAP.block, ItemLoader.SPORE_POWDER, 1.0f, 4.0f)
         rateDrop(BlockLoader.HUMUS_HEAP.block, ItemLoader.HUMUS, 1.0f, 6.0f)
+        rateDrop(BlockLoader.LOOSE_FUNGUS_ROOT, ItemLoader.WHITE_HYPHA, 0.0f, 2.0f)
+        dropSelf(BlockLoader.TERRABORER_STIPE.block)
+        dropSelf(BlockLoader.TERRABORER_BOMB.block)
+        dropSelf(BlockLoader.ACTIVE_HYPHA_BLOCK.block)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
@@ -64,7 +68,11 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
             BlockLoader.GRANDISPORIA_WITHERED_STIPE.block,
             BlockLoader.GRANDISPORIA_WITHERED_CAP.block,
             BlockLoader.SPORE_HEAP.block,
-            BlockLoader.HUMUS_HEAP.block
+            BlockLoader.HUMUS_HEAP.block,
+            BlockLoader.LOOSE_FUNGUS_ROOT,
+            BlockLoader.ACTIVE_HYPHA_BLOCK.block,
+            BlockLoader.TERRABORER_STIPE.block,
+            BlockLoader.TERRABORER_BOMB.block
         )
     }
 

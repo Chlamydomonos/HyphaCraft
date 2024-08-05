@@ -20,4 +20,6 @@ object NameUtil {
     fun path(block: Block) = BuiltInRegistries.BLOCK.getKey(block).path
 
     fun path(item: Item) = BuiltInRegistries.ITEM.getKey(item).path
+
+    fun getEntityTexture(name: String) = getRL("textures/entity/$name.png")
 }

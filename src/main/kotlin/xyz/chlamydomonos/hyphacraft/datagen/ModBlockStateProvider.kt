@@ -4,15 +4,13 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.PackOutput
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.IntegerProperty
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import net.neoforged.neoforge.common.data.ExistingFileHelper
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaCapBlock
-import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaCapCenterBlock
-import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaStipeBlock
-import xyz.chlamydomonos.hyphacraft.blocks.GrandisporiaWitheredCapBlock
+import xyz.chlamydomonos.hyphacraft.blocks.*
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
@@ -48,6 +46,10 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         simpleBlockWithItem(BlockLoader.SPORE_HEAP.block, carpet(BlockLoader.SPORE_HEAP.block))
         simpleBlockWithItem(BlockLoader.HUMUS_HEAP.block, carpet(BlockLoader.HUMUS_HEAP.block))
         simpleBlock(BlockLoader.ALIEN_EXPLOSIVE, existingModel("alien_explosive"))
+        TerraborerStipeBlock.genModel(this)
+        TerraborerBombBlock.genModel(this)
+        simpleBlockWithItem(BlockLoader.ACTIVE_HYPHA_BLOCK.block, cubeAll(BlockLoader.ACTIVE_HYPHA_BLOCK.block))
+        simpleBlock(BlockLoader.LOOSE_FUNGUS_ROOT, (cubeAll(BlockLoader.LOOSE_FUNGUS_ROOT) as BlockModelBuilder).renderType("cutout"))
     }
 
     private fun blockCopier(block: Block) {

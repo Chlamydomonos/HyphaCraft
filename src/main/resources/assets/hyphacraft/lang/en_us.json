@@ -29,5 +29,12 @@
   "block.hyphacraft.humus_heap": "Humus Heap",
   "block.hyphacraft.alien_explosive": "Alien Explosive",
   "item.hyphacraft.alien_orb": "Alien Orb",
-  "tooltip.hyphacraft.alien_orb": "Produces temperatures near the surface of the sun with only slight agitation"
+  "tooltip.hyphacraft.alien_orb": "Produces temperatures near the surface of the sun with only slight agitation",
+  "death.attack.hyphacraft.alien_explosion": "%1$s is killed by the Fire of Ibis",
+  "death.attack.hyphacraft.hypha_explosion": "%1$s is killed by exploding hypha",
+  "block.hyphacraft.terraborer_stipe": "Terraborer Stipe",
+  "block.hyphacraft.terraborer_bomb": "Terraborer Bomb",
+  "entity.hyphacraft.terraborer_bomb": "Terraborer Bomb",
+  "block.hyphacraft.active_hypha_block": "Active Hypha Block",
+  "block.hyphacraft.loose_fungus_root": "Loose Fungus Root"
 }

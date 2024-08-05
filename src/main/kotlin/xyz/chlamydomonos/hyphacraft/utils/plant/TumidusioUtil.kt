@@ -6,6 +6,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.tags.BlockTags
 import net.minecraft.tags.TagKey
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.LevelReader
@@ -196,7 +197,7 @@ object TumidusioUtil {
         for (d in EXPAND_DIRECTIONS) {
             val newPos = pos.offset(d)
             val newState = level.getBlockState(newPos)
-            if(newState.isEmpty) {
+            if(newState.`is`(BlockTags.REPLACEABLE)) {
                 availableDirections.add(d)
             }
             if(newState.`is`(BlockLoader.TUMIDUSIO.block)) {
@@ -274,7 +275,7 @@ object TumidusioUtil {
         }
         val testPos = pos.offset(initialDirection)
         val testState = level.getBlockState(testPos)
-        if (!testState.isEmpty && !testState.`is`(BlockLoader.TUMIDUSIO.block)) {
+        if (!testState.`is`(BlockTags.REPLACEABLE) && !testState.`is`(BlockLoader.TUMIDUSIO.block)) {
             initialDirection = -initialDirection
         }
 
@@ -296,7 +297,7 @@ object TumidusioUtil {
                 }
                 newPos = oldPos.offset(direction)
                 newState = level.getBlockState(newPos)
-                if (newState.isEmpty) {
+                if (newState.`is`(BlockTags.REPLACEABLE)) {
                     level.setBlock(newPos, BlockLoader.TUMIDUSIO.block.defaultBlockState(), 3)
                     finished = true
                     successfulExpansions++

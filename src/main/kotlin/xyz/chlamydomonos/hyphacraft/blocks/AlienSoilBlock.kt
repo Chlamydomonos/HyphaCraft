@@ -11,10 +11,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
-import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
-import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
-import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
-import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.*
 
 class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), BurnableHypha {
     companion object {
@@ -54,6 +51,9 @@ class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), 
 
         if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
             GrandisporiaUtil.tryGrowInitialStipe(level, pos.above())
+        }
+        if(random.nextFloat() < TerraborerUtil.INITIAL_GROW_RATE) {
+            TerraborerUtil.tryGrow(level, pos.above())
         }
     }
 }
