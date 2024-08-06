@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.utils.misc.AlienSoilUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.*
 
 class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), BurnableHypha {
@@ -23,9 +24,9 @@ class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), 
         return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
 
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         if(random.nextFloat() < EXPAND_RATE) {
@@ -55,5 +56,13 @@ class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), 
         if(random.nextFloat() < TerraborerUtil.INITIAL_GROW_RATE) {
             TerraborerUtil.tryGrow(level, pos.above())
         }
+    }
+
+    override fun onPlace(state: BlockState, level: Level, pos: BlockPos, oldState: BlockState, movedByPiston: Boolean) {
+        if (level.isClientSide) {
+            return
+        }
+
+        AlienSoilUtil.onAlienSoilPlaced(level as ServerLevel, pos)
     }
 }

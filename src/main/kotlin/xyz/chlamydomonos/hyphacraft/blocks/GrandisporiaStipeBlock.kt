@@ -142,9 +142,9 @@ class GrandisporiaStipeBlock : PipeBlock(
         GrandisporiaUtil.grow(state, level, pos, random)
     }
 
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun onBlockExploded(state: BlockState, level: Level, pos: BlockPos, explosion: Explosion) {
         if (level.isClientSide) {

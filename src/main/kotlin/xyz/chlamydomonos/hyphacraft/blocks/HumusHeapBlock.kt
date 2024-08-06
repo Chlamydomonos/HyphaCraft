@@ -36,7 +36,7 @@ class HumusHeapBlock : CarpetBlock(
         return isFaceFull(belowState.getCollisionShape(level, pos.below()), Direction.UP)
     }
 
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 }

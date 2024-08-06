@@ -18,6 +18,7 @@ import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
+import xyz.chlamydomonos.hyphacraft.utils.misc.CommonUtil
 import java.util.stream.Collectors
 import kotlin.math.pow
 
@@ -66,7 +67,16 @@ object MycovastusUtil {
                 }
             }
         }
-        return isGrowableBlock
+
+        if (!isGrowableBlock) {
+            return false
+        }
+
+        if (CommonUtil.isNearFire(level, pos)) {
+            return false
+        }
+
+        return true
     }
 
     fun setHypha(level: ServerLevel, pos: BlockPos, phase: Int = 0) {

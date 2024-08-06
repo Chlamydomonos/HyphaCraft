@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.data.PackOutput
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
+import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 import java.util.concurrent.CompletableFuture
 
@@ -16,5 +17,6 @@ class ModDatapackBuiltinEntriesProvider(
     companion object {
         val BUILDER = RegistrySetBuilder()
             .add(Registries.DAMAGE_TYPE, DamageTypeLoader::bootstrap)
+            .add(Registries.BIOME, BiomeLoader::bootstrap)
     }
 }

@@ -15,9 +15,9 @@ import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 class LooseFungusRootBlock : Block(
     Properties.ofFullCopy(Blocks.DIRT).sound(SoundType.FUNGUS).noOcclusion()
 ), BurnableHypha {
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 20
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 100
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun onBlockExploded(state: BlockState, level: Level, pos: BlockPos, explosion: Explosion) {
         if (level.isClientSide) {

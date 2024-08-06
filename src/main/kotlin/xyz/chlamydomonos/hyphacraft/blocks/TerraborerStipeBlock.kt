@@ -1,8 +1,10 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -60,4 +62,8 @@ class TerraborerStipeBlock : Block(
         val belowState = level.getBlockState(pos.below())
         return belowState.`is`(BlockLoader.ALIEN_SOIL.block)
     }
+
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 }

@@ -21,5 +21,6 @@ object HyphaCraft {
         LootLoader.register(MOD_BUS)
         DataComponentLoader.register(MOD_BUS)
         EntityLoader.register(MOD_BUS)
+        DataAttachmentLoader.register(MOD_BUS)
     }
 }

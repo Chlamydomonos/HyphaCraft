@@ -5,6 +5,7 @@ import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelAccessor
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
@@ -15,6 +16,7 @@ import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel
 import net.neoforged.neoforge.client.model.generators.ModelProvider
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -26,7 +28,7 @@ class TerraborerBombBlock : Block(
         .randomTicks()
         .instabreak()
         .noOcclusion()
-) {
+), BurnableHypha {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.CONTAINS_WATER, false))
     }
@@ -98,5 +100,22 @@ class TerraborerBombBlock : Block(
         if (containsWater && !level.isClientSide) {
            TerraborerUtil.explode(level as ServerLevel, pos, level.random)
         }
+    }
+
+    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun onBurnt(
+        state: BlockState,
+        level: Level,
+        pos: BlockPos,
+        replacing: Boolean,
+        random: RandomSource
+    ): BurnableHypha.VanillaBehaviourHandler {
+        if (!level.isClientSide) {
+            TerraborerUtil.explode(level as ServerLevel, pos, random)
+        }
+        return BurnableHypha.VanillaBehaviourHandler.DO
     }
 }
