@@ -7,8 +7,12 @@ import net.minecraft.world.level.block.*
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import net.minecraft.world.level.block.state.properties.BooleanProperty
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
+import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 
 class CarnivoravitisVineBlock : BaseEntityBlock(
@@ -33,6 +37,34 @@ class CarnivoravitisVineBlock : BaseEntityBlock(
 
     companion object {
         val CODEC = simpleCodec { CarnivoravitisVineBlock() }
+
+        private fun genModelWithParams(
+            provider: ModBlockStateProvider,
+            builder: MultiPartBlockStateBuilder,
+            property: BooleanProperty,
+            rx: Int,
+            ry: Int
+        ) {
+            builder.part()
+                .modelFile(provider.existingModel("carnivoravitis_vine"))
+                .rotationX(rx)
+                .rotationY(ry)
+                .addModel()
+                .condition(property, false)
+        }
+
+        fun genModel(provider: ModBlockStateProvider) {
+            val builder = provider.getMultipartBuilder(BlockLoader.CARNIVORAVITIS_VINE)
+            genModelWithParams(provider, builder, BlockStateProperties.UP, 270, 0)
+            genModelWithParams(provider, builder, BlockStateProperties.DOWN, 90, 0)
+            var dir = Direction.NORTH
+            var ry = 0
+            for (i in 1..4) {
+                genModelWithParams(provider, builder, PipeBlock.PROPERTY_BY_DIRECTION[dir]!!, 0, ry)
+                dir = dir.clockWise
+                ry += 90
+            }
+        }
     }
 
     override fun codec() = CODEC
