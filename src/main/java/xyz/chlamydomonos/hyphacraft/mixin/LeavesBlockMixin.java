@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.chlamydomonos.hyphacraft.blocks.utils.ModBlockTags;
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader;
 
 import java.util.OptionalInt;
 
@@ -18,7 +18,7 @@ public class LeavesBlockMixin {
         cancellable = true
     )
     private static void injectGetOptionalDistanceAt(BlockState state, CallbackInfoReturnable<OptionalInt> callbackInfo) {
-        if(state.is(ModBlockTags.INSTANCE.getPRESERVE_LEAVES())) {
+        if(state.is(BlockTagLoader.INSTANCE.getPRESERVE_LEAVES())) {
             callbackInfo.setReturnValue(OptionalInt.of(0));
         }
     }

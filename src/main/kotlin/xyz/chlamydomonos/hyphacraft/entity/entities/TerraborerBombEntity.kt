@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.material.Fluids
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
-import xyz.chlamydomonos.hyphacraft.blocks.utils.ModBlockTags
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
@@ -92,7 +92,7 @@ class TerraborerBombEntity(entityType: EntityType<TerraborerBombEntity>, level: 
                                     level.setBlock(newPos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
                                 }
                                 if (
-                                    state.`is`(ModBlockTags.HYPHA_TREE) && (
+                                    state.`is`(BlockTagLoader.HYPHA_TREE) && (
                                         (
                                             state.hasProperty(BlockStateProperties.DOWN) &&
                                             state.getValue(BlockStateProperties.DOWN)

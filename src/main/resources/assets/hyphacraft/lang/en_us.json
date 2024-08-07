@@ -36,5 +36,6 @@
   "block.hyphacraft.terraborer_bomb": "Terraborer Bomb",
   "entity.hyphacraft.terraborer_bomb": "Terraborer Bomb",
   "block.hyphacraft.active_hypha_block": "Active Hypha Block",
-  "block.hyphacraft.loose_fungus_root": "Loose Fungus Root"
+  "block.hyphacraft.loose_fungus_root": "Loose Fungus Root",
+  "fml.menu.mods.info.description.hyphacraft": "A meteor from outer space has brought with it a mysterious fungal plant that's spreading like wildfire! It's pretty creepy. Sure, you could burn it all down. But maybe, just maybe, there's a way to harness its power?"
 }
