@@ -114,8 +114,8 @@ class TerraborerBombBlock : Block(
         random: RandomSource
     ): BurnableHypha.VanillaBehaviourHandler {
         if (!level.isClientSide) {
-            TerraborerUtil.explode(level as ServerLevel, pos, random)
+            level.setBlock(pos, BlockLoader.HYPHACOAL_BLOCK.block.defaultBlockState(), 3)
         }
-        return BurnableHypha.VanillaBehaviourHandler.DO
+        return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
 }

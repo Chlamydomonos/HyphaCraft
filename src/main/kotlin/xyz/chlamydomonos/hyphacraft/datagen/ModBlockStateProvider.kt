@@ -50,6 +50,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         TerraborerBombBlock.genModel(this)
         simpleBlockWithItem(BlockLoader.ACTIVE_HYPHA_BLOCK.block, cubeAll(BlockLoader.ACTIVE_HYPHA_BLOCK.block))
         simpleBlock(BlockLoader.LOOSE_FUNGUS_ROOT, (cubeAll(BlockLoader.LOOSE_FUNGUS_ROOT) as BlockModelBuilder).renderType("cutout"))
+        CarnivoravitisVineBlock.genModel(this)
     }
 
     private fun blockCopier(block: Block) {

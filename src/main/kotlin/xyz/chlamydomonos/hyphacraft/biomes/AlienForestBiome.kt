@@ -16,7 +16,7 @@ object AlienForestBiome {
             .waterColor(0xbd8ad7)
             .waterFogColor(0xeab2ff)
             .fogColor(0xc0c9ff)
-            .skyColor(0x365ecf)
+            .skyColor(0xb574e3)
             .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
 
         return Biome.BiomeBuilder()

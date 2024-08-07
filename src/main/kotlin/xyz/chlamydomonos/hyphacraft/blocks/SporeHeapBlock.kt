@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
-import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
@@ -77,7 +76,6 @@ class SporeHeapBlock : CarpetBlock(
 
         val chunk = level.getChunkAt(pos)
         val heapCount = chunk.getData(DataAttachmentLoader.SPORE_HEAP_COUNT)
-        HyphaCraft.LOGGER.debug(heapCount)
         chunk.setData(DataAttachmentLoader.SPORE_HEAP_COUNT, heapCount + 1)
         val isAlienForest = chunk.getData(DataAttachmentLoader.IS_ALIEN_FOREST)
         if (heapCount >= BIOME_CHANGE_THRESHOLD - 1 && !isAlienForest) {

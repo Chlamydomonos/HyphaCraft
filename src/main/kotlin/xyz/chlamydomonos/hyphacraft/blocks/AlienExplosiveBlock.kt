@@ -53,6 +53,7 @@ class AlienExplosiveBlock : Block(
         if(!state.`is`(this) || !level.isAreaLoaded(pos, 10)) {
             return
         }
+
         for (i in -7..7) {
             for (j in -7..7) {
                 for (k in -7..7) {

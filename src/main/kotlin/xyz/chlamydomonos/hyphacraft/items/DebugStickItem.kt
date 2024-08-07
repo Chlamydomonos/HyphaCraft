@@ -6,7 +6,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import net.minecraft.world.level.block.PipeBlock
 import xyz.chlamydomonos.hyphacraft.blockentities.BlockCopierEntity
 import xyz.chlamydomonos.hyphacraft.datacomponents.BlockHolder
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -23,7 +23,9 @@ class DebugStickItem : Item(
         )
 
         val PLANTS = listOf<Block>(
-            BlockLoader.GRANDISPORIA_STIPE
+            BlockLoader.GRANDISPORIA_STIPE,
+            BlockLoader.TERRABORER_STIPE.block,
+            BlockLoader.CARNIVORAVITIS_VINE
         )
 
         val BLOCKS = mutableListOf<Block>()
@@ -39,6 +41,12 @@ class DebugStickItem : Item(
         if (level.isClientSide) {
             return InteractionResult.PASS
         }
+
+        if (level.getBlockState(context.clickedPos).`is`(BlockLoader.TEST_BLOCK)) {
+            level.scheduleTick(context.clickedPos, BlockLoader.TEST_BLOCK, 1)
+            return InteractionResult.SUCCESS
+        }
+
         val blockHolder = context.itemInHand.get(DataComponentLoader.BLOCK_HOLDER)!!
         val block = blockHolder.block
         val blockId = BLOCKS.indexOf(block)
@@ -57,10 +65,13 @@ class DebugStickItem : Item(
             be.copiedState = oldState
         } else if (block in PLANTS) {
             var state = block.defaultBlockState()
-            if (state.hasProperty(BlockStateProperties.DOWN)) {
-                state = state.setValue(BlockStateProperties.DOWN, true)
+            val face = context.clickedFace
+            val newPos = pos.offset(face.normal)
+            val property = PipeBlock.PROPERTY_BY_DIRECTION[face.opposite]!!
+            if (state.hasProperty(property)) {
+                state = state.setValue(property, true)
             }
-            level.setBlock(pos.above(), state, 3)
+            level.setBlock(newPos, state, 3)
         }
 
         return InteractionResult.SUCCESS

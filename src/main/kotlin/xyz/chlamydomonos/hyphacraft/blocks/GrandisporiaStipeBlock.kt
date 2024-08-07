@@ -20,6 +20,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
 
@@ -108,16 +109,10 @@ class GrandisporiaStipeBlock : PipeBlock(
     }
 
     private fun canConnect(state: BlockState, direction: Direction): Boolean {
-        if(state.`is`(this)) {
+        if(state.`is`(BlockTagLoader.GRANDISPORIA_STIPE_CONNECTABLE)) {
             return true
         }
         if(state.`is`(BlockLoader.GRANDISPORIA_SMALL_CAP) && direction == Direction.UP) {
-            return true
-        }
-        if(state.`is`(BlockLoader.GRANDISPORIA_CAP_CENTER)) {
-            return true
-        }
-        if(state.`is`(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block)) {
             return true
         }
         return false
