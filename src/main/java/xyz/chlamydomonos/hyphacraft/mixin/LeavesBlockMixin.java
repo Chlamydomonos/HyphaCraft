@@ -11,7 +11,7 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader;
 import java.util.OptionalInt;
 
 @Mixin(LeavesBlock.class)
-public class LeavesBlockMixin {
+public abstract class LeavesBlockMixin {
     @Inject(
         method = "getOptionalDistanceAt",
         at = @At(value = "HEAD"),

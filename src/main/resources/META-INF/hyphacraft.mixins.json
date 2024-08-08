@@ -4,6 +4,7 @@
   "package": "xyz.chlamydomonos.hyphacraft.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EntityMixin",
     "FireBlockMixin",
     "LeavesBlockMixin"
   ],

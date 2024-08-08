@@ -7,7 +7,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.event.EntityRenderersEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.entity.models.TerraborerBombModel
-import xyz.chlamydomonos.hyphacraft.entity.renderes.TerraborerBombRenderer
+import xyz.chlamydomonos.hyphacraft.entity.renderers.TerraborerBombRenderer
+import xyz.chlamydomonos.hyphacraft.entity.renderers.TransportRenderer
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object EntityModelLoader {
@@ -20,6 +21,7 @@ object EntityModelLoader {
     fun registerEntityRenderers(event: FMLClientSetupEvent) {
         event.enqueueWork {
             EntityRenderers.register(EntityLoader.TERRABORER_BOMB, ::TerraborerBombRenderer)
+            EntityRenderers.register(EntityLoader.TRANSPORT, ::TransportRenderer)
         }
     }
 }

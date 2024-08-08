@@ -9,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.entity.entities.TerraborerBombEntity
+import xyz.chlamydomonos.hyphacraft.entity.entities.TransportEntity
 
 object EntityLoader {
     private val ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, HyphaCraft.MODID)
@@ -25,4 +26,5 @@ object EntityLoader {
     }
 
     val TERRABORER_BOMB by register("terraborer_bomb", TerraborerBombEntity.BUILDER)
+    val TRANSPORT by register("transport", TransportEntity.BUILDER)
 }

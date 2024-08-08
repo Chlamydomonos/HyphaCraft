@@ -6,11 +6,14 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
+import net.minecraft.world.phys.Vec3
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.plus
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.times
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader
 
 class CarnivoravitisFlowerBlockEntity(
     pos: BlockPos,
@@ -18,12 +21,25 @@ class CarnivoravitisFlowerBlockEntity(
 ) : BlockEntity(BlockEntityLoader.CARNIVORAVITIS_FLOWER, pos, blockState) {
     companion object {
         const val CAPTURE_RANGE = 5.0
+        const val CARRIER_BLOCKS_PER_MOVEMENT = 1
+        const val CARRIER_TICKS_PER_MOVEMENT = 1
     }
 
     private var timer = 0
 
     private fun devour(entity: LivingEntity) {
-        TODO()
+        val carrier = EntityLoader.TRANSPORT.create(level!!)!!
+        val vinePos = blockPos.offset(blockState.getValue(ModProperties.DIRECTION).normal)
+        val vineState = level!!.getBlockState(vinePos)
+        if (!vineState.`is`(BlockLoader.CARNIVORAVITIS_VINE)) {
+            return
+        }
+        val carrierPos = vinePos.toVec3() + Vec3(0.1, 0.1, 0.1)
+        carrier.setPos(carrierPos)
+        carrier.blocksPerMovement = CARRIER_BLOCKS_PER_MOVEMENT
+        carrier.ticksPerMovement = CARRIER_TICKS_PER_MOVEMENT
+        entity.setPos(carrierPos)
+        entity.startRiding(carrier, true)
     }
 
     fun tick() {

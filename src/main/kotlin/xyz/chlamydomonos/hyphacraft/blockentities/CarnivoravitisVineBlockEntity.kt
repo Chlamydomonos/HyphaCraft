@@ -4,14 +4,14 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtUtils
-import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
+import xyz.chlamydomonos.hyphacraft.blockentities.base.RouteBlockEntity
 import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
 
 class CarnivoravitisVineBlockEntity(
     pos: BlockPos,
     blockState: BlockState
-) : BlockEntity(BlockEntityLoader.CARNIVORAVITIS_VINE, pos, blockState) {
+) : RouteBlockEntity(BlockEntityLoader.CARNIVORAVITIS_VINE, pos, blockState) {
     var nextPos = pos
         set(value) {
             field = value
@@ -22,6 +22,8 @@ class CarnivoravitisVineBlockEntity(
         super.saveAdditional(tag, registries)
         tag.put("next_pos", NbtUtils.writeBlockPos(nextPos))
     }
+
+    override fun getNextPos(data: String) = nextPos
 
     override fun loadAdditional(tag: CompoundTag, registries: HolderLookup.Provider) {
         super.loadAdditional(tag, registries)

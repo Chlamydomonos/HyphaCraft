@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.neoforge.client.ChunkRenderTypeSet
 import net.neoforged.neoforge.client.model.data.ModelData
 import net.neoforged.neoforge.client.model.data.ModelProperty
-import xyz.chlamydomonos.hyphacraft.blockentities.BlockCopierEntity
+import xyz.chlamydomonos.hyphacraft.blockentities.base.BlockCopierEntity
 
 open class BlockCopierModel(private val customModel: BakedModel) : BakedModel by customModel {
     companion object {
