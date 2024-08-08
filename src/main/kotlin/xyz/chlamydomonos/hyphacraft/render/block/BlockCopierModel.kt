@@ -9,6 +9,7 @@ import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.BlockAndTintGetter
 import net.minecraft.world.level.block.state.BlockState
+import net.neoforged.neoforge.client.ChunkRenderTypeSet
 import net.neoforged.neoforge.client.model.data.ModelData
 import net.neoforged.neoforge.client.model.data.ModelProperty
 import xyz.chlamydomonos.hyphacraft.blockentities.BlockCopierEntity
@@ -26,12 +27,17 @@ open class BlockCopierModel(private val customModel: BakedModel) : BakedModel by
         data: ModelData,
         renderType: RenderType?
     ): MutableList<BakedQuad> {
-        val copiedModel = data.get(COPIED_MODEL)!!
-        val copiedState = data.get(COPIED_STATE)!!
-        val quads = arrayListOf<BakedQuad>()
-        quads.addAll(copiedModel.getQuads(copiedState, side, rand, data, renderType))
-        quads.addAll(customModel.getQuads(state, side, rand, data, renderType))
-        return quads
+        val copiedModel = data.get(COPIED_MODEL)
+        if (copiedModel is BakedModel) {
+            val copiedState = data.get(COPIED_STATE)!!
+            val quads = arrayListOf<BakedQuad>()
+            quads.addAll(copiedModel.getQuads(copiedState, side, rand, data, renderType))
+            if (renderType == RenderType.TRANSLUCENT) {
+                quads.addAll(customModel.getQuads(state, side, rand, data, renderType))
+            }
+            return quads
+        }
+        return mutableListOf()
     }
 
     @Deprecated("Deprecated in Java")
@@ -45,9 +51,17 @@ open class BlockCopierModel(private val customModel: BakedModel) : BakedModel by
         state: BlockState,
         modelData: ModelData
     ): ModelData {
-        val blockEntity = level.getBlockEntity(pos) as BlockCopierEntity
-        val copiedState = blockEntity.copiedState
-        val copiedModel = Minecraft.getInstance().blockRenderer.getBlockModel(copiedState)
-        return modelData.derive().with(COPIED_MODEL, copiedModel).with(COPIED_STATE, copiedState).build()
+        val blockEntity = level.getBlockEntity(pos)
+        if (blockEntity is BlockCopierEntity) {
+            val copiedState = blockEntity.copiedState
+            val copiedModel = Minecraft.getInstance().blockRenderer.getBlockModel(copiedState)
+            return modelData.derive().with(COPIED_MODEL, copiedModel).with(COPIED_STATE, copiedState).build()
+        }
+        return modelData
+    }
+
+    override fun getRenderTypes(state: BlockState, rand: RandomSource, data: ModelData): ChunkRenderTypeSet {
+        val superTypes = super.getRenderTypes(state, rand, data)
+        return ChunkRenderTypeSet.union(superTypes, ChunkRenderTypeSet.of(RenderType.TRANSLUCENT))
     }
 }

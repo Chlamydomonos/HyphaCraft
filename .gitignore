@@ -24,3 +24,6 @@ runs
 
 # generated
 src/generated
+
+# local
+/local

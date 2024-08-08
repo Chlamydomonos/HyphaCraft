@@ -5,10 +5,7 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
-import xyz.chlamydomonos.hyphacraft.datagen.ModBlockTagsProvider
-import xyz.chlamydomonos.hyphacraft.datagen.ModItemModelProvider
-import xyz.chlamydomonos.hyphacraft.datagen.ModLootTableProvider
+import xyz.chlamydomonos.hyphacraft.datagen.*
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object DataGenLoader {
@@ -32,6 +29,14 @@ object DataGenLoader {
         event.generator.addProvider(
             event.includeClient(),
             DataProvider.Factory { ModItemModelProvider(it, efh) }
+        )
+        event.generator.addProvider(
+            event.includeServer(),
+            DataProvider.Factory { ModRecipeProvider(it, lp) }
+        )
+        event.generator.addProvider(
+            event.includeServer(),
+            DataProvider.Factory { ModDatapackBuiltinEntriesProvider(it, lp) }
         )
     }
 }

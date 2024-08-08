@@ -1,0 +1,24 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"0": "hyphacraft:block/grandisporia_cap",
+		"1": "hyphacraft:block/grandisporia_cap_inner",
+		"2": "hyphacraft:block/grandisporia_cap_corner_bottom",
+		"particle": "hyphacraft:block/grandisporia_cap"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [16, 12, 16],
+			"faces": {
+				"north": {"uv": [1, 4, 15, 16], "texture": "#0"},
+				"east": {"uv": [1, 2, 15, 14], "texture": "#1"},
+				"south": {"uv": [1, 2, 15, 14], "texture": "#1"},
+				"west": {"uv": [1, 4, 15, 16], "texture": "#0"},
+				"up": {"uv": [1, 2, 15, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 14, 14], "rotation": 270, "texture": "#2"}
+			}
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.chlamydomonos.hyphacraft.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "FireBlockMixin",
+    "LeavesBlockMixin"
+  ],
+  "client": [],
+  "server": []
+}

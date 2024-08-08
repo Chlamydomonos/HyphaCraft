@@ -11,6 +11,11 @@ displayName="${mod_name}"
 credits="Thanks to thedarkcolour and all the contributors for making Kotlin for Forge"
 authors="${mod_authors}"
 description='''${mod_description}'''
+logoFile="cover.png"
+
+[[mixins]]
+config="META-INF/hyphacraft.mixins.json"
+
 [[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"
@@ -24,6 +29,12 @@ description='''${mod_description}'''
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.${mod_id}]]
+    modId="terrablender"
+    type="required"
+    versionRange="[4.0.0.1,)"
+    ordering="NONE"
+    side="BOTH"
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.

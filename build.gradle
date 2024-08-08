@@ -105,11 +105,20 @@ repositories {
         url = 'https://thedarkcolour.github.io/KotlinForForge/'
         content { includeGroup "thedarkcolour" }
     }
+
+    exclusiveContent {
+        forRepository { //noinspection ForeignDelegate
+            maven { url "https://cursemaven.com" }
+        }
+        filter { includeGroup "curse.maven" }
+    }
 }
 
 dependencies {
     // Must use the '-neoforge' version on NeoForge. If on regular forge, omit the '-neoforge'
     implementation 'thedarkcolour:kotlinforforge-neoforge:5.4.0'
+
+    implementation "curse.maven:terrablender-neoforge-940057:5429865"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
