@@ -1,17 +1,16 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
-import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
-import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
+import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
@@ -19,9 +18,7 @@ import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 
-class TumidusioBlock : Block(
-    Properties.ofFullCopy(Blocks.DIRT).sound(SoundType.SLIME_BLOCK).randomTicks()
-), BurnableHypha {
+class TumidusioBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).sound(SoundType.SLIME_BLOCK).randomTicks()) {
     init {
         registerDefaultState(
             defaultBlockState()
@@ -114,8 +111,4 @@ class TumidusioBlock : Block(
             }
         }
     }
-
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
-
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 }

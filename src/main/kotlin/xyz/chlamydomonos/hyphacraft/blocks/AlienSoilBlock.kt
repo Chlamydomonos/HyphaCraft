@@ -1,20 +1,18 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
-import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
-import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
+import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.misc.AlienSoilUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.*
 
-class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), BurnableHypha {
+class AlienSoilBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).randomTicks()) {
     companion object {
         const val EXPAND_RATE = 1.0f / 20.0f
     }
@@ -23,10 +21,6 @@ class AlienSoilBlock : Block(Properties.ofFullCopy(Blocks.DIRT).randomTicks()), 
         level.setBlock(pos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
         return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
-
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
-
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         if(random.nextFloat() < EXPAND_RATE) {

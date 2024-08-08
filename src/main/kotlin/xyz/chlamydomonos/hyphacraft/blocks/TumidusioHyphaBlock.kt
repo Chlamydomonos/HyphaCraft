@@ -1,26 +1,28 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
-import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.RenderShape
+import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import xyz.chlamydomonos.hyphacraft.blockentities.TumidusioHyphaBlockEntity
-import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
+import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 
-class TumidusioHyphaBlock : BaseEntityBlock(
+class TumidusioHyphaBlock : BaseHyphaEntityBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .sound(SoundType.SLIME_BLOCK)
         .ignitedByLava()
         .randomTicks()
-), BurnableHypha {
+) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.PHASE, 0))
     }
@@ -42,10 +44,6 @@ class TumidusioHyphaBlock : BaseEntityBlock(
         level.setBlock(pos, BlockLoader.HYPHACOAL_BLOCK.block.defaultBlockState(), 3)
         return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
-
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
-
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(ModProperties.PHASE)

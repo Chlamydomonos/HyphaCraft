@@ -10,12 +10,13 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.BooleanProperty
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 
-class CarnivoravitisVineBlock : BaseEntityBlock(
+class CarnivoravitisVineBlock : BaseHyphaEntityBlock(
     Properties.ofFullCopy(Blocks.OAK_PLANKS)
         .noOcclusion()
         .randomTicks()

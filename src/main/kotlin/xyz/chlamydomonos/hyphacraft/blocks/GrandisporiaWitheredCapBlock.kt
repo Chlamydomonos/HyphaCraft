@@ -6,7 +6,6 @@ import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
-import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.ClipContext
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
@@ -20,17 +19,18 @@ import net.neoforged.neoforge.client.model.generators.ModelProvider
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.plus
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.times
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
-import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
+import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
-class GrandisporiaWitheredCapBlock : Block(
+class GrandisporiaWitheredCapBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .sound(SoundType.FUNGUS)
         .randomTicks()
-), BurnableHypha {
+) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.SPORE_AMOUNT, 0))
     }
@@ -133,8 +133,4 @@ class GrandisporiaWitheredCapBlock : Block(
         }
         return BurnableHypha.VanillaBehaviourHandler.DO
     }
-
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
-
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 }

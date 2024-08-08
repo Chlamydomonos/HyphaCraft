@@ -37,11 +37,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         simpleBlock(BlockLoader.GRANDISPORIA_SMALL_CAP, existingModel("grandisporia_small_cap"))
         GrandisporiaCapCenterBlock.genModel(this)
         GrandisporiaCapBlock.genModel(this)
-        simpleBlockWithItem(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block, models().cubeColumn(
-            "grandisporia_withered_stipe",
-            NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/grandisporia_withered_stipe"),
-            NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/grandisporia_withered_stipe_top")
-        ))
+        GrandisporiaWitheredStipeBlock.genModel(this)
         GrandisporiaWitheredCapBlock.genModel(this)
         simpleBlockWithItem(BlockLoader.SPORE_HEAP.block, carpet(BlockLoader.SPORE_HEAP.block))
         simpleBlockWithItem(BlockLoader.HUMUS_HEAP.block, carpet(BlockLoader.HUMUS_HEAP.block))
@@ -51,6 +47,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         simpleBlockWithItem(BlockLoader.ACTIVE_HYPHA_BLOCK.block, cubeAll(BlockLoader.ACTIVE_HYPHA_BLOCK.block))
         simpleBlock(BlockLoader.LOOSE_FUNGUS_ROOT, (cubeAll(BlockLoader.LOOSE_FUNGUS_ROOT) as BlockModelBuilder).renderType("cutout"))
         CarnivoravitisVineBlock.genModel(this)
+        CarnivoravitisRootBlock.genModel(this)
     }
 
     private fun blockCopier(block: Block) {

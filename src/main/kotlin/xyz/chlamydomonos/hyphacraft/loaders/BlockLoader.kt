@@ -73,6 +73,7 @@ object BlockLoader {
     val ACTIVE_HYPHA_BLOCK = register("active_hypha_block", ::ActiveHyphaBlock)
     val LOOSE_FUNGUS_ROOT by BLOCKS.register("loose_fungus_root", ::LooseFungusRootBlock)
     val CARNIVORAVITIS_VINE by BLOCKS.register("carnivoravitis_vine", ::CarnivoravitisVineBlock)
+    val CARNIVORAVITIS_ROOT by BLOCKS.register("carnivoravitis_root", ::CarnivoravitisRootBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

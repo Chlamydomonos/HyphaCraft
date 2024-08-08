@@ -18,18 +18,18 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.material.Fluids
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
-import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 
-class MycovastusBlock : Block(
+class MycovastusBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.MUSHROOM_STEM)
         .instabreak()
         .noOcclusion()
         .randomTicks()
         .sound(SoundType.SLIME_BLOCK)
-), SimpleWaterloggedBlock, BurnableHypha {
+), SimpleWaterloggedBlock {
     companion object {
         val SHAPE_1 = box(5.0, 0.0, 5.0, 11.0, 2.0, 11.0)
         val SHAPE_2 = box(1.0, 0.0, 1.0, 15.0, 2.0, 13.0)
@@ -129,8 +129,4 @@ class MycovastusBlock : Block(
             }
         }
     }
-
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
-
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 }

@@ -16,19 +16,20 @@ import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel
 import net.neoforged.neoforge.client.model.generators.ModelProvider
-import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
+import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.TerraborerUtil
 
-class TerraborerBombBlock : Block(
+class TerraborerBombBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .randomTicks()
         .instabreak()
         .noOcclusion()
-), BurnableHypha {
+) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.CONTAINS_WATER, false))
     }
@@ -101,10 +102,6 @@ class TerraborerBombBlock : Block(
            TerraborerUtil.explode(level as ServerLevel, pos, level.random)
         }
     }
-
-    override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
-
-    override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun onBurnt(
         state: BlockState,
