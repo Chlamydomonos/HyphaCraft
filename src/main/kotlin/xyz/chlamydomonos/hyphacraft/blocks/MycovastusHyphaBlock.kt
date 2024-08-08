@@ -6,14 +6,13 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
-import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
@@ -56,9 +55,6 @@ class MycovastusHyphaBlock : BaseHyphaEntityBlock(
         }
         return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun getRenderShape(state: BlockState) = RenderShape.MODEL
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         val phase = state.getValue(ModProperties.PHASE)

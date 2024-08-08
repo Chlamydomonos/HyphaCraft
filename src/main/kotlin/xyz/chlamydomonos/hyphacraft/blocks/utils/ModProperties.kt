@@ -1,6 +1,7 @@
 package xyz.chlamydomonos.hyphacraft.blocks.utils
 
 import net.minecraft.world.level.block.state.properties.BooleanProperty
+import net.minecraft.world.level.block.state.properties.DirectionProperty
 import net.minecraft.world.level.block.state.properties.IntegerProperty
 
 object ModProperties {
@@ -16,4 +17,5 @@ object ModProperties {
     val SPORE_AMOUNT = IntegerProperty.create("spore_amount", 0, 3)
     val IS_CORNER = BooleanProperty.create("is_corner")
     val CONTAINS_WATER = BooleanProperty.create("contains_water")
+    val DIRECTION = DirectionProperty.create("direction")
 }

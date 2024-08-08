@@ -6,14 +6,13 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blockentities.XenolichenBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
-import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
@@ -58,11 +57,6 @@ class XenolichenBlock : BaseHyphaEntityBlock(
         } else {
             level.setBlock(pos, BlockLoader.ALIEN_SOIL.block.defaultBlockState(), 3)
         }
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun getRenderShape(state: BlockState): RenderShape {
-        return RenderShape.MODEL
     }
 
     override fun onBurnt(

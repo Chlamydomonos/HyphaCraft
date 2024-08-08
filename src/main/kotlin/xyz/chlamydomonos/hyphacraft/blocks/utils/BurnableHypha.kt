@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.hyphacraft.blocks.base
+package xyz.chlamydomonos.hyphacraft.blocks.utils
 
 import net.minecraft.core.BlockPos
 import net.minecraft.util.RandomSource

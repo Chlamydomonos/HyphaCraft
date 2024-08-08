@@ -6,13 +6,12 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.RenderShape
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import xyz.chlamydomonos.hyphacraft.blockentities.TumidusioHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
-import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
@@ -47,11 +46,6 @@ class TumidusioHyphaBlock : BaseHyphaEntityBlock(
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(ModProperties.PHASE)
-    }
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override fun getRenderShape(state: BlockState): RenderShape {
-        return RenderShape.MODEL
     }
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {

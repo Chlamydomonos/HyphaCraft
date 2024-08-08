@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
-import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 
 class HumusHeapBlock : CarpetBlock(
     Properties.ofFullCopy(Blocks.CYAN_CARPET).sound(SoundType.SLIME_BLOCK).randomTicks().noCollission()

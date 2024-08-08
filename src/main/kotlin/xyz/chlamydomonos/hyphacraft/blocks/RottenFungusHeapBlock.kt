@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
-import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 
 class RottenFungusHeapBlock : CarpetBlock(
     Properties.ofFullCopy(Blocks.BLUE_CARPET).sound(SoundType.SLIME_BLOCK).noCollission()

@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
-import xyz.chlamydomonos.hyphacraft.blocks.base.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
@@ -20,8 +20,8 @@ class CarnivoravitisRootBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.OAK_
                 BlockLoader.CARNIVORAVITIS_ROOT,
                 provider.models().cubeColumn(
                     "carnivoravitis_root",
-                    NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/carnivoravitis_root"),
-                    NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/carnivoravitis_root_top")
+                    NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/carnivoravitis_shell"),
+                    NameUtil.getRL("${ModelProvider.BLOCK_FOLDER}/carnivoravitis_root")
                 )
             )
         }
