@@ -1,5 +1,6 @@
 package xyz.chlamydomonos.hyphacraft.items
 
+import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
@@ -9,8 +10,8 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.PipeBlock
-import xyz.chlamydomonos.hyphacraft.blockentities.base.BlockCopierEntity
+import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
+import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datacomponents.BlockHolder
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataComponentLoader
@@ -45,38 +46,22 @@ class DebugStickItem : Item(
         if (level.isClientSide) {
             return InteractionResult.PASS
         }
-
-        if (level.getBlockState(context.clickedPos).`is`(BlockLoader.TEST_BLOCK)) {
-            level.scheduleTick(context.clickedPos, BlockLoader.TEST_BLOCK, 1)
-            return InteractionResult.SUCCESS
+        val pos0 = context.clickedPos.above()
+        var pos = pos0.above()
+        for (i in 1..10) {
+            pos = pos.above()
+            level.setBlock(pos, BlockLoader.CARNIVORAVITIS_VINE.defaultBlockState(), 3)
+            val be = level.getBlockEntity(pos) as CarnivoravitisVineBlockEntity
+            be.nextPos = pos.below()
         }
-
-        val blockHolder = context.itemInHand.get(DataComponentLoader.BLOCK_HOLDER)!!
-        val block = blockHolder.block
-        val blockId = BLOCKS.indexOf(block)
-
-        if(context.player!!.isShiftKeyDown) {
-            val newBlock = BLOCKS[(blockId + 1) % BLOCKS.size]
-            context.itemInHand.set(DataComponentLoader.BLOCK_HOLDER, BlockHolder(newBlock))
-            return InteractionResult.SUCCESS
+        for (i in 1..10) {
+            pos = pos.offset(1, 0, 0)
+            level.setBlock(pos, BlockLoader.CARNIVORAVITIS_VINE.defaultBlockState(), 3)
+            val be = level.getBlockEntity(pos) as CarnivoravitisVineBlockEntity
+            be.nextPos = pos.offset(-1, 0, 0)
         }
-
-        val pos = context.clickedPos
-        if (block in BLOCK_COPIERS) {
-            val oldState = level.getBlockState(pos)
-            level.setBlock(pos, block.defaultBlockState(), 3)
-            val be = level.getBlockEntity(pos) as BlockCopierEntity
-            be.copiedState = oldState
-        } else if (block in PLANTS) {
-            var state = block.defaultBlockState()
-            val face = context.clickedFace
-            val newPos = pos.offset(face.normal)
-            val property = PipeBlock.PROPERTY_BY_DIRECTION[face.opposite]!!
-            if (state.hasProperty(property)) {
-                state = state.setValue(property, true)
-            }
-            level.setBlock(newPos, state, 3)
-        }
+        pos = pos.above()
+        level.setBlock(pos, BlockLoader.CARNIVORAVITIS_FLOWER.defaultBlockState().setValue(ModProperties.DIRECTION, Direction.UP), 3)
 
         return InteractionResult.SUCCESS
     }
