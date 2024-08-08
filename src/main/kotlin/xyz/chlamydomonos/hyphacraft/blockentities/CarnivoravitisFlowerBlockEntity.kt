@@ -29,7 +29,7 @@ class CarnivoravitisFlowerBlockEntity(
 
     private fun devour(entity: LivingEntity) {
         val carrier = EntityLoader.TRANSPORT.create(level!!)!!
-        val vinePos = blockPos.offset(blockState.getValue(ModProperties.DIRECTION).normal)
+        val vinePos = blockPos.offset(blockState.getValue(ModProperties.DIRECTION).opposite.normal)
         val vineState = level!!.getBlockState(vinePos)
         if (!vineState.`is`(BlockLoader.CARNIVORAVITIS_VINE)) {
             return
@@ -38,6 +38,7 @@ class CarnivoravitisFlowerBlockEntity(
         carrier.setPos(carrierPos)
         carrier.blocksPerMovement = CARRIER_BLOCKS_PER_MOVEMENT
         carrier.ticksPerMovement = CARRIER_TICKS_PER_MOVEMENT
+        level!!.addFreshEntity(carrier)
         entity.setPos(carrierPos)
         entity.startRiding(carrier, true)
     }

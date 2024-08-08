@@ -11,9 +11,12 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisFlowerBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
+import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
 class CarnivoravitisFlowerBlock : BaseHyphaEntityBlock(
     Properties.ofFullCopy(Blocks.DIRT)
@@ -27,6 +30,33 @@ class CarnivoravitisFlowerBlock : BaseHyphaEntityBlock(
 
     companion object {
         val CODEC = simpleCodec { CarnivoravitisFlowerBlock() }
+
+        private fun genModelWithParams(
+            provider: ModBlockStateProvider,
+            builder: VariantBlockStateBuilder,
+            direction: Direction,
+            rx: Int,
+            ry: Int
+        ) {
+            builder.partialState().with(ModProperties.DIRECTION, direction).modelForState()
+                .modelFile(provider.existingModel("carnivoravitis_flower"))
+                .rotationX(rx)
+                .rotationY(ry)
+                .addModel()
+        }
+
+        fun genModel(provider: ModBlockStateProvider) {
+            val builder = provider.getVariantBuilder(BlockLoader.CARNIVORAVITIS_FLOWER)
+            genModelWithParams(provider, builder, Direction.UP, 0, 0)
+            genModelWithParams(provider, builder, Direction.DOWN, 180, 0)
+            var dir = Direction.NORTH
+            var ry = 0
+            for (i in 1..4) {
+                genModelWithParams(provider, builder, dir, 90, ry)
+                dir = dir.clockWise
+                ry += 90
+            }
+        }
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {

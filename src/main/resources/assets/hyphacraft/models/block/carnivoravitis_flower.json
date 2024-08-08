@@ -1,5 +1,7 @@
 {
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "translucent",
 	"textures": {
 		"0": "hyphacraft:block/carnivoravitis_vine",
 		"1": "hyphacraft:block/carnivoravitis_root",

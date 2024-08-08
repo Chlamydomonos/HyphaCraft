@@ -49,6 +49,7 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
         CarnivoravitisVineBlock.genModel(this)
         CarnivoravitisRootBlock.genModel(this)
         simpleBlockWithItem(BlockLoader.CARNIVORAVITIS_SHELL, cubeAll(BlockLoader.CARNIVORAVITIS_SHELL))
+        CarnivoravitisFlowerBlock.genModel(this)
     }
 
     private fun blockCopier(block: Block) {
