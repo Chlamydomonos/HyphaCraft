@@ -12,7 +12,7 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition
-import xyz.chlamydomonos.hyphacraft.blockentities.BlockCopierEntity
+import xyz.chlamydomonos.hyphacraft.blockentities.base.BlockCopierEntity
 import xyz.chlamydomonos.hyphacraft.loaders.LootLoader
 import java.util.function.Consumer
 

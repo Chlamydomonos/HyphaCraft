@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.hyphacraft.blockentities
+package xyz.chlamydomonos.hyphacraft.blockentities.base
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup

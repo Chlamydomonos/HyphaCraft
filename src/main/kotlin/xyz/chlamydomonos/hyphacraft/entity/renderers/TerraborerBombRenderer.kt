@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.hyphacraft.entity.renderes
+package xyz.chlamydomonos.hyphacraft.entity.renderers
 
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.renderer.MultiBufferSource

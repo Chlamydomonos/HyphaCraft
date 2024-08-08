@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha;
 
 @Mixin(FireBlock.class)
-public class FireBlockMixin {
+public abstract class FireBlockMixin {
 
     @Inject(
         method = "checkBurnOut",

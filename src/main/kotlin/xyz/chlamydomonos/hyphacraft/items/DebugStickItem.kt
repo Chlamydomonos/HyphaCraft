@@ -1,16 +1,20 @@
 package xyz.chlamydomonos.hyphacraft.items
 
 import net.minecraft.network.chat.Component
+import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
+import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.PipeBlock
-import xyz.chlamydomonos.hyphacraft.blockentities.BlockCopierEntity
+import xyz.chlamydomonos.hyphacraft.blockentities.base.BlockCopierEntity
 import xyz.chlamydomonos.hyphacraft.datacomponents.BlockHolder
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataComponentLoader
+import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader
 
 class DebugStickItem : Item(
     Properties().component(DataComponentLoader.BLOCK_HOLDER, BlockHolder(BlockLoader.XENOLICHEN_BLOCK))
@@ -73,6 +77,24 @@ class DebugStickItem : Item(
             }
             level.setBlock(newPos, state, 3)
         }
+
+        return InteractionResult.SUCCESS
+    }
+
+    override fun interactLivingEntity(
+        stack: ItemStack,
+        player: Player,
+        interactionTarget: LivingEntity,
+        usedHand: InteractionHand
+    ): InteractionResult {
+        if (player.level().isClientSide) {
+            return InteractionResult.PASS
+        }
+
+        val entity = EntityLoader.TRANSPORT.create(player.level())!!
+        entity.setPos(interactionTarget.position())
+        player.level().addFreshEntity(entity)
+        interactionTarget.startRiding(entity, true)
 
         return InteractionResult.SUCCESS
     }
