@@ -27,7 +27,7 @@ object BlockLoader {
         val item by itemHolder
     }
 
-    private val BLOCKS = DeferredRegister.create(Registries.BLOCK, HyphaCraft.MODID)
+    val BLOCKS = DeferredRegister.create(Registries.BLOCK, HyphaCraft.MODID)
 
     private fun <T : Block> register(name: String, block: () -> T): BlockAndItsItem<T> {
         return register(name, 0, block)

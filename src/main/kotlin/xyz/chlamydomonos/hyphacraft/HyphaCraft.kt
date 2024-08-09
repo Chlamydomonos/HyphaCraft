@@ -22,5 +22,6 @@ object HyphaCraft {
         DataComponentLoader.register(MOD_BUS)
         EntityLoader.register(MOD_BUS)
         DataAttachmentLoader.register(MOD_BUS)
+        FluidLoader.register(MOD_BUS)
     }
 }
