@@ -1,0 +1,40 @@
+name: Generate Data
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history to allow for proper merging
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Switch to generated branch
+        run: |
+          git checkout -b generated || git checkout generated
+          git fetch origin generated:generated
+
+      - name: Merge main into generated
+        run: |
+          git merge main -s ours
+
+      - name: Run Gradle task
+        run: ./gradlew runData
+
+      - name: Commit and push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: generated
+          force: true
