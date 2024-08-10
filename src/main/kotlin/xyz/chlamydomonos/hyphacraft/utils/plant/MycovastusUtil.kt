@@ -18,7 +18,7 @@ import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
-import xyz.chlamydomonos.hyphacraft.utils.misc.CommonUtil
+import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 import java.util.stream.Collectors
 import kotlin.math.pow
 

@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
-import xyz.chlamydomonos.hyphacraft.utils.misc.AlienSoilUtil
+import xyz.chlamydomonos.hyphacraft.utils.AlienSoilUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.*
 
 class AlienSoilBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).randomTicks()) {

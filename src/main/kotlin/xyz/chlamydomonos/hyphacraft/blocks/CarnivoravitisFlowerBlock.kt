@@ -2,6 +2,7 @@ package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.world.level.Explosion
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -17,6 +18,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 
 class CarnivoravitisFlowerBlock : BaseHyphaEntityBlock(
     Properties.ofFullCopy(Blocks.DIRT)
@@ -76,6 +78,16 @@ class CarnivoravitisFlowerBlock : BaseHyphaEntityBlock(
             null
         } else {
             BlockEntityTicker { _, _, _, e -> (e as CarnivoravitisFlowerBlockEntity).tick() }
+        }
+    }
+
+    override fun onBlockExploded(state: BlockState, level: Level, pos: BlockPos, explosion: Explosion) {
+        if (level.isClientSide) {
+            return
+        }
+        val damageType = explosion.damageSource.type()
+        if (damageType != DamageTypeLoader.HYPHA_EXPLOSION(level).value()) {
+            super.onBlockExploded(state, level, pos, explosion)
         }
     }
 }

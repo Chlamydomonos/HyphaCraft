@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.hyphacraft.utils.misc
+package xyz.chlamydomonos.hyphacraft.utils
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries

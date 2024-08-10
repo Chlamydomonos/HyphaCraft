@@ -38,6 +38,10 @@ object DataGenLoader {
             event.includeServer(),
             DataProvider.Factory { ModDatapackBuiltinEntriesProvider(it, lp) }
         )
+        event.generator.addProvider(
+            event.includeServer(),
+            DataProvider.Factory { ModEntityTagsProvider(it, lp, efh) }
+        )
     }
 }
 

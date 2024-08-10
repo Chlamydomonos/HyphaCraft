@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader;
+import xyz.chlamydomonos.hyphacraft.entity.entities.TransportEntity;
 
 import javax.annotation.Nullable;
 
@@ -21,12 +21,8 @@ public abstract class EntityMixin {
         cancellable = true
     )
     private void injectIsInWall(CallbackInfoReturnable<Boolean> callbackInfo) {
-        var vehicle = this.getVehicle();
-        while (vehicle != null) {
-            if (vehicle.getType() == EntityLoader.INSTANCE.getTRANSPORT()) {
-                callbackInfo.setReturnValue(false);
-            }
-            vehicle = vehicle.getVehicle();
+        if (TransportEntity.Companion.isOnTransport(this.getVehicle())) {
+            callbackInfo.setReturnValue(false);
         }
     }
 }

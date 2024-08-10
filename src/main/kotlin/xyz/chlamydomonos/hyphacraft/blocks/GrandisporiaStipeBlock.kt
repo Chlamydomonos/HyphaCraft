@@ -127,7 +127,7 @@ class GrandisporiaStipeBlock : PipeBlock(
         neighborPos: BlockPos
     ): BlockState {
         if(state.getValue(ModProperties.HEIGHT) == 0 && direction == Direction.DOWN) {
-            return state.setValue(PROPERTY_BY_DIRECTION[direction]!!, !neighborState.isEmpty)
+            return state.setValue(DOWN, true)
         }
 
         return state.setValue(PROPERTY_BY_DIRECTION[direction]!!, canConnect(neighborState, direction))

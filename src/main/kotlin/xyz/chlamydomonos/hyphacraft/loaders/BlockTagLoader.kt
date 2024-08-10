@@ -7,10 +7,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.tags.minecraft.MineableWithAxeTag
 import xyz.chlamydomonos.hyphacraft.blocks.tags.minecraft.MineableWithHoeTag
 import xyz.chlamydomonos.hyphacraft.blocks.tags.minecraft.MineableWithPickaxeTag
 import xyz.chlamydomonos.hyphacraft.blocks.tags.minecraft.MineableWithShovelTag
-import xyz.chlamydomonos.hyphacraft.blocks.tags.mod.CarnivoravitisVineConnectableTag
-import xyz.chlamydomonos.hyphacraft.blocks.tags.mod.GrandisporiaStipeConnectableTag
-import xyz.chlamydomonos.hyphacraft.blocks.tags.mod.HyphaTreeTag
-import xyz.chlamydomonos.hyphacraft.blocks.tags.mod.PreserveLeavesTag
+import xyz.chlamydomonos.hyphacraft.blocks.tags.mod.*
 
 object BlockTagLoader {
     val TAGS = mutableListOf<BaseBlockTag>()
@@ -32,4 +29,5 @@ object BlockTagLoader {
     val HYPHA_TREE = register(::HyphaTreeTag)
     val GRANDISPORIA_STIPE_CONNECTABLE = register(::GrandisporiaStipeConnectableTag)
     val CARNIVORAVITIS_VINE_CONNECTABLE = register(::CarnivoravitisVineConnectableTag)
+    val CARNIVORAVITIS_PLANT = register(::CarnivoravitisPlantTag)
 }

@@ -6,8 +6,8 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.BucketItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
-import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.LiquidBlock
+import net.minecraft.world.level.material.FlowingFluid
 import net.minecraft.world.level.material.Fluid
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
@@ -15,14 +15,13 @@ import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.fluids.BaseFlowingFluid
 import net.neoforged.neoforge.fluids.FluidType
-import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 import net.neoforged.neoforge.registries.NeoForgeRegistries
-import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.fluids.BaseFluidType
 import xyz.chlamydomonos.hyphacraft.fluids.DigestiveJuiceFluid
 import java.util.function.Supplier
+import kotlin.reflect.KProperty
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object FluidLoader {
@@ -32,11 +31,11 @@ object FluidLoader {
     }
 
     class LoadedFluid (
-        typeHolder: DeferredHolder<FluidType, FluidType>,
-        sourceHolder: DeferredHolder<Fluid, BaseFlowingFluid.Source>,
-        flowingHolder: DeferredHolder<Fluid, BaseFlowingFluid.Flowing>,
-        blockHolder: DeferredHolder<Block, LiquidBlock>,
-        bucketHolder: DeferredHolder<Item, BucketItem>
+        typeHolder: Supplier<FluidType>,
+        sourceHolder: Supplier<out FlowingFluid>,
+        flowingHolder: Supplier<out FlowingFluid>,
+        blockHolder: Supplier<out LiquidBlock>,
+        bucketHolder: Supplier<out BucketItem>
     ) {
         val type by typeHolder
         val source by sourceHolder
@@ -46,7 +45,7 @@ object FluidLoader {
     }
 
     data class FluidToRender(
-        val fluidHolder: DeferredHolder<Fluid, out Fluid>,
+        val fluidHolder: Supplier<out FlowingFluid>,
         val renderType: RenderType
     )
 
@@ -78,18 +77,22 @@ object FluidLoader {
             .slopeFindDistance(type.slopeFindDistance)
             .levelDecreasePerBlock(type.levelDecreasePerBlock)
 
-        val sourceHolder = FLUIDS.register(type.name) { -> BaseFlowingFluid.Source(fluidProperties) }
+        val sourceHolder: Supplier<out FlowingFluid> = type.customSource
+            ?: FLUIDS.register(type.name) { -> BaseFlowingFluid.Source(fluidProperties) }
         sourceSupplier.supplier = sourceHolder
 
-        val flowingHolder = FLUIDS.register("${type.name}_flow") { -> BaseFlowingFluid.Flowing(fluidProperties) }
+        val flowingHolder: Supplier<out FlowingFluid> = type.customFlowing
+            ?: FLUIDS.register("${type.name}_flow") { -> BaseFlowingFluid.Flowing(fluidProperties) }
         flowingSupplier.supplier = flowingHolder
 
-        val blockHolder = BlockLoader.BLOCKS.register("${type.name}_block") { ->
+        val blockHolder = type.customBlock
+            ?: BlockLoader.BLOCKS.register("${type.name}_block") { ->
             LiquidBlock(sourceHolder.get(), type.blockProperties)
         }
         blockSupplier.supplier = blockHolder
 
-        val bucketHolder = ItemLoader.register("${type.name}_bucket", bucketPriority) {
+        val bucketHolder = type.customBucket
+            ?: ItemLoader.register("${type.name}_bucket", bucketPriority) {
             BucketItem(sourceHolder.get(), Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1))
         }
         bucketSupplier.supplier = bucketHolder
@@ -110,4 +113,8 @@ object FluidLoader {
     }
 
     val DIGESTIVE_JUICE = register(DigestiveJuiceFluid())
+}
+
+private operator fun <T> Supplier<T>.getValue(loadedFluid: FluidLoader.LoadedFluid, property: KProperty<*>): T {
+    return this.get()
 }

@@ -6,11 +6,15 @@ import net.minecraft.client.Camera
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.renderer.FogRenderer
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.item.BucketItem
+import net.minecraft.world.level.block.LiquidBlock
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.material.FlowingFluid
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions
 import net.neoforged.neoforge.fluids.FluidType
 import org.joml.Vector3f
 import java.util.function.Consumer
+import java.util.function.Supplier
 
 open class BaseFluidType(
     val name: String,
@@ -24,7 +28,11 @@ open class BaseFluidType(
     tintColorRGBA: Long,
     fogColorRGB: Int,
     val fogStart: Float,
-    val fogEnd: Float
+    val fogEnd: Float,
+    val customSource: (Supplier<out FlowingFluid>)? = null,
+    val customFlowing: (Supplier<out FlowingFluid>)? = null,
+    val customBlock: (Supplier<out LiquidBlock>)? = null,
+    val customBucket: (Supplier<out BucketItem>)? = null,
 ) {
     val tintColorInt: Int
     val fogColor = Vector3f(

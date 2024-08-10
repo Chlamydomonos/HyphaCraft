@@ -19,6 +19,7 @@ class AlienExplosiveBlock : Block(
         .ofFullCopy(Blocks.BEDROCK)
         .randomTicks()
         .noOcclusion()
+        .noLootTable()
         .explosionResistance(0.000000001f)
 ) {
     override fun onPlace(state: BlockState, level: Level, pos: BlockPos, oldState: BlockState, movedByPiston: Boolean) {

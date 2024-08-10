@@ -23,6 +23,7 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ItemLoader
 import xyz.chlamydomonos.hyphacraft.loot.BlockCopierLoot
 import xyz.chlamydomonos.hyphacraft.loot.GrandisporiaWitheredCapLoot
+import java.util.stream.Collectors
 
 class ModBlockLootSubProvider(provider: HolderLookup.Provider):
     BlockLootSubProvider(emptySet(), FeatureFlags.REGISTRY.allFlags(), provider) {
@@ -48,32 +49,15 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
         dropSelf(BlockLoader.TERRABORER_STIPE.block)
         dropSelf(BlockLoader.TERRABORER_BOMB.block)
         dropSelf(BlockLoader.ACTIVE_HYPHA_BLOCK.block)
+        dropSelf(BlockLoader.CARNIVORAVITIS_SHELL.block)
+        dropOther(BlockLoader.CARNIVORAVITIS_FLOWER, ItemLoader.CARNIVORAVITIS_FLOWER)
+        dropOther(BlockLoader.CARNIVORAVITIS_ROOT, ItemLoader.CARNIVORAVITIS_ROOT)
+        rateDrop(BlockLoader.CARNIVORAVITIS_VINE, ItemLoader.TUBULAR_HYPHA, 0.0f, 1.0f)
+        dropSelf(BlockLoader.HYPHACOAL_BLOCK.block)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {
-        return mutableSetOf(
-            BlockLoader.ALIEN_ROCK.block,
-            BlockLoader.HYPHACOTTA.block,
-            BlockLoader.ALIEN_SOIL.block,
-            BlockLoader.XENOLICHEN_BLOCK,
-            BlockLoader.MYCOVASTUS_HYPHA,
-            BlockLoader.MYCOVASTUS.block,
-            BlockLoader.ROTTEN_FUNGUS_HEAP.block,
-            BlockLoader.TUMIDUSIO_HYPHA,
-            BlockLoader.TUMIDUSIO.block,
-            BlockLoader.GRANDISPORIA_STIPE,
-            BlockLoader.GRANDISPORIA_SMALL_CAP,
-            BlockLoader.GRANDISPORIA_CAP,
-            BlockLoader.GRANDISPORIA_CAP_CENTER,
-            BlockLoader.GRANDISPORIA_WITHERED_STIPE.block,
-            BlockLoader.GRANDISPORIA_WITHERED_CAP.block,
-            BlockLoader.SPORE_HEAP.block,
-            BlockLoader.HUMUS_HEAP.block,
-            BlockLoader.LOOSE_FUNGUS_ROOT,
-            BlockLoader.ACTIVE_HYPHA_BLOCK.block,
-            BlockLoader.TERRABORER_STIPE.block,
-            BlockLoader.TERRABORER_BOMB.block
-        )
+        return BlockLoader.BLOCKS_WITH_LOOT.stream().map { it.get() }.collect(Collectors.toList())
     }
 
     private fun blockCopier(block: Block, item: Item, amount: Int = 1) {

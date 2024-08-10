@@ -1,24 +1,20 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
-import net.minecraft.world.level.Explosion
-import net.minecraft.world.level.Level
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
-import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
-import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
+import xyz.chlamydomonos.hyphacraft.blocks.base.ImmuneToHyphaExplosionBlock
+import xyz.chlamydomonos.hyphacraft.utils.plant.CarnivoravitisUtil
 
-class ActiveHyphaBlock : BaseHyphaBlock(
+class ActiveHyphaBlock : ImmuneToHyphaExplosionBlock(
     Properties.ofFullCopy(Blocks.DIRT).randomTicks().sound(SoundType.SLIME_BLOCK)
 ) {
-    override fun onBlockExploded(state: BlockState, level: Level, pos: BlockPos, explosion: Explosion) {
-        if (level.isClientSide) {
-            return
-        }
-        val damageType = explosion.damageSource.type()
-        if (damageType != DamageTypeLoader.HYPHA_EXPLOSION(level).value()) {
-            super.onBlockExploded(state, level, pos, explosion)
+    override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
+        if (random.nextFloat() < CarnivoravitisUtil.EXPAND_RATE) {
+            CarnivoravitisUtil.tryGrowInitial(level, pos)
         }
     }
 }

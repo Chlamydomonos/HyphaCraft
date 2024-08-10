@@ -7,7 +7,9 @@ import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
-import xyz.chlamydomonos.hyphacraft.items.*
+import xyz.chlamydomonos.hyphacraft.items.AlienOrbItem
+import xyz.chlamydomonos.hyphacraft.items.DebugStickItem
+import xyz.chlamydomonos.hyphacraft.items.XenolichenItem
 import java.util.*
 
 object ItemLoader {
@@ -49,4 +51,6 @@ object ItemLoader {
     val SPORE_POWDER by simpleItem("spore_powder")
     val HUMUS by simpleItem("humus")
     val ALIEN_ORB by register("alien_orb", ::AlienOrbItem)
+    val CARNIVORAVITIS_FLOWER by simpleItem("carnivoravitis_flower")
+    val CARNIVORAVITIS_ROOT by simpleItem("carnivoravitis_root")
 }

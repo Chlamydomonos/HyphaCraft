@@ -17,7 +17,7 @@ import xyz.chlamydomonos.hyphacraft.blockentities.XenolichenBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
-import xyz.chlamydomonos.hyphacraft.utils.misc.CommonUtil
+import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 import java.util.stream.Collectors
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)

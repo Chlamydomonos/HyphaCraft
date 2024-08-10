@@ -14,6 +14,7 @@ class MineableWithHoeTag : BaseBlockTag(BlockTags.MINEABLE_WITH_HOE) {
         BlockLoader.GRANDISPORIA_STIPE,
         BlockLoader.GRANDISPORIA_SMALL_CAP,
         BlockLoader.GRANDISPORIA_CAP_CENTER,
-        BlockLoader.GRANDISPORIA_CAP
+        BlockLoader.GRANDISPORIA_CAP,
+        BlockLoader.CARNIVORAVITIS_VINE
     )
 }

@@ -37,5 +37,15 @@
   "entity.hyphacraft.terraborer_bomb": "Terraborer Bomb",
   "block.hyphacraft.active_hypha_block": "Active Hypha Block",
   "block.hyphacraft.loose_fungus_root": "Loose Fungus Root",
-  "fml.menu.mods.info.description.hyphacraft": "A meteor from outer space has brought with it a mysterious fungal plant that's spreading like wildfire! It's pretty creepy. Sure, you could burn it all down. But maybe, just maybe, there's a way to harness its power?"
+  "fml.menu.mods.info.description.hyphacraft": "A meteor from outer space has brought with it a mysterious fungal plant that's spreading like wildfire! It's pretty creepy. Sure, you could burn it all down. But maybe, just maybe, there's a way to harness its power?",
+  "death.attack.hyphacraft.digestion": "%1$s is digested by carnivoravitis",
+  "block.hyphacraft.carnivoravitis_vine": "Carnivoravitis Vine",
+  "block.hyphacraft.carnivoravitis_root": "Carnivoravitis Root",
+  "block.hyphacraft.carnivoravitis_shell": "Carnivoravitis Shell",
+  "block.hyphacraft.carnivoravitis_flower": "Carnivoravitis Flower",
+  "block.hyphacraft.digestive_juice": "Digestive Juice",
+  "block.hyphacraft.carnivoravitis_seedling": "Carnivoravitis Seedling",
+  "entity.hyphacraft.transport": "Transport Entity",
+  "item.hyphacraft.carnivoravitis_root": "Carnivoravitis Root",
+  "item.hyphacraft.carnivoravitis_flower": "Carnivoravitis Flower"
 }

@@ -2,6 +2,7 @@ package xyz.chlamydomonos.hyphacraft.blockentities
 
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
@@ -11,6 +12,7 @@ import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.plus
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.times
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
+import xyz.chlamydomonos.hyphacraft.entity.entities.TransportEntity
 import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader
@@ -27,7 +29,7 @@ class CarnivoravitisFlowerBlockEntity(
 
     private var timer = 0
 
-    private fun devour(entity: LivingEntity) {
+    private fun devour(entity: Entity) {
         val carrier = EntityLoader.TRANSPORT.create(level!!)!!
         val vinePos = blockPos.offset(blockState.getValue(ModProperties.DIRECTION).opposite.normal)
         val vineState = level!!.getBlockState(vinePos)
@@ -58,11 +60,11 @@ class CarnivoravitisFlowerBlockEntity(
         val direction = blockState.getValue(ModProperties.DIRECTION)
         val aabbCenter = blockPos.toVec3() + direction.normal.toVec3() * (CAPTURE_RANGE / 2)
         val aabb = AABB.ofSize(aabbCenter, CAPTURE_RANGE, CAPTURE_RANGE, CAPTURE_RANGE)
-        val entities = arrayListOf<LivingEntity>()
+        val entities = arrayListOf<Entity>()
 
         serverLevel.entities.get(aabb) {
-            if (it is LivingEntity) {
-                entities.add(it)
+            if (it is LivingEntity && !TransportEntity.isOnTransport(it)) {
+                entities.add(it.rootVehicle)
             }
         }
 

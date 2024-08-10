@@ -13,10 +13,28 @@ import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.plus
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3i
 import xyz.chlamydomonos.hyphacraft.blockentities.base.RouteBlockEntity
+import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader
 
 class TransportEntity(entityType: EntityType<*>, level: Level) : Entity(entityType, level) {
     companion object {
         val BUILDER = EntityType.Builder.of(::TransportEntity, MobCategory.MISC).sized(0.01f, 0.01f)
+
+        fun isOnTransport(entity: Entity?): Boolean {
+            if (entity == null) {
+                return false
+            }
+            if (entity.type == EntityLoader.TRANSPORT) {
+                return true
+            }
+            var vehicle = entity.vehicle
+            while (vehicle != null) {
+                if (vehicle.type == EntityLoader.TRANSPORT) {
+                    return true
+                }
+                vehicle = vehicle.vehicle
+            }
+            return false
+        }
     }
     var ticksPerMovement = 1
     var blocksPerMovement = 1

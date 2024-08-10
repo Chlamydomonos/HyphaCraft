@@ -28,15 +28,23 @@ object BlockLoader {
     }
 
     val BLOCKS = DeferredRegister.create(Registries.BLOCK, HyphaCraft.MODID)
+    val BLOCKS_WITH_LOOT = arrayListOf<DeferredHolder<Block, out Block>>()
 
     private fun <T : Block> register(name: String, block: () -> T): BlockAndItsItem<T> {
         return register(name, 0, block)
     }
 
     private fun <T : Block> register(name: String, priority: Int, block: () -> T): BlockAndItsItem<T> {
-        val registeredBlock = BLOCKS.register(name, block)
+        val registeredBlock = blockOnly(name, block)
+        BLOCKS_WITH_LOOT.add(registeredBlock)
         val registeredItem = ItemLoader.register(name, priority) { BlockItem(registeredBlock.get(), Item.Properties()) }
         return BlockAndItsItem(registeredBlock, registeredItem)
+    }
+    
+    private fun <T : Block> blockOnly(name: String, block: () -> T): DeferredHolder<Block, T> {
+        val registeredBlock = BLOCKS.register(name, block)
+        BLOCKS_WITH_LOOT.add(registeredBlock)
+        return registeredBlock
     }
 
     fun register(bus: IEventBus) {
@@ -45,37 +53,39 @@ object BlockLoader {
 
     private fun copy(block: Block) = BlockBehaviour.Properties.ofFullCopy(block)
 
-    val TEST_BLOCK by BLOCKS.register("test_block", ::TestBlock)
+    val TEST_BLOCK by blockOnly("test_block", ::TestBlock)
     val ALIEN_ROCK = register("alien_rock") { Block(copy(Blocks.STONE)) }
     val ALIEN_SOIL = register("alien_soil", ::AlienSoilBlock)
-    val XENOLICHEN_BLOCK by BLOCKS.register("xenolichen_block", ::XenolichenBlock)
-    val XENOLICHEN_HIDDEN_BLOCK by BLOCKS.register("xenolichen_hidden_block", ::XenolichenHiddenBlock)
+    val XENOLICHEN_BLOCK by blockOnly("xenolichen_block", ::XenolichenBlock)
+    val XENOLICHEN_HIDDEN_BLOCK by blockOnly("xenolichen_hidden_block", ::BlockCopierHiddenBlock)
     val HYPHACOTTA = register("hyphacotta") { HyphaResidueBlock(copy(Blocks.TERRACOTTA)) }
-    val MYCOVASTUS_HYPHA by BLOCKS.register("mycovastus_hypha", ::MycovastusHyphaBlock)
-    val MYCOVASTUS_HYPHA_HIDDEN_BLOCK by BLOCKS.register("mycovastus_hypha_hidden_block", ::MycovastusHyphaHiddenBlock)
+    val MYCOVASTUS_HYPHA by blockOnly("mycovastus_hypha", ::MycovastusHyphaBlock)
+    val MYCOVASTUS_HYPHA_HIDDEN_BLOCK by blockOnly("mycovastus_hypha_hidden_block", ::BlockCopierHiddenBlock)
     val MYCOVASTUS = register("mycovastus", ::MycovastusBlock)
     val ROTTEN_FUNGUS_HEAP = register("rotten_fungus_heap", ::RottenFungusHeapBlock)
-    val TUMIDUSIO_HYPHA by BLOCKS.register("tumidusio_hypha", ::TumidusioHyphaBlock)
-    val TUMIDUSIO_HYPHA_HIDDEN_BLOCK by BLOCKS.register("tumidusio_hypha_hidden_block", ::TumidusioHyphaHiddenBlock)
+    val TUMIDUSIO_HYPHA by blockOnly("tumidusio_hypha", ::TumidusioHyphaBlock)
+    val TUMIDUSIO_HYPHA_HIDDEN_BLOCK by blockOnly("tumidusio_hypha_hidden_block", ::BlockCopierHiddenBlock)
     val HYPHACOAL_BLOCK = register("hyphacoal_block") { HyphaResidueBlock(copy(Blocks.COAL_BLOCK)) }
     val TUMIDUSIO = register("tumidusio", ::TumidusioBlock)
-    val GRANDISPORIA_STIPE by BLOCKS.register("grandisporia_stipe", ::GrandisporiaStipeBlock)
-    val GRANDISPORIA_SMALL_CAP by BLOCKS.register("grandisporia_small_cap", ::GrandisporiaSmallCapBlock)
-    val GRANDISPORIA_CAP_CENTER by BLOCKS.register("grandisporia_cap_center", ::GrandisporiaCapCenterBlock)
-    val GRANDISPORIA_CAP by BLOCKS.register("grandisporia_cap", ::GrandisporiaCapBlock)
+    val GRANDISPORIA_STIPE by blockOnly("grandisporia_stipe", ::GrandisporiaStipeBlock)
+    val GRANDISPORIA_SMALL_CAP by blockOnly("grandisporia_small_cap", ::GrandisporiaSmallCapBlock)
+    val GRANDISPORIA_CAP_CENTER by blockOnly("grandisporia_cap_center", ::GrandisporiaCapCenterBlock)
+    val GRANDISPORIA_CAP by blockOnly("grandisporia_cap", ::GrandisporiaCapBlock)
     val GRANDISPORIA_WITHERED_CAP = register("grandisporia_withered_cap", ::GrandisporiaWitheredCapBlock)
     val GRANDISPORIA_WITHERED_STIPE = register("grandisporia_withered_stipe", ::GrandisporiaWitheredStipeBlock)
     val SPORE_HEAP = register("spore_heap", ::SporeHeapBlock)
     val HUMUS_HEAP = register("humus_heap", ::HumusHeapBlock)
-    val ALIEN_EXPLOSIVE by BLOCKS.register("alien_explosive", ::AlienExplosiveBlock)
+    val ALIEN_EXPLOSIVE by blockOnly("alien_explosive", ::AlienExplosiveBlock)
     val TERRABORER_STIPE = register("terraborer_stipe", ::TerraborerStipeBlock)
     val TERRABORER_BOMB = register("terraborer_bomb", ::TerraborerBombBlock)
     val ACTIVE_HYPHA_BLOCK = register("active_hypha_block", ::ActiveHyphaBlock)
-    val LOOSE_FUNGUS_ROOT by BLOCKS.register("loose_fungus_root", ::LooseFungusRootBlock)
-    val CARNIVORAVITIS_VINE by BLOCKS.register("carnivoravitis_vine", ::CarnivoravitisVineBlock)
-    val CARNIVORAVITIS_ROOT by BLOCKS.register("carnivoravitis_root", ::CarnivoravitisRootBlock)
-    val CARNIVORAVITIS_SHELL by BLOCKS.register("carnivoravitis_shell", ::CarnivoravitisShellBlock)
-    val CARNIVORAVITIS_FLOWER by BLOCKS.register("carnivoravitis_flower", ::CarnivoravitisFlowerBlock)
+    val LOOSE_FUNGUS_ROOT by blockOnly("loose_fungus_root", ::LooseFungusRootBlock)
+    val CARNIVORAVITIS_VINE by blockOnly("carnivoravitis_vine", ::CarnivoravitisVineBlock)
+    val CARNIVORAVITIS_ROOT by blockOnly("carnivoravitis_root", ::CarnivoravitisRootBlock)
+    val CARNIVORAVITIS_SHELL = register("carnivoravitis_shell", ::CarnivoravitisShellBlock)
+    val CARNIVORAVITIS_FLOWER by blockOnly("carnivoravitis_flower", ::CarnivoravitisFlowerBlock)
+    val DIGESTIVE_JUICE_BLOCK by blockOnly("digestive_juice_block", ::DigestiveJuiceBlock)
+    val CARNIVORAVITIS_SEEDLING by blockOnly("carnivoravitis_seedling", ::CarnivoravitisSeedlingBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

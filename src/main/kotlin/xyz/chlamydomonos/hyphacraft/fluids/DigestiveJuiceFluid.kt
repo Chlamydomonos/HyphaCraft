@@ -4,6 +4,8 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.neoforged.neoforge.fluids.FluidType
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import java.util.function.Supplier
 
 class DigestiveJuiceFluid : BaseFluidType(
     "digestive_juice",
@@ -17,5 +19,6 @@ class DigestiveJuiceFluid : BaseFluidType(
     0xa06614a0,
     0xa06614,
     1.0f,
-    6.0f
+    6.0f,
+    customBlock = Supplier { BlockLoader.DIGESTIVE_JUICE_BLOCK }
 )
