@@ -6,8 +6,8 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
 class MineableWithPickaxeTag : BaseBlockTag(BlockTags.MINEABLE_WITH_PICKAXE) {
     override fun blocks() = listOf(
-        BlockLoader.ALIEN_ROCK.block,
-        BlockLoader.HYPHACOTTA.block,
-        BlockLoader.HYPHACOAL_BLOCK.block
+        block(BlockLoader.ALIEN_ROCK.block),
+        block(BlockLoader.HYPHACOTTA.block),
+        block(BlockLoader.HYPHACOAL_BLOCK.block)
     )
 }

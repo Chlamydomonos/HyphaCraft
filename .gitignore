@@ -22,8 +22,5 @@ eclipse
 run
 runs
 
-# generated
-src/generated
-
 # local
 /local

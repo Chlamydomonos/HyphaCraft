@@ -2,10 +2,8 @@ package xyz.chlamydomonos.hyphacraft.utils.plant
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.tags.TagKey
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
@@ -17,6 +15,7 @@ import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.MycovastusHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 import java.util.stream.Collectors
@@ -26,21 +25,10 @@ import kotlin.math.pow
 object MycovastusUtil {
     const val EXPAND_RATE = 1.0f / 3.0f
     const val MUSHROOM_RATE = 1.0f / 20.0f
-
-    private lateinit var MYCOVASTUS_TAGS: Set<TagKey<Block>>
-    private lateinit var MYCOVASTUS_BLOCKS: Set<Block>
     private lateinit var MYCOVASTUS_BLACKLIST: Set<Block>
 
     @SubscribeEvent
     fun onConfig(event: ModConfigEvent) {
-        MYCOVASTUS_TAGS = ConfigLoader.MYCOVASTUS_TAGS.get().stream().map {
-            TagKey.create(Registries.BLOCK, ResourceLocation.parse(it))
-        }.collect(Collectors.toSet())
-
-        MYCOVASTUS_BLOCKS = ConfigLoader.MYCOVASTUS_BLOCKS.get().stream().map {
-            BuiltInRegistries.BLOCK.get(ResourceLocation.parse(it))
-        }.collect(Collectors.toSet())
-
         MYCOVASTUS_BLACKLIST = ConfigLoader.MYCOVASTUS_BLACKLIST.get().stream().map {
             BuiltInRegistries.BLOCK.get(ResourceLocation.parse(it))
         }.collect(Collectors.toSet())
@@ -55,20 +43,7 @@ object MycovastusUtil {
             return false
         }
 
-        var isGrowableBlock = false
-        if(state.block in MYCOVASTUS_BLOCKS) {
-            isGrowableBlock = true
-        }
-
-        if (!isGrowableBlock) {
-            for (tag in MYCOVASTUS_TAGS) {
-                if (state.`is`(tag)) {
-                    isGrowableBlock = true
-                }
-            }
-        }
-
-        if (!isGrowableBlock) {
+        if (!state.`is`(BlockTagLoader.MYCOVASTUS_HYPHA_REPLACEABLE)) {
             return false
         }
 

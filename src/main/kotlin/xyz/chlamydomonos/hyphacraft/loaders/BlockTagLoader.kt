@@ -30,4 +30,8 @@ object BlockTagLoader {
     val GRANDISPORIA_STIPE_CONNECTABLE = register(::GrandisporiaStipeConnectableTag)
     val CARNIVORAVITIS_VINE_CONNECTABLE = register(::CarnivoravitisVineConnectableTag)
     val CARNIVORAVITIS_PLANT = register(::CarnivoravitisPlantTag)
+    val XENOLICHEN_REPLACEABLE = register(::XenolichenReplaceableTag)
+    val MYCOVASTUS_HYPHA_REPLACEABLE = register(::MycovastusHyphaReplaceableTag)
+    val TUMIDUSIO_HYPHA_REPLACEABLE = register(::TumidusioHyphaReplaceableTag)
+    val ALIEN_SOIL_DESTROYED = register(::AlienSoilDestroyedTag)
 }

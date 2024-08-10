@@ -3,11 +3,9 @@ package xyz.chlamydomonos.hyphacraft.utils.plant
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Vec3i
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
-import net.minecraft.tags.TagKey
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
@@ -21,7 +19,9 @@ import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.TumidusioHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
+import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 import java.util.stream.Collectors
 import kotlin.math.PI
 import kotlin.math.acos
@@ -91,20 +91,10 @@ object TumidusioUtil {
         EXPAND_LENGTHS = getExpandLengths()
     }
 
-    private lateinit var TUMIDUSIO_TAGS: Set<TagKey<Block>>
-    private lateinit var TUMIDUSIO_BLOCKS: Set<Block>
     private lateinit var TUMIDUSIO_BLACKLIST: Set<Block>
 
     @SubscribeEvent
     fun onConfig(event: ModConfigEvent) {
-        TUMIDUSIO_TAGS = ConfigLoader.TUMIDUSIO_TAGS.get().stream().map {
-            TagKey.create(Registries.BLOCK, ResourceLocation.parse(it))
-        }.collect(Collectors.toSet())
-
-        TUMIDUSIO_BLOCKS = ConfigLoader.TUMIDUSIO_BLOCKS.get().stream().map {
-            BuiltInRegistries.BLOCK.get(ResourceLocation.parse(it))
-        }.collect(Collectors.toSet())
-
         TUMIDUSIO_BLACKLIST = ConfigLoader.TUMIDUSIO_BLACKLIST.get().stream().map {
             BuiltInRegistries.BLOCK.get(ResourceLocation.parse(it))
         }.collect(Collectors.toSet())
@@ -137,19 +127,15 @@ object TumidusioUtil {
             return false
         }
 
-        var isGrowableBlock = false
-        if(state.block in TUMIDUSIO_BLOCKS) {
-            isGrowableBlock = true
+        if (!state.`is`(BlockTagLoader.TUMIDUSIO_HYPHA_REPLACEABLE)) {
+            return false
         }
 
-        if (!isGrowableBlock) {
-            for (tag in TUMIDUSIO_TAGS) {
-                if (state.`is`(tag)) {
-                    isGrowableBlock = true
-                }
-            }
+        if (CommonUtil.isNearFire(level, pos)) {
+            return false
         }
-        return isGrowableBlock
+
+        return true
     }
 
     private fun getExpandDirection(state: BlockState): Vec3i {

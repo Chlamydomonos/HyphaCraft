@@ -15,8 +15,12 @@ class ModBlockTagsProvider(
 ) : BlockTagsProvider(output, lookupProvider, HyphaCraft.MODID, existingFileHelper) {
     override fun addTags(p0: HolderLookup.Provider) {
         for (tagDef in BlockTagLoader.TAGS) {
-            for (block in tagDef.blocks()) {
-                tag(tagDef.key).add(block)
+            for (blockOrTag in tagDef.blocks()) {
+                if (blockOrTag.isBlock) {
+                    tag(tagDef.key).add(blockOrTag.block!!)
+                } else {
+                    tag(tagDef.key).addTag(blockOrTag.tag!!)
+                }
             }
         }
     }

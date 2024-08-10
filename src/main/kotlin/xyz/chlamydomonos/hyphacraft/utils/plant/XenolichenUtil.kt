@@ -3,10 +3,8 @@ package xyz.chlamydomonos.hyphacraft.utils.plant
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.tags.TagKey
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.bus.api.SubscribeEvent
@@ -16,6 +14,7 @@ import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.XenolichenBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 import java.util.stream.Collectors
@@ -23,21 +22,10 @@ import java.util.stream.Collectors
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object XenolichenUtil {
     const val EXPAND_RATE = 1.0f / 6.0f
-
-    private lateinit var XENOLICHEN_TAGS: Set<TagKey<Block>>
-    private lateinit var XENOLICHEN_BLOCKS: Set<Block>
     private lateinit var XENOLICHEN_BLACKLIST: Set<Block>
 
     @SubscribeEvent
     fun onConfig(event: ModConfigEvent) {
-        XENOLICHEN_TAGS = ConfigLoader.XENOLICHEN_TAGS.get().stream().map {
-            TagKey.create(Registries.BLOCK, ResourceLocation.parse(it))
-        }.collect(Collectors.toSet())
-
-        XENOLICHEN_BLOCKS = ConfigLoader.XENOLICHEN_BLOCKS.get().stream().map {
-            BuiltInRegistries.BLOCK.get(ResourceLocation.parse(it))
-        }.collect(Collectors.toSet())
-
         XENOLICHEN_BLACKLIST = ConfigLoader.XENOLICHEN_BLACKLIST.get().stream().map {
             BuiltInRegistries.BLOCK.get(ResourceLocation.parse(it))
         }.collect(Collectors.toSet())
@@ -53,20 +41,7 @@ object XenolichenUtil {
             return false
         }
 
-        var isGrowableBlock = false
-        if(state.block in XENOLICHEN_BLOCKS) {
-            isGrowableBlock = true
-        }
-
-        if (!isGrowableBlock) {
-            for (tag in XENOLICHEN_TAGS) {
-                if (state.`is`(tag)) {
-                    isGrowableBlock = true
-                }
-            }
-        }
-
-        if(!isGrowableBlock) {
+        if (!state.`is`(BlockTagLoader.XENOLICHEN_REPLACEABLE)) {
             return false
         }
 
