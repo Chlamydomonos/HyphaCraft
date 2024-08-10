@@ -2,6 +2,8 @@ package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.util.RandomSource
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
@@ -14,6 +16,8 @@ import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 
 class HumusHeapBlock : CarpetBlock(
     Properties.ofFullCopy(Blocks.CYAN_CARPET).sound(SoundType.SLIME_BLOCK).randomTicks().noCollission()
@@ -39,4 +43,17 @@ class HumusHeapBlock : CarpetBlock(
     override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
+        if (!level.getChunkAt(pos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
+            return
+        }
+
+        val newPos = pos.below()
+        val newState = level.getBlockState(newPos)
+        if (newState.`is`(BlockLoader.ALIEN_SOIL.block) || newState.`is`(BlockLoader.ALIEN_SWARD.block)) {
+            level.setBlock(newPos, BlockLoader.FERTILE_ALIEN_SWARD.block.defaultBlockState(), 3)
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3)
+        }
+    }
 }

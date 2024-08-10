@@ -86,6 +86,9 @@ object BlockLoader {
     val CARNIVORAVITIS_FLOWER by blockOnly("carnivoravitis_flower", ::CarnivoravitisFlowerBlock)
     val DIGESTIVE_JUICE_BLOCK by blockOnly("digestive_juice_block", ::DigestiveJuiceBlock)
     val CARNIVORAVITIS_SEEDLING by blockOnly("carnivoravitis_seedling", ::CarnivoravitisSeedlingBlock)
+    val VERMILINGUA by blockOnly("vermilingua", ::VermilinguaBlock)
+    val ALIEN_SWARD = register("alien_sward", ::AlienSwardBlock)
+    val FERTILE_ALIEN_SWARD = register("fertile_alien_sward", ::FertileAlienSwardBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

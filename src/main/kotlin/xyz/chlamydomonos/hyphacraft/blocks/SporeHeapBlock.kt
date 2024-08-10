@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 
 class SporeHeapBlock : CarpetBlock(
@@ -101,5 +102,23 @@ class SporeHeapBlock : CarpetBlock(
         )
         chunk.setData(DataAttachmentLoader.IS_ALIEN_FOREST, true)
         level.chunkSource.chunkMap.resendBiomesForChunks(listOf(chunk))
+    }
+
+    override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
+        if (!level.getChunkAt(pos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
+            return
+        }
+
+        val newPos = pos.below()
+        val newState = level.getBlockState(newPos)
+        if (newState.`is`(BlockLoader.ALIEN_SOIL.block)) {
+            level.setBlock(newPos, BlockLoader.ALIEN_SWARD.block.defaultBlockState(), 3)
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3)
+        } else if (newState.`is`(BlockLoader.ALIEN_SWARD.block)) {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3)
+            if (random.nextInt(5) == 0) {
+                level.setBlock(newPos, BlockLoader.FERTILE_ALIEN_SWARD.block.defaultBlockState(), 3)
+            }
+        }
     }
 }

@@ -54,6 +54,8 @@ class ModBlockLootSubProvider(provider: HolderLookup.Provider):
         dropOther(BlockLoader.CARNIVORAVITIS_ROOT, ItemLoader.CARNIVORAVITIS_ROOT)
         rateDrop(BlockLoader.CARNIVORAVITIS_VINE, ItemLoader.TUBULAR_HYPHA, 0.0f, 1.0f)
         dropSelf(BlockLoader.HYPHACOAL_BLOCK.block)
+        add(BlockLoader.ALIEN_SWARD.block) { createSingleItemTableWithSilkTouch(it, BlockLoader.ALIEN_SOIL.item) }
+        add(BlockLoader.FERTILE_ALIEN_SWARD.block) { createSingleItemTableWithSilkTouch(it, BlockLoader.ALIEN_SOIL.item) }
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {

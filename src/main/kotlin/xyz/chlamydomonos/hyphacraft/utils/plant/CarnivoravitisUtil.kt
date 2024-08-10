@@ -28,17 +28,22 @@ object CarnivoravitisUtil {
             return false
         }
 
+        var emptyCount = 0
         for (i in -3..3) {
             for (j in -7..-1) {
                 for (k in -3..3) {
-                    if (level.getBlockState(pos.offset(i, j, k)).`is`(BlockTagLoader.CARNIVORAVITIS_PLANT)) {
+                    val newState = level.getBlockState(pos.offset(i, j, k))
+                    if (newState.`is`(BlockTagLoader.CARNIVORAVITIS_PLANT)) {
                         return false
+                    }
+                    if (newState.isEmpty) {
+                        emptyCount++
                     }
                 }
             }
         }
 
-        return true
+        return emptyCount <= 170
     }
 
     fun tryGrowInitial(level: ServerLevel, pos: BlockPos) {
@@ -108,6 +113,10 @@ object CarnivoravitisUtil {
     }
 
     fun growVine(level: ServerLevel, pos: BlockPos, state: BlockState, random: RandomSource) {
+        if (random.nextBoolean()) {
+            return
+        }
+
         val nextPos = (level.getBlockEntity(pos) as CarnivoravitisVineBlockEntity).nextPos
         val delta = pos - nextPos
         val direction = Direction.fromDelta(delta.x, delta.y, delta.z) ?: return

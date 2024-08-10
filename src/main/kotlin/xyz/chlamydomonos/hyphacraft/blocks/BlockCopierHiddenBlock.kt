@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 
-class BlockCopierHiddenBlock : Block(Properties.ofFullCopy(Blocks.GLASS).noLootTable()) {
+class BlockCopierHiddenBlock : Block(Properties.ofFullCopy(Blocks.STONE).noLootTable()) {
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         builder.add(ModProperties.PHASE)
     }

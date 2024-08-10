@@ -220,7 +220,7 @@ object GrandisporiaUtil {
             return
         }
 
-        if (height == 0 && age > 0 && age < 4 && random.nextInt(5) == 0) {
+        if (height == 0 && age > 0 && age < 4 && random.nextInt(2) == 0) {
             if (age == 3) {
                 level.setBlock(pos, BlockLoader.GRANDISPORIA_WITHERED_STIPE.block.defaultBlockState(), 3)
             } else {
@@ -229,7 +229,7 @@ object GrandisporiaUtil {
             return
         }
 
-        if (canGrowOld(state, level, pos) && random.nextInt(8) == 0) {
+        if (canGrowOld(state, level, pos) && random.nextInt(3) == 0) {
             if (age == 3) {
                 level.setBlock(pos, BlockLoader.GRANDISPORIA_WITHERED_STIPE.block.defaultBlockState(), 3)
             } else {
