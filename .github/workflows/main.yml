@@ -38,7 +38,9 @@ jobs:
           git merge main -s ours
 
       - name: Run Gradle task
-        run: ./gradlew runData
+        run: |
+          chmod +x ./gradlew
+          ./gradlew runData
 
       - name: Commit changes
         run: |
