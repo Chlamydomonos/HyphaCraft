@@ -1,0 +1,455 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "2"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "3"
+                  }
+                }
+              ],
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "4"
+                  }
+                }
+              ],
+              "count": 4.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "5"
+                  }
+                }
+              ],
+              "count": 5.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "6"
+                  }
+                }
+              ],
+              "count": 6.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "7"
+                  }
+                }
+              ],
+              "count": 7.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "8"
+                  }
+                }
+              ],
+              "count": 8.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "9"
+                  }
+                }
+              ],
+              "count": 9.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "10"
+                  }
+                }
+              ],
+              "count": 10.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "11"
+                  }
+                }
+              ],
+              "count": 11.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "12"
+                  }
+                }
+              ],
+              "count": 12.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "13"
+                  }
+                }
+              ],
+              "count": 13.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "14"
+                  }
+                }
+              ],
+              "count": 14.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "15"
+                  }
+                }
+              ],
+              "count": 15.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "16"
+                  }
+                }
+              ],
+              "count": 16.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "17"
+                  }
+                }
+              ],
+              "count": 17.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "18"
+                  }
+                }
+              ],
+              "count": 18.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "19"
+                  }
+                }
+              ],
+              "count": 19.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "20"
+                  }
+                }
+              ],
+              "count": 20.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "21"
+                  }
+                }
+              ],
+              "count": 21.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "22"
+                  }
+                }
+              ],
+              "count": 22.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "23"
+                  }
+                }
+              ],
+              "count": 23.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "24"
+                  }
+                }
+              ],
+              "count": 24.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "25"
+                  }
+                }
+              ],
+              "count": 25.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "26"
+                  }
+                }
+              ],
+              "count": 26.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "27"
+                  }
+                }
+              ],
+              "count": 27.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "28"
+                  }
+                }
+              ],
+              "count": 28.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "29"
+                  }
+                }
+              ],
+              "count": 29.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "30"
+                  }
+                }
+              ],
+              "count": 30.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "31"
+                  }
+                }
+              ],
+              "count": 31.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "hyphacraft:tumidusio",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "density": "32"
+                  }
+                }
+              ],
+              "count": 32.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "hyphacraft:tumidusio"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "hyphacraft:blocks/tumidusio"
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "contains_water=false": {
+      "model": "hyphacraft:block/terraborer_bomb_0"
+    },
+    "contains_water=true": {
+      "model": "hyphacraft:block/terraborer_bomb_1"
+    }
+  }
+}

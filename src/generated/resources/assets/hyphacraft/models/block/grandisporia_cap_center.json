@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "hyphacraft:block/grandisporia_cap_center_bottom",
+    "side": "hyphacraft:block/grandisporia_cap_inner",
+    "top": "hyphacraft:block/grandisporia_cap"
+  }
+}

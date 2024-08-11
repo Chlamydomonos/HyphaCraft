@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hyphacraft:block/grandisporia_withered_stipe_top",
+    "side": "hyphacraft:block/grandisporia_withered_stipe"
+  }
+}

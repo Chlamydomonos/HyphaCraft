@@ -1,0 +1,14 @@
+{
+  "values": [
+    "#minecraft:base_stone_overworld",
+    "#c:sandstone/blocks",
+    "#c:sands",
+    "#minecraft:terracotta",
+    "#minecraft:concrete_powder",
+    "#c:concretes",
+    "#c:ores",
+    "minecraft:gravel",
+    "#minecraft:stone_bricks",
+    "#c:cobblestones"
+  ]
+}
