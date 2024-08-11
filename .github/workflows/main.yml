@@ -23,10 +23,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Switch to generated branch
+      - name: Pull main and generated branches
         run: |
-          git checkout -b generated || git checkout generated
-          git fetch origin generated:generated
+          git pull origin main
+          git pull origin generated
+
+      - name: Switch to generated branch
+        run: git checkout generated
 
       - name: Merge main into generated
         run: |
@@ -35,9 +38,15 @@ jobs:
       - name: Run Gradle task
         run: ./gradlew runData
 
-      - name: Commit and push changes
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update generated files from main branch"
+
+      - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: generated
-          force: true
