@@ -10,6 +10,7 @@ class TumidusioHyphaReplaceableTag : BaseBlockTag("tumidusio_hypha_replaceable")
         tag(BlockTags.LEAVES),
         block(Blocks.PUMPKIN),
         block(Blocks.CARVED_PUMPKIN),
-        tag(BlockTags.PLANKS)
+        tag(BlockTags.PLANKS),
+        block(Blocks.MANGROVE_ROOTS)
     )
 }
