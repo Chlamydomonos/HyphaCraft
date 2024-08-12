@@ -42,7 +42,12 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git commit -m "Update generated files from main branch"
+          git status --porcelain | grep . > /dev/null
+          if [[ $? -eq 0 ]]; then
+            git commit -m "Update generated files from main branch"
+          else
+            echo "No changes to commit."
+          fi
 
       - name: Push changes
         uses: ad-m/github-push-action@master
