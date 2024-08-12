@@ -19,7 +19,7 @@ object ItemLoader {
         val item: DeferredHolder<Item, out Item>
     )
 
-    val ITEMS = DeferredRegister.create(Registries.ITEM, HyphaCraft.MODID)
+    private val ITEMS = DeferredRegister.create(Registries.ITEM, HyphaCraft.MODID)
 
     val ITEMS_QUEUE = PriorityQueue(compareByDescending<ItemInTab>{it.priority}.thenBy{ it.index })
 
@@ -36,7 +36,7 @@ object ItemLoader {
         return registeredItem
     }
 
-    fun simpleItem(name: String, priority: Int = 0) = register(name, priority) { Item(Item.Properties()) }
+    private fun simpleItem(name: String, priority: Int = 0) = register(name, priority) { Item(Item.Properties()) }
 
     fun register(bus: IEventBus) {
         ITEMS.register(bus)
