@@ -34,4 +34,5 @@ object BlockTagLoader {
     val MYCOVASTUS_HYPHA_REPLACEABLE = register(::MycovastusHyphaReplaceableTag)
     val TUMIDUSIO_HYPHA_REPLACEABLE = register(::TumidusioHyphaReplaceableTag)
     val ALIEN_SOIL_DESTROYED = register(::AlienSoilDestroyedTag)
+    val TUMIDUSIO_REPLACEABLE = register(::TumidusioReplaceableTag)
 }

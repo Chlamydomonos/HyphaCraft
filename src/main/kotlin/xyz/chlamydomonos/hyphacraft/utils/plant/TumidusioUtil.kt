@@ -5,7 +5,6 @@ import net.minecraft.core.Vec3i
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.tags.BlockTags
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
@@ -183,7 +182,7 @@ object TumidusioUtil {
         for (d in EXPAND_DIRECTIONS) {
             val newPos = pos.offset(d)
             val newState = level.getBlockState(newPos)
-            if(newState.`is`(BlockTags.REPLACEABLE)) {
+            if(newState.`is`(BlockTagLoader.TUMIDUSIO_REPLACEABLE)) {
                 availableDirections.add(d)
             }
             if(newState.`is`(BlockLoader.TUMIDUSIO.block)) {
@@ -261,7 +260,7 @@ object TumidusioUtil {
         }
         val testPos = pos.offset(initialDirection)
         val testState = level.getBlockState(testPos)
-        if (!testState.`is`(BlockTags.REPLACEABLE) && !testState.`is`(BlockLoader.TUMIDUSIO.block)) {
+        if (!testState.`is`(BlockTagLoader.TUMIDUSIO_REPLACEABLE) && !testState.`is`(BlockLoader.TUMIDUSIO.block)) {
             initialDirection = -initialDirection
         }
 
@@ -283,7 +282,7 @@ object TumidusioUtil {
                 }
                 newPos = oldPos.offset(direction)
                 newState = level.getBlockState(newPos)
-                if (newState.`is`(BlockTags.REPLACEABLE)) {
+                if (newState.`is`(BlockTagLoader.TUMIDUSIO_REPLACEABLE)) {
                     level.setBlock(newPos, BlockLoader.TUMIDUSIO.block.defaultBlockState(), 3)
                     finished = true
                     successfulExpansions++

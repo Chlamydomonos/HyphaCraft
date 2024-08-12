@@ -237,7 +237,7 @@ object CarnivoravitisUtil {
                 return
             }
 
-            if (!level.getBlockState(pos.above()).isEmpty) {
+            if (!level.getBlockState(pos.above()).isEmpty || random.nextBoolean()) {
                 return
             }
 

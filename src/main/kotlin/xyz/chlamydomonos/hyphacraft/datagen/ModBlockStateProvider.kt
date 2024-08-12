@@ -15,8 +15,10 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
-class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper) :
-    BlockStateProvider(output, HyphaCraft.MODID, exFileHelper) {
+class ModBlockStateProvider(
+    output: PackOutput,
+    exFileHelper: ExistingFileHelper
+) : BlockStateProvider(output, HyphaCraft.MODID, exFileHelper) {
     override fun registerStatesAndModels() {
         simpleBlock(BlockLoader.TEST_BLOCK, cubeAll(BlockLoader.TEST_BLOCK))
         simpleBlockWithItem(BlockLoader.ALIEN_ROCK.block, cubeAll(BlockLoader.ALIEN_ROCK.block))

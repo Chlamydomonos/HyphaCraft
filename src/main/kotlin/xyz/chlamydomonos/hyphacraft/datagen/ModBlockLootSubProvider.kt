@@ -25,7 +25,9 @@ import xyz.chlamydomonos.hyphacraft.loot.BlockCopierLoot
 import xyz.chlamydomonos.hyphacraft.loot.GrandisporiaWitheredCapLoot
 import java.util.stream.Collectors
 
-class ModBlockLootSubProvider(provider: HolderLookup.Provider):
+class ModBlockLootSubProvider(
+    provider: HolderLookup.Provider
+):
     BlockLootSubProvider(emptySet(), FeatureFlags.REGISTRY.allFlags(), provider) {
     override fun generate() {
         dropSelf(BlockLoader.ALIEN_ROCK.block)
