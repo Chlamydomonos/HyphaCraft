@@ -33,6 +33,12 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git merge main -s ours
+          git branch temp
+          git reset --hard main
+          git reset --soft temp
+          git commit --amend
+          git branch -D temp
+          git diff HEAD main
 
       - name: Run Gradle task
         run: |
