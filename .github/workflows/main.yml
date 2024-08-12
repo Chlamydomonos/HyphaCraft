@@ -23,13 +23,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Pull main and generated branches
-        run: |
-          git pull origin main
-          git pull origin generated
-
       - name: Switch to generated branch
-        run: git checkout generated
+        run: |
+          git checkout generated
+          git pull origin generated
 
       - name: Merge main into generated
         run: |
