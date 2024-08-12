@@ -42,8 +42,9 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git status --porcelain | grep . > /dev/null
-          if [[ $? -eq 0 ]]; then
+          STATUS_OUTPUT=$(git status --porcelain)
+          STATUS_OUTPUT_LENGTH=${#STATUS_OUTPUT}
+          if [[ $STATUS_OUTPUT_LENGTH -gt 0 ]]; then
             git commit -m "Update generated files from main branch"
           else
             echo "No changes to commit."
