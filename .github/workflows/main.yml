@@ -36,7 +36,7 @@ jobs:
           git branch temp
           git reset --hard main
           git reset --soft temp
-          git commit --amend
+          git commit --amend -m "merge main into generated"
           git branch -D temp
           git diff HEAD main
 
