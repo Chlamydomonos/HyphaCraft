@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    },
+    {
+      "item": "hyphacraft:rotten_fungus_ball"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hyphacraft:rotten_fungus_heap"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "hyphacraft:block_copier",
+          "amount": 0,
+          "item": "minecraft:air"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "hyphacraft:blocks/mycovastus_hypha"
+}

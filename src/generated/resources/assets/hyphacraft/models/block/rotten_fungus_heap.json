@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "hyphacraft:block/rotten_fungus_heap"
+  }
+}

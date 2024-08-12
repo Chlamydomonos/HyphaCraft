@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hyphacraft:block/carnivoravitis_root",
+    "side": "hyphacraft:block/carnivoravitis_shell"
+  }
+}

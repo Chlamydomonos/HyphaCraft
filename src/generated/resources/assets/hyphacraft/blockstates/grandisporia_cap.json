@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,is_corner=false": {
+      "model": "hyphacraft:block/grandisporia_cap_side",
+      "y": 90
+    },
+    "facing=east,is_corner=true": {
+      "model": "hyphacraft:block/grandisporia_cap_corner",
+      "y": 90
+    },
+    "facing=north,is_corner=false": {
+      "model": "hyphacraft:block/grandisporia_cap_side"
+    },
+    "facing=north,is_corner=true": {
+      "model": "hyphacraft:block/grandisporia_cap_corner"
+    },
+    "facing=south,is_corner=false": {
+      "model": "hyphacraft:block/grandisporia_cap_side",
+      "y": 180
+    },
+    "facing=south,is_corner=true": {
+      "model": "hyphacraft:block/grandisporia_cap_corner",
+      "y": 180
+    },
+    "facing=west,is_corner=false": {
+      "model": "hyphacraft:block/grandisporia_cap_side",
+      "y": 270
+    },
+    "facing=west,is_corner=true": {
+      "model": "hyphacraft:block/grandisporia_cap_corner",
+      "y": 270
+    }
+  }
+}

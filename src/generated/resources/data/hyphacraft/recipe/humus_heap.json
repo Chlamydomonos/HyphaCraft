@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    },
+    {
+      "item": "hyphacraft:humus"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hyphacraft:humus_heap"
+  }
+}
