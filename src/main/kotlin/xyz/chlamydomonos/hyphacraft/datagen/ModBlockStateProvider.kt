@@ -56,6 +56,7 @@ class ModBlockStateProvider(
         AlienSwardBlock.genModel(this)
         FertileAlienSwardBlock.genModel(this)
         VermilinguaBlock.genModel(this)
+        PulveriumBlock.genModel(this)
     }
 
     private fun blockCopier(block: Block) {

@@ -36,4 +36,5 @@ object BlockEntityLoader {
     val TUMIDUSIO_HYPHA by register("tumidusio_hypha", ::TumidusioHyphaBlockEntity) { BlockLoader.TUMIDUSIO_HYPHA }
     val CARNIVORAVITIS_VINE by register("carnivoravitis_vine", ::CarnivoravitisVineBlockEntity) { BlockLoader.CARNIVORAVITIS_VINE }
     val CARNIVORAVITIS_FLOWER by register("carnivoravitis_flower", ::CarnivoravitisFlowerBlockEntity) { BlockLoader.CARNIVORAVITIS_FLOWER }
+    val PULVERIUM by register("pulverium", ::PulveriumBlockEntity) { BlockLoader.PULVERIUM.block }
 }

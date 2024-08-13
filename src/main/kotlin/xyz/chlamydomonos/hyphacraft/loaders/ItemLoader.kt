@@ -53,4 +53,5 @@ object ItemLoader {
     val ALIEN_ORB by register("alien_orb", ::AlienOrbItem)
     val CARNIVORAVITIS_FLOWER by simpleItem("carnivoravitis_flower")
     val CARNIVORAVITIS_ROOT by simpleItem("carnivoravitis_root")
+    val TOXIC_SPORE_POWDER by simpleItem("toxic_spore_powder")
 }

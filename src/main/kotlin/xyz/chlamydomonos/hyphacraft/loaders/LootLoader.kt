@@ -7,7 +7,7 @@ import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.loot.BlockCopierLoot
-import xyz.chlamydomonos.hyphacraft.loot.GrandisporiaWitheredCapLoot
+import xyz.chlamydomonos.hyphacraft.loot.SporeLoot
 
 object LootLoader {
     private val LOOT_POOL_ENTRY_TYPES = DeferredRegister.create(Registries.LOOT_POOL_ENTRY_TYPE, HyphaCraft.MODID)
@@ -17,5 +17,5 @@ object LootLoader {
     }
 
     val BLOCK_COPIER by LOOT_POOL_ENTRY_TYPES.register("block_copier") { -> LootPoolEntryType(BlockCopierLoot.CODEC) }
-    val GRANDISPORIA_WITHERED_CAP by LOOT_POOL_ENTRY_TYPES.register("grandisporia_withered_cap") { -> LootPoolEntryType(GrandisporiaWitheredCapLoot.CODEC) }
+    val GRANDISPORIA_WITHERED_CAP by LOOT_POOL_ENTRY_TYPES.register("grandisporia_withered_cap") { -> LootPoolEntryType(SporeLoot.CODEC) }
 }

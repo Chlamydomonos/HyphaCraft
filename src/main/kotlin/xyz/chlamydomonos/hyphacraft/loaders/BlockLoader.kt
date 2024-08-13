@@ -89,6 +89,7 @@ object BlockLoader {
     val VERMILINGUA by blockOnly("vermilingua", ::VermilinguaBlock)
     val ALIEN_SWARD = register("alien_sward", ::AlienSwardBlock)
     val FERTILE_ALIEN_SWARD = register("fertile_alien_sward", ::FertileAlienSwardBlock)
+    val PULVERIUM = register("pulverium", ::PulveriumBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

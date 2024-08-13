@@ -10,7 +10,9 @@ import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.AlienSoilUtil
-import xyz.chlamydomonos.hyphacraft.utils.plant.*
+import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.TerraborerUtil
 
 class AlienSoilBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).randomTicks()) {
     companion object {
@@ -36,13 +38,7 @@ class AlienSoilBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).randomT
             return
         }
         val newPos = pos.offset(randomX, randomY, randomZ)
-        if(XenolichenUtil.canGrow(level, newPos)) {
-            XenolichenUtil.setXenolichen(level, newPos)
-        } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
-            MycovastusUtil.setHypha(level, newPos)
-        } else if (TumidusioUtil.canHyphaGrow(level, newPos)) {
-            TumidusioUtil.setHypha(level, newPos)
-        }
+        CommonUtil.tryExpandHypha(level, newPos)
 
         if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
             GrandisporiaUtil.tryGrowInitialStipe(level, pos.above())

@@ -13,6 +13,7 @@ import net.minecraft.world.level.material.FlowingFluid
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions
 import net.neoforged.neoforge.fluids.FluidType
 import org.joml.Vector3f
+import xyz.chlamydomonos.hyphacraft.utils.ColorUtil
 import java.util.function.Consumer
 import java.util.function.Supplier
 
@@ -34,19 +35,12 @@ open class BaseFluidType(
     val customBlock: (Supplier<out LiquidBlock>)? = null,
     val customBucket: (Supplier<out BucketItem>)? = null,
 ) {
-    val tintColorInt: Int
+    val tintColorInt = ColorUtil.rgba(tintColorRGBA)
     val fogColor = Vector3f(
         ((fogColorRGB shl 16) and 0xff) / 255.0f,
         ((fogColorRGB shl 8) and 0xff) / 255.0f,
         (fogColorRGB and 0xff) / 255.0f
     )
-
-    init {
-        val tintColorRGB = (tintColorRGBA shr 8) and 0xffffff
-        val tintColorA = tintColorRGBA and 0xff
-        val tintColorARGB = (tintColorA shl 24) or tintColorRGB
-        tintColorInt = if (tintColorARGB > 0x7fffffff) (tintColorARGB - 0x100000000).toInt() else tintColorARGB.toInt()
-    }
 
     fun build(): FluidType {
         return object : FluidType(properties) {

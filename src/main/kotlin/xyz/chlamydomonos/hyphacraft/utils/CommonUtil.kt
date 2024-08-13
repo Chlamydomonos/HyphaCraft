@@ -2,9 +2,13 @@ package xyz.chlamydomonos.hyphacraft.utils
 
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Vec3i
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.material.Fluids
+import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 
 object CommonUtil {
     fun isNearFire(
@@ -34,5 +38,15 @@ object CommonUtil {
             }
         }
         return false
+    }
+
+    fun tryExpandHypha(level: ServerLevel, pos: BlockPos) {
+        if(XenolichenUtil.canGrow(level, pos)) {
+            XenolichenUtil.setXenolichen(level, pos)
+        } else if (MycovastusUtil.canHyphaGrow(level, pos)) {
+            MycovastusUtil.setHypha(level, pos)
+        } else if (TumidusioUtil.canHyphaGrow(level, pos)) {
+            TumidusioUtil.setHypha(level, pos)
+        }
     }
 }

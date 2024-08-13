@@ -20,6 +20,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
+import xyz.chlamydomonos.hyphacraft.loaders.EffectLoader
 
 class SporeHeapBlock : CarpetBlock(
     Properties.ofFullCopy(Blocks.WHITE_CARPET).sound(SoundType.SNOW).randomTicks().noCollission()
@@ -33,9 +34,11 @@ class SporeHeapBlock : CarpetBlock(
             return
         }
 
-        val effect = MobEffectInstance(MobEffects.POISON, 100, 0)
+        val effect1 = MobEffectInstance(MobEffects.POISON, 100, 0)
+        val effect2 = MobEffectInstance(EffectLoader.COVERED_WITH_SPORE, 50, 0)
         if(entity is LivingEntity) {
-            entity.addEffect(effect)
+            entity.addEffect(effect1)
+            entity.addEffect(effect2)
         }
     }
 

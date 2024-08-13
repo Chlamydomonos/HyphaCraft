@@ -1,11 +1,14 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.LevelAccessor
+import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
@@ -13,6 +16,7 @@ import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 class VermilinguaBlock : BaseHyphaBlock(
@@ -36,5 +40,25 @@ class VermilinguaBlock : BaseHyphaBlock(
             val effect = MobEffectInstance(MobEffects.POISON, 50, 0)
             entity.addEffect(effect)
         }
+    }
+
+    override fun canSurvive(state: BlockState, level: LevelReader, pos: BlockPos): Boolean {
+        val belowState = level.getBlockState(pos.below())
+        return belowState.`is`(BlockTagLoader.ALIEN_SOIL)
+    }
+
+    override fun updateShape(
+        state: BlockState,
+        direction: Direction,
+        neighborState: BlockState,
+        level: LevelAccessor,
+        pos: BlockPos,
+        neighborPos: BlockPos
+    ): BlockState {
+        if(!canSurvive(state, level, pos)) {
+            return Blocks.AIR.defaultBlockState()
+        }
+
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos)
     }
 }
