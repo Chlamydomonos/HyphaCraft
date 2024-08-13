@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.phys.shapes.CollisionContext
+import net.minecraft.world.phys.shapes.VoxelShape
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
@@ -54,6 +56,14 @@ class GrandisporiaCapBlock : HorizontalDirectionalBlock(
                 rot += 90
             }
         }
+
+        val SHAPES = mapOf(
+            Pair(Direction.NORTH, box(2.0, 0.0, 2.0, 16.0, 12.0, 16.0)),
+            Pair(Direction.EAST, box(0.0, 0.0, 2.0, 14.0, 12.0, 16.0)),
+            Pair(Direction.SOUTH, box(0.0, 0.0, 0.0, 14.0, 12.0, 14.0)),
+            Pair(Direction.WEST, box(2.0, 0.0, 0.0, 16.0, 12.0, 14.0))
+        )
+        val SIDE_SHAPE = box(0.0, 0.0 ,0.0, 16.0, 14.0, 16.0)
     }
 
     override fun codec() = CODEC
@@ -65,4 +75,12 @@ class GrandisporiaCapBlock : HorizontalDirectionalBlock(
     override fun getFlammability(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
     override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape {
+        val isCorner = state.getValue(ModProperties.IS_CORNER)
+        if (isCorner) {
+            return SHAPES[state.getValue(FACING)]!!
+        }
+        return SIDE_SHAPE
+    }
 }

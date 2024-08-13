@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -130,5 +131,19 @@ class CarnivoravitisVineBlock : BaseHyphaEntityBlock(
         if (damageType != DamageTypeLoader.HYPHA_EXPLOSION(level).value()) {
             super.onBlockExploded(state, level, pos, explosion)
         }
+    }
+
+    override fun onBurnt(
+        state: BlockState,
+        level: Level,
+        pos: BlockPos,
+        replacing: Boolean,
+        random: RandomSource
+    ): BurnableHypha.VanillaBehaviourHandler {
+        if (random.nextBoolean()) {
+            level.setBlock(pos, BlockLoader.HYPHACOAL_BLOCK.block.defaultBlockState(), 3)
+            return BurnableHypha.VanillaBehaviourHandler.CANCEL
+        }
+        return BurnableHypha.VanillaBehaviourHandler.DO
     }
 }

@@ -4,12 +4,14 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.phys.shapes.CollisionContext
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -20,6 +22,10 @@ class GrandisporiaSmallCapBlock : BaseHyphaBlock(
         .sound(SoundType.SLIME_BLOCK)
         .randomTicks()
 ) {
+    companion object {
+        val SHAPE = box(0.0, 0.0, 0.0, 16.0, 13.0, 16.0)
+    }
+
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.CAN_GROW, false))
     }
@@ -68,4 +74,6 @@ class GrandisporiaSmallCapBlock : BaseHyphaBlock(
             level.setBlock(pos.offset(1, 0, -1), northWestState.setValue(facing, Direction.EAST), 3)
         }
     }
+
+    override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext) = SHAPE
 }
