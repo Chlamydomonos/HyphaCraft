@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "spore_amount=0": {
+      "model": "hyphacraft:block/pulverium_0"
+    },
+    "spore_amount=1": {
+      "model": "hyphacraft:block/pulverium_1"
+    },
+    "spore_amount=2": {
+      "model": "hyphacraft:block/pulverium_2"
+    },
+    "spore_amount=3": {
+      "model": "hyphacraft:block/pulverium_3"
+    }
+  }
+}

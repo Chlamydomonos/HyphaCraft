@@ -1,4 +1,4 @@
-// 1.21	2024-08-12T15:33:54.512431744	Item Models: hyphacraft
+// 1.21	2024-08-13T15:02:43.825688548	Item Models: hyphacraft
 60f0eafb0b7d229897fe8f03eae74f09d0697576 assets/hyphacraft/models/item/alien_orb.json
 8f119d0d6dbe0cf6b9a489683075a3b1b6eaedaa assets/hyphacraft/models/item/carnivoravitis_flower.json
 b3a383fa6c736c1f68e19009e1799f7bfea44448 assets/hyphacraft/models/item/carnivoravitis_root.json
@@ -8,6 +8,7 @@ fd9dc8c8f932fde15f55a94c5eea4cb0cec51897 assets/hyphacraft/models/item/digestive
 3f0593c1c7752322f1242d116275f53582ba0d66 assets/hyphacraft/models/item/moldy_cork_dust.json
 e4d7f728261ad32ac1257cb8eff4ef48a22de9a0 assets/hyphacraft/models/item/rotten_fungus_ball.json
 2a1281e1ecaf24079684d9763c8ec7eb769b1fdd assets/hyphacraft/models/item/spore_powder.json
+6a302329d3cad122aebe3fca777ebb73766cffc7 assets/hyphacraft/models/item/toxic_spore_powder.json
 e6b45a6499caa0e850799ecb939ff52b3716f132 assets/hyphacraft/models/item/tubular_hypha.json
 b9a6940020f7801d4d02808d37c9b96b1290e924 assets/hyphacraft/models/item/white_hypha.json
 9e075e8c96203c6690032019bbf11afd9bf21d92 assets/hyphacraft/models/item/xenolichen.json

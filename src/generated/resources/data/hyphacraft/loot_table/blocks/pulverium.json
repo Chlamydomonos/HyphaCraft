@@ -6,11 +6,11 @@
       "entries": [
         {
           "type": "hyphacraft:grandisporia_withered_cap",
-          "item": "hyphacraft:spore_powder"
+          "item": "hyphacraft:toxic_spore_powder"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "hyphacraft:blocks/grandisporia_withered_cap"
+  "random_sequence": "hyphacraft:blocks/pulverium"
 }
