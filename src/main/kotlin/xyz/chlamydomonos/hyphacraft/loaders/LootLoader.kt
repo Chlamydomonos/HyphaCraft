@@ -17,5 +17,5 @@ object LootLoader {
     }
 
     val BLOCK_COPIER by LOOT_POOL_ENTRY_TYPES.register("block_copier") { -> LootPoolEntryType(BlockCopierLoot.CODEC) }
-    val GRANDISPORIA_WITHERED_CAP by LOOT_POOL_ENTRY_TYPES.register("grandisporia_withered_cap") { -> LootPoolEntryType(SporeLoot.CODEC) }
+    val GRANDISPORIA_WITHERED_CAP by LOOT_POOL_ENTRY_TYPES.register("spore_loot") { -> LootPoolEntryType(SporeLoot.CODEC) }
 }

@@ -20,6 +20,7 @@ import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 import xyz.chlamydomonos.hyphacraft.blockentities.PulveriumBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -120,5 +121,19 @@ class PulveriumBlock : BaseHyphaEntityBlock(
 
     override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape {
         return shapes[state.getValue(ModProperties.SPORE_AMOUNT)]
+    }
+
+    override fun onBurnt(
+        state: BlockState,
+        level: Level,
+        pos: BlockPos,
+        replacing: Boolean,
+        random: RandomSource
+    ): BurnableHypha.VanillaBehaviourHandler {
+        if (random.nextBoolean()) {
+            level.setBlock(pos, BlockLoader.HYPHACOAL_BLOCK.block.defaultBlockState(), 3)
+            return BurnableHypha.VanillaBehaviourHandler.CANCEL
+        }
+        return BurnableHypha.VanillaBehaviourHandler.DO
     }
 }

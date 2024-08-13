@@ -3,16 +3,19 @@ package xyz.chlamydomonos.hyphacraft.blocks
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
+import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.utils.AlienSwardUtil
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.PulveriumUtil
 
 class AlienSwardBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.DIRT).randomTicks().sound(SoundType.SLIME_BLOCK)
@@ -36,5 +39,19 @@ class AlienSwardBlock : BaseHyphaBlock(
         } else if (level.getChunkAt(pos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
             AlienSwardUtil.trySpread(level, pos, random)
         }
+        if (random.nextFloat() < PulveriumUtil.GROWTH_RATE) {
+            PulveriumUtil.tryGrow(level, pos)
+        }
+    }
+
+    override fun onBurnt(
+        state: BlockState,
+        level: Level,
+        pos: BlockPos,
+        replacing: Boolean,
+        random: RandomSource
+    ): BurnableHypha.VanillaBehaviourHandler {
+        level.setBlock(pos, BlockLoader.HYPHACOTTA.block.defaultBlockState(), 3)
+        return BurnableHypha.VanillaBehaviourHandler.CANCEL
     }
 }
