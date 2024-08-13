@@ -1,4 +1,4 @@
-// 1.21	2024-08-13T15:02:43.823299747	Loot Tables
+// 1.21	2024-08-13T15:32:24.736460095	Loot Tables
 9c5aaa9093b5d0d2554a69f8eff647551c0b3e83 data/hyphacraft/loot_table/blocks/active_hypha_block.json
 e4860ac84d1fa5639682757a27eece606960b4b8 data/hyphacraft/loot_table/blocks/alien_rock.json
 883f570af82f5d4bbcfb2424c434a5b8453c67ce data/hyphacraft/loot_table/blocks/alien_soil.json
@@ -12,7 +12,7 @@ b44968c6246b70d44cc12d599fcf2c0a35016c27 data/hyphacraft/loot_table/blocks/grand
 918ae6d5457bf0d83849eb774a4565e317635c6a data/hyphacraft/loot_table/blocks/grandisporia_cap_center.json
 18e9133d939eb4de64301976685d5ce84ebbb598 data/hyphacraft/loot_table/blocks/grandisporia_small_cap.json
 5ca4d79d3a810700d51712f7ac6b103279fdce53 data/hyphacraft/loot_table/blocks/grandisporia_stipe.json
-2c730308344e93eb408efb5538873327ac907c7a data/hyphacraft/loot_table/blocks/grandisporia_withered_cap.json
+17b475837bb42324af0b1835451cb01b0dc34594 data/hyphacraft/loot_table/blocks/grandisporia_withered_cap.json
 6be971f126d82328af5ac7ec776963eab56b0744 data/hyphacraft/loot_table/blocks/grandisporia_withered_stipe.json
 b343e2f73489d6f566a0b2c3dc3b21fd2d57d9bf data/hyphacraft/loot_table/blocks/humus_heap.json
 e12d88b4b68e319a3b72148cb722a2bc53397c24 data/hyphacraft/loot_table/blocks/hyphacoal_block.json
@@ -20,7 +20,7 @@ e12d88b4b68e319a3b72148cb722a2bc53397c24 data/hyphacraft/loot_table/blocks/hypha
 2b258e344ae9d3ca144e6e01d48c435c566280f4 data/hyphacraft/loot_table/blocks/loose_fungus_root.json
 c62d078b52b184e3542f936f08362f4209addef6 data/hyphacraft/loot_table/blocks/mycovastus.json
 ad8f1c16160e65dfef224008f67b787efec6ae43 data/hyphacraft/loot_table/blocks/mycovastus_hypha.json
-ed8a72dd2bd24d728fa22af9e48b3d4014bbfb9c data/hyphacraft/loot_table/blocks/pulverium.json
+f43c354ab5f425d27deb4fe461ae269a8069aa06 data/hyphacraft/loot_table/blocks/pulverium.json
 8e3472c6472c8c0f3a37e595fb3bf5ba3fe8665b data/hyphacraft/loot_table/blocks/rotten_fungus_heap.json
 062b1528ad2c9f49c5557c740e98080b60447c24 data/hyphacraft/loot_table/blocks/spore_heap.json
 ef1fa69ec9a27cc3d2c6d9c1f2045b39c7953a39 data/hyphacraft/loot_table/blocks/terraborer_bomb.json
