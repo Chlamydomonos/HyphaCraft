@@ -22,7 +22,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.ItemLoader
 import xyz.chlamydomonos.hyphacraft.loot.BlockCopierLoot
-import xyz.chlamydomonos.hyphacraft.loot.GrandisporiaWitheredCapLoot
+import xyz.chlamydomonos.hyphacraft.loot.SporeLoot
 import java.util.stream.Collectors
 
 class ModBlockLootSubProvider(
@@ -44,7 +44,7 @@ class ModBlockLootSubProvider(
         rateDrop(BlockLoader.GRANDISPORIA_CAP_CENTER, ItemLoader.WHITE_HYPHA, -3.0f, 1.0f)
         rateDrop(BlockLoader.GRANDISPORIA_CAP, ItemLoader.WHITE_HYPHA, -3.0f, 1.0f)
         dropSelf(BlockLoader.GRANDISPORIA_WITHERED_STIPE.block)
-        specified(BlockLoader.GRANDISPORIA_WITHERED_CAP.block, GrandisporiaWitheredCapLoot.builder())
+        specified(BlockLoader.GRANDISPORIA_WITHERED_CAP.block, SporeLoot.builder(ItemLoader.SPORE_POWDER))
         rateDrop(BlockLoader.SPORE_HEAP.block, ItemLoader.SPORE_POWDER, 1.0f, 4.0f)
         rateDrop(BlockLoader.HUMUS_HEAP.block, ItemLoader.HUMUS, 1.0f, 6.0f)
         rateDrop(BlockLoader.LOOSE_FUNGUS_ROOT, ItemLoader.WHITE_HYPHA, 0.0f, 2.0f)
@@ -58,6 +58,7 @@ class ModBlockLootSubProvider(
         dropSelf(BlockLoader.HYPHACOAL_BLOCK.block)
         add(BlockLoader.ALIEN_SWARD.block) { createSingleItemTableWithSilkTouch(it, BlockLoader.ALIEN_SOIL.item) }
         add(BlockLoader.FERTILE_ALIEN_SWARD.block) { createSingleItemTableWithSilkTouch(it, BlockLoader.ALIEN_SOIL.item) }
+        specified(BlockLoader.PULVERIUM.block, SporeLoot.builder(ItemLoader.TOXIC_SPORE_POWDER))
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {

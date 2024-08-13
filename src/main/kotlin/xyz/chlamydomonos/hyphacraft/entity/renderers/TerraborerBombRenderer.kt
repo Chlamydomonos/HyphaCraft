@@ -26,6 +26,8 @@ class TerraborerBombRenderer(
     ) {
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight)
         poseStack.pushPose()
+        val scale = entity.explosionsLeft / 20.0f
+        poseStack.scale(scale, scale, scale)
         val buffer = bufferSource.getBuffer(model.renderType(getTextureLocation(entity)))
         model.renderToBuffer(poseStack, buffer, packedLight, OverlayTexture.NO_OVERLAY, -1)
         poseStack.popPose()

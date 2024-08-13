@@ -24,6 +24,7 @@ class ModItemModelProvider(
         basicItem(FluidLoader.DIGESTIVE_JUICE.bucket)
         basicItem(ItemLoader.CARNIVORAVITIS_ROOT)
         basicItem(ItemLoader.CARNIVORAVITIS_FLOWER)
+        basicItem(ItemLoader.TOXIC_SPORE_POWDER)
     }
 
 }

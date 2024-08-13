@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.DeferredHolder
 import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
+import xyz.chlamydomonos.hyphacraft.entity.entities.SporeCloudEntity
 import xyz.chlamydomonos.hyphacraft.entity.entities.TerraborerBombEntity
 import xyz.chlamydomonos.hyphacraft.entity.entities.TransportEntity
 
@@ -27,4 +28,5 @@ object EntityLoader {
 
     val TERRABORER_BOMB by register("terraborer_bomb", TerraborerBombEntity.BUILDER)
     val TRANSPORT by register("transport", TransportEntity.BUILDER)
+    val SPORE_CLOUD by register("spore_cloud", SporeCloudEntity.BUILDER)
 }

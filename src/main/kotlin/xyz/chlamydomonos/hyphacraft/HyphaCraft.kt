@@ -23,5 +23,6 @@ object HyphaCraft {
         EntityLoader.register(MOD_BUS)
         DataAttachmentLoader.register(MOD_BUS)
         FluidLoader.register(MOD_BUS)
+        EffectLoader.register(MOD_BUS)
     }
 }

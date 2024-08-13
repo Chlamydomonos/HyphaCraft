@@ -37,7 +37,7 @@ class TerraborerBombEntity(entityType: EntityType<TerraborerBombEntity>, level: 
         get() = entityData.get(EXPLOSIONS_LEFT)
         set(value) { entityData.set(EXPLOSIONS_LEFT, value) }
 
-    var ticks = 0
+    private var ticks = 0
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
         builder.define(EXPLOSIONS_LEFT, 5)
