@@ -35,7 +35,7 @@ jobs:
           git merge main -s ours
           git branch temp
           git reset --hard main
-          git checkout -- src/generated
+          git checkout temp -- src/generated
           git reset --soft temp
           git commit --amend -m "merge main into generated"
           git branch -D temp
