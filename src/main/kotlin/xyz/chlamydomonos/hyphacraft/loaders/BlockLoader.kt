@@ -90,6 +90,8 @@ object BlockLoader {
     val ALIEN_SWARD = register("alien_sward", ::AlienSwardBlock)
     val FERTILE_ALIEN_SWARD = register("fertile_alien_sward", ::FertileAlienSwardBlock)
     val PULVERIUM = register("pulverium", ::PulveriumBlock)
+    val HARDENED_FUNGUS_SHELL = register("hardened_fungus_shell", ::HardenedFungusShellBlock)
+    val ROTTEN_GOO_BLOCK by blockOnly("rotten_goo_block", ::RottenGooBlock)
 
     @SubscribeEvent
     fun onRegisterColorHandler(event: RegisterColorHandlersEvent.Block) {

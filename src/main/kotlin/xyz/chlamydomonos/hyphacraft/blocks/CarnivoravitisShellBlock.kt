@@ -1,7 +1,6 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
@@ -19,42 +18,36 @@ class CarnivoravitisShellBlock : ImmuneToHyphaExplosionBlock(
     Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.FUNGUS).randomTicks()
 ) {
     init {
-        registerDefaultState(defaultBlockState().setValue(ModProperties.DIRECTION, Direction.DOWN))
+        registerDefaultState(defaultBlockState().setValue(ModProperties.CAN_SECRETE, false))
     }
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
-        if (state.getValue(ModProperties.DIRECTION) != Direction.UP) {
+        if (!state.getValue(ModProperties.CAN_SECRETE)) {
             return
         }
 
-        var newPos = pos.above()
-        var isEmpty = level.getBlockState(newPos).isEmpty
-        var isShell: Boolean
-        if (!isEmpty) {
-            return
-        }
-
-        var canGenFluid = false
-        for (i in 2..6) {
-            newPos = newPos.above()
+        var firstEmptyPos = pos
+        var lastShellPos = pos
+        for (i in 1..6) {
+            val newPos = pos.offset(0, i, 0)
             val newState = level.getBlockState(newPos)
-            isEmpty = newState.isEmpty
-            isShell = newState.`is`(this)
-            if (isShell) {
-                canGenFluid = true
+            val fluid = level.getFluidState(newPos)
+            if (newState.`is`(this) || newState.`is`(BlockLoader.CARNIVORAVITIS_ROOT)) {
+                lastShellPos = newPos
                 break
-            } else if(!isEmpty) {
-                return
+            }
+            if (newState.isEmpty && fluid.isEmpty && firstEmptyPos == pos) {
+                firstEmptyPos = newPos
             }
         }
 
-        if (canGenFluid) {
-            level.setBlock(pos.above(), BlockLoader.DIGESTIVE_JUICE_BLOCK.defaultBlockState(), 3)
+        if (firstEmptyPos != pos && firstEmptyPos.y < lastShellPos.y) {
+            level.setBlock(firstEmptyPos, BlockLoader.DIGESTIVE_JUICE_BLOCK.defaultBlockState(), 3)
         }
     }
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(ModProperties.DIRECTION)
+        builder.add(ModProperties.CAN_SECRETE)
     }
 
     override fun onBurnt(

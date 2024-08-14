@@ -57,6 +57,7 @@ class ModBlockStateProvider(
         FertileAlienSwardBlock.genModel(this)
         VermilinguaBlock.genModel(this)
         PulveriumBlock.genModel(this)
+        simpleBlockWithItem(BlockLoader.HARDENED_FUNGUS_SHELL.block, cubeAll(BlockLoader.HARDENED_FUNGUS_SHELL.block))
     }
 
     private fun blockCopier(block: Block) {

@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.Block
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 
 object AlienSwardUtil {
     fun trySpread(level: ServerLevel, pos: BlockPos, random: RandomSource) {
@@ -17,6 +18,9 @@ object AlienSwardUtil {
                         continue
                     }
                     if (random.nextInt(5) != 0) {
+                        continue
+                    }
+                    if (!level.getChunkAt(newPos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
                         continue
                     }
                     if (level.getBlockState(newPos.above()).isEmpty) {

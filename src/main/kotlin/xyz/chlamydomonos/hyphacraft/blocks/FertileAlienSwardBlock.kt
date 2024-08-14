@@ -34,6 +34,10 @@ class FertileAlienSwardBlock : BaseHyphaBlock(
     }
 
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
+        if (random.nextFloat() < PulveriumUtil.GROWTH_RATE) {
+            PulveriumUtil.tryGrow(level, pos.above())
+        }
+
         if (level.getBlockState(pos.above()).isEmpty) {
             level.setBlock(pos.above(), BlockLoader.VERMILINGUA.defaultBlockState(), 3)
         }
@@ -42,10 +46,6 @@ class FertileAlienSwardBlock : BaseHyphaBlock(
             level.setBlock(pos, BlockLoader.ALIEN_SOIL.block.defaultBlockState(), 3)
         } else if (level.getChunkAt(pos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
             AlienSwardUtil.trySpread(level, pos, random)
-        }
-
-        if (random.nextFloat() < PulveriumUtil.GROWTH_RATE) {
-            PulveriumUtil.tryGrow(level, pos)
         }
     }
 

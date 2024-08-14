@@ -4,8 +4,12 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.effect.MobEffectInstance
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelAccessor
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
@@ -21,6 +25,7 @@ import net.minecraft.world.phys.shapes.VoxelShape
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.EffectLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 
 class MycovastusBlock : BaseHyphaBlock(
@@ -127,6 +132,13 @@ class MycovastusBlock : BaseHyphaBlock(
             if (!belowState.`is`(BlockLoader.MYCOVASTUS_HYPHA) && MycovastusUtil.canHyphaGrow(level, belowPos)) {
                 MycovastusUtil.setHypha(level, belowPos)
             }
+        }
+    }
+
+    override fun entityInside(state: BlockState, level: Level, pos: BlockPos, entity: Entity) {
+        if (entity.random.nextInt(400) == 0 && entity is LivingEntity) {
+            val effect = MobEffectInstance(EffectLoader.COVERED_WITH_SPORE, 100, 0)
+            entity.addEffect(effect)
         }
     }
 }

@@ -89,7 +89,7 @@ object CarnivoravitisUtil {
                 } else {
                     level.setBlock(pos.offset(i, -1, k), BlockLoader.CARNIVORAVITIS_ROOT.defaultBlockState(), 3)
                 }
-                level.setBlock(pos.offset(i, -7, k), shell.setValue(ModProperties.DIRECTION, Direction.UP), 3)
+                level.setBlock(pos.offset(i, -7, k), shell.setValue(ModProperties.CAN_SECRETE, true), 3)
             }
         }
         for (i in -3..3) {

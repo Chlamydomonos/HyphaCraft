@@ -15,7 +15,7 @@ object PulveriumUtil {
         for (i in -6..6) {
             for (j in -6..6) {
                 for (k in -6..6) {
-                    if (level.getBlockState(pos).`is`(BlockLoader.PULVERIUM.block)) {
+                    if (level.getBlockState(pos.offset(i, j, k)).`is`(BlockLoader.PULVERIUM.block)) {
                         return
                     }
                 }

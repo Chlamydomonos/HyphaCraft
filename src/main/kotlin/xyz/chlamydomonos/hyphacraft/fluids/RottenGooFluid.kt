@@ -8,8 +8,8 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 import java.util.function.Supplier
 
-class DigestiveJuiceFluid : BaseFluidType(
-    "digestive_juice",
+class RottenGooFluid : BaseFluidType(
+    "rotten_goo",
     FluidType.Properties.create(),
     BlockBehaviour.Properties.ofFullCopy(Blocks.WATER),
     2,
@@ -17,9 +17,10 @@ class DigestiveJuiceFluid : BaseFluidType(
     NameUtil.getRL("block/goo_still"),
     NameUtil.getRL("block/goo_flow"),
     ResourceLocation.withDefaultNamespace("block/water_overlay"),
-    0xa06614a0,
-    0xa06614,
+    0x366136ff,
+    0x366136,
     1.0f,
     6.0f,
-    customBlock = Supplier { BlockLoader.DIGESTIVE_JUICE_BLOCK }
-)
+    customBlock = Supplier { BlockLoader.ROTTEN_GOO_BLOCK }
+){
+}

@@ -23,7 +23,11 @@ class DigestiveJuiceBlock : LiquidBlock(
         if (level.isClientSide) {
             return
         }
-        if (entity is LivingEntity && level.random.nextInt(20) == 0) {
+        if (
+            entity is LivingEntity &&
+            level.random.nextInt(20) == 0 &&
+            entity.getFluidTypeHeight(FluidLoader.DIGESTIVE_JUICE.type) > 0.0
+        ) {
             entity.hurt(DamageSource(DamageTypeLoader.DIGESTION(level)), 2.0f)
         } else if (entity is ItemEntity) {
             entity.discard()
