@@ -32,4 +32,5 @@ object DamageTypeLoader {
     val ALIEN_EXPLOSION = register("alien_explosion") { DamageType(it, 0.0f) }
     val HYPHA_EXPLOSION = register("hypha_explosion") { DamageType(it, 0.0f) }
     val DIGESTION = register("digestion") { DamageType(it, 0.0f) }
+    val HYPHA_LIGHTNING = register("hypha_lightning") { DamageType(it, 0.0f) }
 }

@@ -15,6 +15,7 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.utils.AlienSwardUtil
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.FulgurfungusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.PulveriumUtil
 
 class AlienSwardBlock : BaseHyphaBlock(
@@ -40,7 +41,27 @@ class AlienSwardBlock : BaseHyphaBlock(
             AlienSwardUtil.trySpread(level, pos, random)
         }
         if (random.nextFloat() < PulveriumUtil.GROWTH_RATE) {
-            PulveriumUtil.tryGrow(level, pos)
+            PulveriumUtil.tryGrow(level, pos.above())
+        } else if (random.nextFloat() < FulgurfungusUtil.GROWTH_RATE) {
+            FulgurfungusUtil.tryGrow(level, pos.above())
+        }
+
+        if (level.getBlockState(pos.above()).isEmpty) {
+            var hasVermilingua = false
+            loop@ for (i in -3..3) {
+                for (j in -3..3) {
+                    for (k in -3..3) {
+                        if (level.getBlockState(pos.offset(i, j, k)).`is`(BlockLoader.VERMILINGUA)) {
+                            hasVermilingua = true
+                            break@loop
+                        }
+                    }
+                }
+            }
+
+            if(!hasVermilingua) {
+                level.setBlock(pos.above(), BlockLoader.VERMILINGUA.defaultBlockState(), 3)
+            }
         }
     }
 

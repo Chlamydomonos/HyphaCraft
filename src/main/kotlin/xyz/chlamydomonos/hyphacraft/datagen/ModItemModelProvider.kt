@@ -25,6 +25,7 @@ class ModItemModelProvider(
         basicItem(ItemLoader.CARNIVORAVITIS_ROOT)
         basicItem(ItemLoader.CARNIVORAVITIS_FLOWER)
         basicItem(ItemLoader.TOXIC_SPORE_POWDER)
+        basicItem(FluidLoader.ROTTEN_GOO.bucket)
     }
 
 }

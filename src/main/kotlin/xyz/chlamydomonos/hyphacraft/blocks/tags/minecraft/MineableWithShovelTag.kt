@@ -9,6 +9,8 @@ class MineableWithShovelTag : BaseBlockTag(BlockTags.MINEABLE_WITH_SHOVEL) {
         block(BlockLoader.ALIEN_SOIL.block),
         block(BlockLoader.ROTTEN_FUNGUS_HEAP.block),
         block(BlockLoader.SPORE_HEAP.block),
-        block(BlockLoader.HUMUS_HEAP.block)
+        block(BlockLoader.HUMUS_HEAP.block),
+        block(BlockLoader.ALIEN_SWARD.block),
+        block(BlockLoader.FERTILE_ALIEN_SWARD.block)
     )
 }

@@ -15,6 +15,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.fluids.BaseFluidType
 import xyz.chlamydomonos.hyphacraft.fluids.DigestiveJuiceFluid
+import xyz.chlamydomonos.hyphacraft.fluids.RottenGooFluid
 import java.util.function.Supplier
 import kotlin.reflect.KProperty
 
@@ -102,6 +103,7 @@ object FluidLoader {
     }
 
     val DIGESTIVE_JUICE = register(DigestiveJuiceFluid())
+    val ROTTEN_GOO = register(RottenGooFluid())
 }
 
 private operator fun <T> Supplier<T>.getValue(loadedFluid: FluidLoader.LoadedFluid, property: KProperty<*>): T {

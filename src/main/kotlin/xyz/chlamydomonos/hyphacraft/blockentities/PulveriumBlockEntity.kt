@@ -5,6 +5,7 @@ import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
@@ -14,6 +15,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader
+import xyz.chlamydomonos.hyphacraft.utils.plant.PulveriumUtil
 
 class PulveriumBlockEntity(
     pos: BlockPos,
@@ -55,7 +57,15 @@ class PulveriumBlockEntity(
         var hasEntity = false
         serverLevel.entities.get(aabb) {
             if (it is LivingEntity) {
-                hasEntity = true
+                if (it !is Player) {
+                    hasEntity = true
+                } else if (!it.isSpectator) {
+                    if (!it.isCreative) {
+                        hasEntity = true
+                    } else if (PulveriumUtil.AFFECT_CREATIVE_PLAYER) {
+                        hasEntity = true
+                    }
+                }
             }
         }
 

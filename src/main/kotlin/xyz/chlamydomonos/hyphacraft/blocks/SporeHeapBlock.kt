@@ -122,6 +122,9 @@ class SporeHeapBlock : CarpetBlock(
             if (random.nextInt(5) == 0) {
                 level.setBlock(newPos, BlockLoader.FERTILE_ALIEN_SWARD.block.defaultBlockState(), 3)
             }
+        } else if (newState.`is`(BlockLoader.TUMIDUSIO.block)) {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3)
+            level.setBlock(newPos, BlockLoader.HARDENED_FUNGUS_SHELL.block.defaultBlockState(), 3)
         }
     }
 }

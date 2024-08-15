@@ -59,6 +59,8 @@ class ModBlockLootSubProvider(
         add(BlockLoader.ALIEN_SWARD.block) { createSingleItemTableWithSilkTouch(it, BlockLoader.ALIEN_SOIL.item) }
         add(BlockLoader.FERTILE_ALIEN_SWARD.block) { createSingleItemTableWithSilkTouch(it, BlockLoader.ALIEN_SOIL.item) }
         specified(BlockLoader.PULVERIUM.block, SporeLoot.builder(ItemLoader.TOXIC_SPORE_POWDER))
+        dropSelf(BlockLoader.HARDENED_FUNGUS_SHELL.block)
+        dropSelf(BlockLoader.FULGURFUNGUS.block)
     }
 
     override fun getKnownBlocks(): MutableIterable<Block> {

@@ -1,6 +1,7 @@
 package xyz.chlamydomonos.hyphacraft.blocks
 
 import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
@@ -13,6 +14,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
+import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
@@ -56,6 +58,25 @@ class TumidusioBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).sound(S
             XenolichenUtil.setXenolichen(level, newPos)
         } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
             MycovastusUtil.setHypha(level, newPos)
+        }
+
+        if (level.getChunkAt(pos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
+            var nearHardened = false
+            var surrounded = true
+            for (direction in Direction.entries) {
+                val newPos2 = pos.offset(direction.normal)
+                val newState = level.getBlockState(newPos2)
+                if (newState.`is`(BlockLoader.HARDENED_FUNGUS_SHELL.block)) {
+                    nearHardened = true
+                } else if (!newState.`is`(this)) {
+                    surrounded = false
+                    break
+                }
+            }
+
+            if (nearHardened && surrounded) {
+                level.setBlock(pos, BlockLoader.ROTTEN_GOO_BLOCK.defaultBlockState(), 3)
+            }
         }
     }
 

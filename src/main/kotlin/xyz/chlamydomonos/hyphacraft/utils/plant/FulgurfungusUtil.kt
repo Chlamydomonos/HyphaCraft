@@ -11,14 +11,14 @@ import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 
 @EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
-object PulveriumUtil {
+object FulgurfungusUtil {
     const val GROWTH_RATE = 1.0f / 20.0f
 
     var AFFECT_CREATIVE_PLAYER = false
 
     @SubscribeEvent
     fun onConfig(event: ModConfigEvent) {
-        AFFECT_CREATIVE_PLAYER = ConfigLoader.PULVERIUM_AFFECT_CREATIVE_PLAYER.get()
+        AFFECT_CREATIVE_PLAYER = ConfigLoader.FULGURFUNGUS_AFFECT_CREATIVE_PLAYER.get()
     }
 
     fun tryGrow(level: ServerLevel, pos: BlockPos) {
@@ -29,13 +29,13 @@ object PulveriumUtil {
         for (i in -10..10) {
             for (j in -6..6) {
                 for (k in -10..10) {
-                    if (level.getBlockState(pos.offset(i, j, k)).`is`(BlockLoader.PULVERIUM.block)) {
+                    if (level.getBlockState(pos.offset(i, j, k)).`is`(BlockLoader.FULGURFUNGUS.block)) {
                         return
                     }
                 }
             }
         }
 
-        level.setBlock(pos, BlockLoader.PULVERIUM.block.defaultBlockState(), 3)
+        level.setBlock(pos, BlockLoader.FULGURFUNGUS.block.defaultBlockState(), 3)
     }
 }

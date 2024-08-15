@@ -145,8 +145,8 @@ class GrandisporiaStipeBlock : PipeBlock(
         if (level.isClientSide) {
             return
         }
-        val damageType = explosion.damageSource.type()
-        if (damageType != DamageTypeLoader.HYPHA_EXPLOSION(level).value()) {
+
+        if (DamageTypeLoader.HYPHA_EXPLOSION(level).key?.let { explosion.damageSource.`is`(it) } != true) {
             super.onBlockExploded(state, level, pos, explosion)
         }
     }
