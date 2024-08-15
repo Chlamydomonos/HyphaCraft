@@ -9,15 +9,28 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.PipeBlock
 import net.minecraft.world.level.block.state.BlockState
+import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.fml.common.EventBusSubscriber
+import net.neoforged.fml.event.config.ModConfigEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.minus
+import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
+import xyz.chlamydomonos.hyphacraft.loaders.ConfigLoader
 import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 
+@EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object CarnivoravitisUtil {
     const val EXPAND_RATE = 1.0f / 5.0f
+
+    var AFFECT_CREATIVE_PLAYER = false
+
+    @SubscribeEvent
+    fun onConfig(event: ModConfigEvent) {
+        AFFECT_CREATIVE_PLAYER = ConfigLoader.CARNIVORAVITIS_AFFECT_CREATIVE_PLAYER.get()
+    }
 
     fun canGrowRoot(level: ServerLevel, pos: BlockPos): Boolean {
         if (pos.y < level.minBuildHeight + 20) {

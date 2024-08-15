@@ -24,6 +24,18 @@ object ConfigLoader {
         .comment("Block blacklist for Tumidusio")
         .defineListAllowEmpty("tumidusio_blacklist", mutableListOf<String>(), NameUtil::validateBlockName)
 
+    val CARNIVORAVITIS_AFFECT_CREATIVE_PLAYER = PLANTS_BUILDER
+        .comment("Whether Carnivoravitis affects creative player")
+        .define("carnivoravitis_affect_creative_player", false)
+
+    val PULVERIUM_AFFECT_CREATIVE_PLAYER = PLANTS_BUILDER
+        .comment("Whether Pulverium affects creative player")
+        .define("pulverium_affect_creative_player", false)
+
+    val FULGURFUNGUS_AFFECT_CREATIVE_PLAYER = PLANTS_BUILDER
+        .comment("Whether Fulgurfungus affects creative player")
+        .define("fulgurfungus_affect_creative_player", false)
+
     private val FINAL_BUILDER = PLANTS_BUILDER.pop()
 
     fun register(context: ModLoadingContext) {

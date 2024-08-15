@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
@@ -16,6 +17,7 @@ import xyz.chlamydomonos.hyphacraft.entity.entities.TransportEntity
 import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.EntityLoader
+import xyz.chlamydomonos.hyphacraft.utils.plant.CarnivoravitisUtil
 
 class CarnivoravitisFlowerBlockEntity(
     pos: BlockPos,
@@ -64,7 +66,11 @@ class CarnivoravitisFlowerBlockEntity(
 
         serverLevel.entities.get(aabb) {
             if (it is LivingEntity && !TransportEntity.isOnTransport(it)) {
-                entities.add(it.rootVehicle)
+                if (CarnivoravitisUtil.AFFECT_CREATIVE_PLAYER || it !is Player) {
+                    entities.add(it.rootVehicle)
+                } else if (!it.isCreative) {
+                    entities.add(it.rootVehicle)
+                }
             }
         }
 

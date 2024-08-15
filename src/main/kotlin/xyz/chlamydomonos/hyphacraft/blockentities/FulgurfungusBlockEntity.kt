@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
@@ -13,6 +14,7 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 import xyz.chlamydomonos.hyphacraft.loaders.NetworkLoader
+import xyz.chlamydomonos.hyphacraft.utils.plant.FulgurfungusUtil
 
 class FulgurfungusBlockEntity(
     pos: BlockPos,
@@ -43,7 +45,11 @@ class FulgurfungusBlockEntity(
         val entities = arrayListOf<LivingEntity>()
         serverLevel.entities.get(aabb) {
             if (it is LivingEntity) {
-                entities.add(it)
+                if (FulgurfungusUtil.AFFECT_CREATIVE_PLAYER || it !is Player) {
+                    entities.add(it)
+                } else if (!it.isCreative) {
+                    entities.add(it)
+                }
             }
         }
 
