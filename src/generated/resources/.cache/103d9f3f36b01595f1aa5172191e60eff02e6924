@@ -1,5 +1,6 @@
-// 1.21	2024-08-12T15:33:54.511145636	Registries
+// 1.21	2024-08-15T15:46:37.025484463	Registries
 d26e49af297598a34cc0cba4da3803a73ac75c81 data/hyphacraft/damage_type/alien_explosion.json
 2e9adf3a42936d1b72c5bdb93798833b45cc3110 data/hyphacraft/damage_type/digestion.json
 e6a29aac3fcbc7417e8af0fd2c4e4ed83df173e4 data/hyphacraft/damage_type/hypha_explosion.json
+f4dee8ab9c458fc2f0ee9e6fc24f07e60eeb5fe8 data/hyphacraft/damage_type/hypha_lightning.json
 581a53a5205da73ff970c9245dfc31f8ef631411 data/hyphacraft/worldgen/biome/alien_forest.json

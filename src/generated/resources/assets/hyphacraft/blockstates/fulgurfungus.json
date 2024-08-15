@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "hyphacraft:block/fulgurfungus_0"
+    },
+    "active=true": {
+      "model": "hyphacraft:block/fulgurfungus_1"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// 1.21	2024-08-13T15:02:43.821887662	Tags for minecraft:block mod id hyphacraft
+// 1.21	2024-08-15T15:46:37.023276344	Tags for minecraft:block mod id hyphacraft
 8e441ab2c0277c444fee7968d680e23c1f5288da data/hyphacraft/tags/block/alien_soil.json
 d298c368673985f0a940e63b5046ed4afea6c7d7 data/hyphacraft/tags/block/alien_soil_destroyed.json
 c93bfb9524ef230e4766c73d533df712324ad6cb data/hyphacraft/tags/block/carnivoravitis_plant.json
@@ -10,7 +10,7 @@ a3a5b4e96f02a119f90de2c5bec2eb080913a0f1 data/hyphacraft/tags/block/hypha_tree.j
 281e55bc098cb8cae6f062fe438c566f3c0902e7 data/hyphacraft/tags/block/tumidusio_hypha_replaceable.json
 1b62658623b3c058f21de4a2cdb5a69b33ab83a4 data/hyphacraft/tags/block/tumidusio_replaceable.json
 064fd1e832db777879189a8454045664963b8ed2 data/hyphacraft/tags/block/xenolichen_replaceable.json
-c06cb5a2fffb38f2cfb67d9d7f3608e1b8ab9305 data/minecraft/tags/block/mineable/axe.json
+2ba2d85fad874791e07de55af30bf26f98b9931e data/minecraft/tags/block/mineable/axe.json
 431b752cbf5303dd03085d5d99fa9e5d8295d256 data/minecraft/tags/block/mineable/hoe.json
 d442f199077cac697d106d240c4e868c91bc326b data/minecraft/tags/block/mineable/pickaxe.json
-800aff98878ebbad29cac11774328dbb5280ca29 data/minecraft/tags/block/mineable/shovel.json
+460198dbb8f3c93df945763ad95504ab13fefee6 data/minecraft/tags/block/mineable/shovel.json
