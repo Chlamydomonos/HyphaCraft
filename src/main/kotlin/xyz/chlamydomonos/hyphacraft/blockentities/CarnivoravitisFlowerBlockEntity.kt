@@ -66,10 +66,14 @@ class CarnivoravitisFlowerBlockEntity(
 
         serverLevel.entities.get(aabb) {
             if (it is LivingEntity && !TransportEntity.isOnTransport(it)) {
-                if (CarnivoravitisUtil.AFFECT_CREATIVE_PLAYER || it !is Player) {
+                if (it !is Player) {
                     entities.add(it.rootVehicle)
-                } else if (!it.isCreative) {
-                    entities.add(it.rootVehicle)
+                } else if (!it.isSpectator) {
+                    if (!it.isCreative) {
+                        entities.add(it.rootVehicle)
+                    } else if (CarnivoravitisUtil.AFFECT_CREATIVE_PLAYER) {
+                        entities.add(it.rootVehicle)
+                    }
                 }
             }
         }

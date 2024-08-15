@@ -57,10 +57,14 @@ class PulveriumBlockEntity(
         var hasEntity = false
         serverLevel.entities.get(aabb) {
             if (it is LivingEntity) {
-                if (PulveriumUtil.AFFECT_CREATIVE_PLAYER || it !is Player) {
+                if (it !is Player) {
                     hasEntity = true
-                } else if (!it.isCreative) {
-                    hasEntity = true
+                } else if (!it.isSpectator) {
+                    if (!it.isCreative) {
+                        hasEntity = true
+                    } else if (PulveriumUtil.AFFECT_CREATIVE_PLAYER) {
+                        hasEntity = true
+                    }
                 }
             }
         }

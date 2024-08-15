@@ -45,10 +45,14 @@ class FulgurfungusBlockEntity(
         val entities = arrayListOf<LivingEntity>()
         serverLevel.entities.get(aabb) {
             if (it is LivingEntity) {
-                if (FulgurfungusUtil.AFFECT_CREATIVE_PLAYER || it !is Player) {
+                if (it !is Player) {
                     entities.add(it)
-                } else if (!it.isCreative) {
-                    entities.add(it)
+                } else if (!it.isSpectator) {
+                    if (!it.isCreative) {
+                        entities.add(it)
+                    } else if (FulgurfungusUtil.AFFECT_CREATIVE_PLAYER) {
+                        entities.add(it)
+                    }
                 }
             }
         }
