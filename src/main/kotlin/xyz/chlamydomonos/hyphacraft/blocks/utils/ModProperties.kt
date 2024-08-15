@@ -19,4 +19,5 @@ object ModProperties {
     val CONTAINS_WATER = BooleanProperty.create("contains_water")
     val DIRECTION = DirectionProperty.create("direction")
     val CAN_SECRETE = BooleanProperty.create("can_secrete")
+    val ACTIVE = BooleanProperty.create("active")
 }

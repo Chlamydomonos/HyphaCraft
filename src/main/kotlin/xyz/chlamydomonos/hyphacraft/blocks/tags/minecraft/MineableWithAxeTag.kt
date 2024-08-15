@@ -10,5 +10,6 @@ class MineableWithAxeTag : BaseBlockTag(BlockTags.MINEABLE_WITH_AXE) {
         block(BlockLoader.GRANDISPORIA_WITHERED_CAP.block),
         block(BlockLoader.CARNIVORAVITIS_ROOT),
         block(BlockLoader.CARNIVORAVITIS_SHELL.block),
+        block(BlockLoader.HARDENED_FUNGUS_SHELL.block)
     )
 }

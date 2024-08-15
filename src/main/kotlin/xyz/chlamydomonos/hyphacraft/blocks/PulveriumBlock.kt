@@ -27,7 +27,7 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 class PulveriumBlock : BaseHyphaEntityBlock(
-    Properties.ofFullCopy(Blocks.OAK_PLANKS).randomTicks().noOcclusion().sound(SoundType.SLIME_BLOCK)
+    Properties.ofFullCopy(Blocks.OAK_PLANKS).randomTicks().noOcclusion().sound(SoundType.SLIME_BLOCK).instabreak()
 ) {
     companion object {
         val CODEC = simpleCodec { PulveriumBlock() }

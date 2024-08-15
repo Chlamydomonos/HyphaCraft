@@ -15,6 +15,7 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.utils.AlienSwardUtil
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
+import xyz.chlamydomonos.hyphacraft.utils.plant.FulgurfungusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.PulveriumUtil
 
 class AlienSwardBlock : BaseHyphaBlock(
@@ -41,6 +42,8 @@ class AlienSwardBlock : BaseHyphaBlock(
         }
         if (random.nextFloat() < PulveriumUtil.GROWTH_RATE) {
             PulveriumUtil.tryGrow(level, pos.above())
+        } else if (random.nextFloat() < FulgurfungusUtil.GROWTH_RATE) {
+            FulgurfungusUtil.tryGrow(level, pos.above())
         }
 
         if (level.getBlockState(pos.above()).isEmpty) {
