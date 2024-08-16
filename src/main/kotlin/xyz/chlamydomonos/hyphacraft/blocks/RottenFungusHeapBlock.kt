@@ -8,6 +8,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
@@ -34,4 +35,9 @@ class RottenFungusHeapBlock : CarpetBlock(
 
 
     override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
+
+    override fun canSurvive(state: BlockState, level: LevelReader, pos: BlockPos): Boolean {
+        val belowState = level.getBlockState(pos.below())
+        return isFaceFull(belowState.getCollisionShape(level, pos.below()), Direction.UP)
+    }
 }
