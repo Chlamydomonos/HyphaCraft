@@ -10,6 +10,7 @@ import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import xyz.chlamydomonos.hyphacraft.biomes.AlienForestBiome
+import xyz.chlamydomonos.hyphacraft.biomes.AncientAlienForestBiome
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 object BiomeLoader {
@@ -37,4 +38,5 @@ object BiomeLoader {
     }
 
     val ALIEN_FOREST = register("alien_forest", AlienForestBiome::create)
+    val ANCIENT_ALIEN_FOREST = register("ancient_alien_forest", AncientAlienForestBiome::create)
 }

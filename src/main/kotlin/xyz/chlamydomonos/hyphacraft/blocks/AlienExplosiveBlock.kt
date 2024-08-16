@@ -12,7 +12,9 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
+import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 
 class AlienExplosiveBlock : Block(
     Properties
@@ -53,6 +55,16 @@ class AlienExplosiveBlock : Block(
     override fun tick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         if(!state.`is`(this) || !level.isAreaLoaded(pos, 10)) {
             return
+        }
+
+        val chunk = level.getChunkAt(pos)
+        if (chunk.getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
+            chunk.setData(DataAttachmentLoader.IS_ALIEN_FOREST, false)
+            chunk.fillBiomesFromNoise(
+                { _, _, _, _ -> BiomeLoader.ANCIENT_ALIEN_FOREST(level) },
+                level.chunkSource.randomState().sampler()
+            )
+            level.chunkSource.chunkMap.resendBiomesForChunks(listOf(chunk))
         }
 
         for (i in -7..7) {
