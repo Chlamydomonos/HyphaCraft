@@ -310,4 +310,23 @@ object TumidusioUtil {
             level.setBlock(pos, state.setValue(ModProperties.DENSITY, density - successfulExpansions), 3)
         }
     }
+
+    fun expandHypha(level: ServerLevel, pos: BlockPos, random: RandomSource) {
+        if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
+            GrandisporiaUtil.tryGrowInitialStipe(level, pos.above())
+        }
+
+        val randomX = random.nextIntBetweenInclusive(-1, 1)
+        val randomY = random.nextIntBetweenInclusive(-1, 1)
+        val randomZ = random.nextIntBetweenInclusive(-1, 1)
+        if(randomX == 0 && randomY == 0 && randomZ == 0) {
+            return
+        }
+        val newPos = pos.offset(randomX, randomY, randomZ)
+        if(XenolichenUtil.canGrow(level, newPos)) {
+            XenolichenUtil.setXenolichen(level, newPos)
+        } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
+            MycovastusUtil.setHypha(level, newPos)
+        }
+    }
 }

@@ -12,6 +12,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
+import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 
 class HardenedFungusShellBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.OAK_PLANKS).randomTicks().sound(SoundType.FUNGUS)
@@ -51,6 +52,10 @@ class HardenedFungusShellBlock : BaseHyphaBlock(
                     }
                 }
             }
+        }
+
+        if (random.nextFloat() < AlienSoilBlock.EXPAND_RATE) {
+            TumidusioUtil.expandHypha(level, pos, random)
         }
     }
 }

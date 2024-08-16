@@ -19,6 +19,7 @@ import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
+import xyz.chlamydomonos.hyphacraft.loaders.FluidLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 import kotlin.math.roundToInt
 
@@ -117,6 +118,18 @@ class TerraborerBombEntity(entityType: EntityType<TerraborerBombEntity>, level: 
                                             level.setBlock(
                                                 newPos,
                                                 BlockLoader.ACTIVE_HYPHA_BLOCK.block.defaultBlockState(),
+                                                3
+                                            )
+                                        } else {
+                                            level.setBlock(newPos, Blocks.AIR.defaultBlockState(), 3)
+                                        }
+                                    } else if (fluid.`is`(FluidLoader.ROTTEN_GOO.source)) {
+                                        level.setBlock(newPos, BlockLoader.TUMIDUSIO.block.defaultBlockState(), 3)
+                                    } else if (fluid.`is`(FluidLoader.ROTTEN_GOO.flowing)) {
+                                        if (random.nextBoolean()) {
+                                            level.setBlock(
+                                                newPos,
+                                                BlockLoader.TUMIDUSIO.block.defaultBlockState(),
                                                 3
                                             )
                                         } else {

@@ -15,10 +15,7 @@ import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
-import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
-import xyz.chlamydomonos.hyphacraft.utils.plant.MycovastusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
-import xyz.chlamydomonos.hyphacraft.utils.plant.XenolichenUtil
 
 class TumidusioBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).sound(SoundType.SLIME_BLOCK).randomTicks()) {
     init {
@@ -43,21 +40,8 @@ class TumidusioBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).sound(S
             }
         }
 
-        if(random.nextFloat() < GrandisporiaUtil.INITIAL_GROW_RATE) {
-            GrandisporiaUtil.tryGrowInitialStipe(level, pos.above())
-        }
-
-        val randomX = random.nextIntBetweenInclusive(-1, 1)
-        val randomY = random.nextIntBetweenInclusive(-1, 1)
-        val randomZ = random.nextIntBetweenInclusive(-1, 1)
-        if(randomX == 0 && randomY == 0 && randomZ == 0) {
-            return
-        }
-        val newPos = pos.offset(randomX, randomY, randomZ)
-        if(XenolichenUtil.canGrow(level, newPos)) {
-            XenolichenUtil.setXenolichen(level, newPos)
-        } else if (MycovastusUtil.canHyphaGrow(level, newPos)) {
-            MycovastusUtil.setHypha(level, newPos)
+        if (random.nextFloat() < AlienSoilBlock.EXPAND_RATE) {
+            TumidusioUtil.expandHypha(level, pos, random)
         }
 
         if (level.getChunkAt(pos).getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
