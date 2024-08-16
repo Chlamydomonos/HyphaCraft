@@ -2,6 +2,7 @@
   "values": [
     "hyphacraft:alien_soil",
     "hyphacraft:alien_sward",
-    "hyphacraft:fertile_alien_sward"
+    "hyphacraft:fertile_alien_sward",
+    "hyphacraft:active_hypha_block"
   ]
 }
