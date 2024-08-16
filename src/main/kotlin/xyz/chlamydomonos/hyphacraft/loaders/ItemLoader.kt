@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.DeferredRegister
 import thedarkcolour.kotlinforforge.neoforge.forge.getValue
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.items.AlienOrbItem
+import xyz.chlamydomonos.hyphacraft.items.BiomeDebugStickItem
 import xyz.chlamydomonos.hyphacraft.items.DebugStickItem
 import xyz.chlamydomonos.hyphacraft.items.XenolichenItem
 import java.util.*
@@ -54,4 +55,5 @@ object ItemLoader {
     val CARNIVORAVITIS_FLOWER by simpleItem("carnivoravitis_flower")
     val CARNIVORAVITIS_ROOT by simpleItem("carnivoravitis_root")
     val TOXIC_SPORE_POWDER by simpleItem("toxic_spore_powder")
+    val BIOME_DEBUG_STICK by register("biome_debug_stick", ::BiomeDebugStickItem)
 }

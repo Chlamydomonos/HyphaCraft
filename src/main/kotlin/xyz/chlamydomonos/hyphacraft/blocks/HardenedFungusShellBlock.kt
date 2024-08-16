@@ -41,7 +41,7 @@ class HardenedFungusShellBlock : BaseHyphaBlock(
                         var hasEmptyNeighbor = false
                         for (direction in Direction.entries) {
                             val newPos2 = newPos.offset(direction.normal)
-                            if (level.getBlockState(newPos2).isEmpty) {
+                            if (!level.getBlockState(newPos2).isCollisionShapeFullBlock(level, newPos2)) {
                                 hasEmptyNeighbor = true
                                 break
                             }

@@ -22,6 +22,10 @@ object FulgurfungusUtil {
     }
 
     fun tryGrow(level: ServerLevel, pos: BlockPos) {
+        if (!level.getBlockState(pos).isEmpty) {
+            return
+        }
+
         if (CommonUtil.isNearFire(level, pos)) {
             return
         }
