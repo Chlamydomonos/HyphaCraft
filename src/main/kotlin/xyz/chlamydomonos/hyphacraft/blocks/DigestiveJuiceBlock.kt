@@ -11,13 +11,14 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.LiquidBlock
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
 import xyz.chlamydomonos.hyphacraft.loaders.FluidLoader
 
 class DigestiveJuiceBlock : LiquidBlock(
     FluidLoader.DIGESTIVE_JUICE.source,
-    Properties.ofFullCopy(Blocks.WATER)
+    Properties.ofFullCopy(Blocks.WATER).mapColor(MapColor.COLOR_BROWN).ignitedByLava()
 ), BurnableHypha {
     override fun entityInside(state: BlockState, level: Level, pos: BlockPos, entity: Entity) {
         if (level.isClientSide) {

@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.toVec3
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
@@ -23,6 +24,7 @@ class AlienExplosiveBlock : Block(
         .noOcclusion()
         .noLootTable()
         .explosionResistance(0.000000001f)
+        .mapColor(MapColor.COLOR_ORANGE)
 ) {
     override fun onPlace(state: BlockState, level: Level, pos: BlockPos, oldState: BlockState, movedByPiston: Boolean) {
         if (!level.isClientSide) {

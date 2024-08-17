@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
@@ -17,7 +18,13 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 
-class TumidusioBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).sound(SoundType.SLIME_BLOCK).randomTicks()) {
+class TumidusioBlock : BaseHyphaBlock(
+    Properties.ofFullCopy(Blocks.DIRT)
+        .sound(SoundType.SLIME_BLOCK)
+        .randomTicks()
+        .mapColor(MapColor.TERRACOTTA_BLUE)
+        .ignitedByLava()
+) {
     init {
         registerDefaultState(
             defaultBlockState()

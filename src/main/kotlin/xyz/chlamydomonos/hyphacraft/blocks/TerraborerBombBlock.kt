@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel
@@ -29,6 +30,8 @@ class TerraborerBombBlock : BaseHyphaBlock(
         .randomTicks()
         .instabreak()
         .noOcclusion()
+        .mapColor(MapColor.COLOR_BLACK)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.CONTAINS_WATER, false))

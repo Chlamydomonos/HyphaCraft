@@ -13,10 +13,15 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 
 class RottenFungusHeapBlock : CarpetBlock(
-    Properties.ofFullCopy(Blocks.BLUE_CARPET).sound(SoundType.SLIME_BLOCK).noCollission()
+    Properties.ofFullCopy(Blocks.BLUE_CARPET)
+        .sound(SoundType.SLIME_BLOCK)
+        .noCollission()
+        .mapColor(MapColor.COLOR_BLACK)
+        .ignitedByLava()
 ), BurnableHypha {
     override fun entityInside(state: BlockState, level: Level, pos: BlockPos, entity: Entity) {
         if(level.isClientSide) {

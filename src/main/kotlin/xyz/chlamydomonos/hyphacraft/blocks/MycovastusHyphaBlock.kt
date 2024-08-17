@@ -3,6 +3,7 @@ package xyz.chlamydomonos.hyphacraft.blocks
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.util.RandomSource
+import net.minecraft.world.item.DyeColor
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -23,6 +24,8 @@ class MycovastusHyphaBlock : BaseHyphaEntityBlock(
         .ignitedByLava()
         .randomTicks()
         .sound(SoundType.SLIME_BLOCK)
+        .mapColor(DyeColor.BLUE)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.PHASE, 0))

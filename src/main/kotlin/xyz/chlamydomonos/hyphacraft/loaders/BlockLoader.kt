@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
@@ -54,18 +55,18 @@ object BlockLoader {
     private fun copy(block: Block) = BlockBehaviour.Properties.ofFullCopy(block)
 
     val TEST_BLOCK by blockOnly("test_block", ::TestBlock)
-    val ALIEN_ROCK = register("alien_rock") { Block(copy(Blocks.STONE)) }
+    val ALIEN_ROCK = register("alien_rock") { Block(copy(Blocks.STONE).mapColor(MapColor.DEEPSLATE)) }
     val ALIEN_SOIL = register("alien_soil", ::AlienSoilBlock)
     val XENOLICHEN_BLOCK by blockOnly("xenolichen_block", ::XenolichenBlock)
     val XENOLICHEN_HIDDEN_BLOCK by blockOnly("xenolichen_hidden_block", ::BlockCopierHiddenBlock)
-    val HYPHACOTTA = register("hyphacotta") { HyphaResidueBlock(copy(Blocks.TERRACOTTA)) }
+    val HYPHACOTTA = register("hyphacotta") { HyphaResidueBlock(copy(Blocks.TERRACOTTA).mapColor(MapColor.COLOR_GRAY)) }
     val MYCOVASTUS_HYPHA by blockOnly("mycovastus_hypha", ::MycovastusHyphaBlock)
     val MYCOVASTUS_HYPHA_HIDDEN_BLOCK by blockOnly("mycovastus_hypha_hidden_block", ::BlockCopierHiddenBlock)
     val MYCOVASTUS = register("mycovastus", ::MycovastusBlock)
     val ROTTEN_FUNGUS_HEAP = register("rotten_fungus_heap", ::RottenFungusHeapBlock)
     val TUMIDUSIO_HYPHA by blockOnly("tumidusio_hypha", ::TumidusioHyphaBlock)
     val TUMIDUSIO_HYPHA_HIDDEN_BLOCK by blockOnly("tumidusio_hypha_hidden_block", ::BlockCopierHiddenBlock)
-    val HYPHACOAL_BLOCK = register("hyphacoal_block") { HyphaResidueBlock(copy(Blocks.COAL_BLOCK)) }
+    val HYPHACOAL_BLOCK = register("hyphacoal_block") { HyphaResidueBlock(copy(Blocks.COAL_BLOCK).mapColor(MapColor.COLOR_BLACK)) }
     val TUMIDUSIO = register("tumidusio", ::TumidusioBlock)
     val GRANDISPORIA_STIPE by blockOnly("grandisporia_stipe", ::GrandisporiaStipeBlock)
     val GRANDISPORIA_SMALL_CAP by blockOnly("grandisporia_small_cap", ::GrandisporiaSmallCapBlock)

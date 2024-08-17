@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
@@ -17,7 +18,13 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 class TerraborerStipeBlock : BaseHyphaBlock(
-    Properties.ofFullCopy(Blocks.OAK_PLANKS).noOcclusion().randomTicks().instabreak().noCollission()
+    Properties.ofFullCopy(Blocks.OAK_PLANKS)
+        .noOcclusion()
+        .randomTicks()
+        .instabreak()
+        .noCollission()
+        .mapColor(MapColor.COLOR_LIGHT_BLUE)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.AGE, 0))

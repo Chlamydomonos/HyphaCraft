@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
@@ -26,7 +27,13 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 class FulgurfungusBlock : BaseHyphaEntityBlock(
-    Properties.ofFullCopy(Blocks.DIRT).randomTicks().noOcclusion().sound(SoundType.SLIME_BLOCK).instabreak()
+    Properties.ofFullCopy(Blocks.DIRT)
+        .randomTicks()
+        .noOcclusion()
+        .sound(SoundType.SLIME_BLOCK)
+        .instabreak()
+        .mapColor(MapColor.COLOR_LIGHT_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         val CODEC = simpleCodec { FulgurfungusBlock() }

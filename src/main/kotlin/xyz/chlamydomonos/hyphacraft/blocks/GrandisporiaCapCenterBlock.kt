@@ -6,6 +6,7 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
@@ -18,6 +19,8 @@ class GrandisporiaCapCenterBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .sound(SoundType.SLIME_BLOCK)
         .randomTicks()
+        .mapColor(MapColor.COLOR_LIGHT_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         fun genModel(provider: ModBlockStateProvider) {

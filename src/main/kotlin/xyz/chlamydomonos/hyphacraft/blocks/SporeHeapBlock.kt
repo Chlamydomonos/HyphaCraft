@@ -23,7 +23,11 @@ import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.loaders.EffectLoader
 
 class SporeHeapBlock : CarpetBlock(
-    Properties.ofFullCopy(Blocks.WHITE_CARPET).sound(SoundType.SNOW).randomTicks().noCollission()
+    Properties.ofFullCopy(Blocks.WHITE_CARPET)
+        .sound(SoundType.SNOW)
+        .randomTicks()
+        .noCollission()
+        .ignitedByLava()
 ), BurnableHypha {
     companion object {
         const val BIOME_CHANGE_THRESHOLD = 80

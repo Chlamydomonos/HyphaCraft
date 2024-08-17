@@ -13,12 +13,12 @@ import xyz.chlamydomonos.hyphacraft.network.HyphaLightningPacket
 object NetworkLoader {
     private val PACKETS = arrayListOf<BasePacket<*>>()
 
-    fun <T : BasePacket<*>> register(packet: T): T {
+    private fun <T : BasePacket<*>> register(packet: T): T {
         PACKETS.add(packet)
         return packet
     }
 
-    fun <T : Any> register(registrar: PayloadRegistrar, packet: BasePacket<T>) {
+    private fun <T : Any> register(registrar: PayloadRegistrar, packet: BasePacket<T>) {
         when (packet.phase) {
             BasePacket.Phase.PLAY -> {
                 when (packet.direction) {

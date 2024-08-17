@@ -10,6 +10,7 @@ import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
@@ -19,7 +20,13 @@ import xyz.chlamydomonos.hyphacraft.loaders.EffectLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 class VermilinguaBlock : BaseHyphaBlock(
-    Properties.ofFullCopy(Blocks.DIRT).noCollission().noOcclusion().sound(SoundType.SLIME_BLOCK).noLootTable()
+    Properties.ofFullCopy(Blocks.DIRT)
+        .noCollission()
+        .noOcclusion()
+        .sound(SoundType.SLIME_BLOCK)
+        .noLootTable()
+        .mapColor(MapColor.COLOR_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         fun genModel(provider: ModBlockStateProvider) {

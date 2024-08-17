@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.BooleanProperty
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
@@ -31,6 +32,8 @@ class CarnivoravitisVineBlock : BaseHyphaEntityBlock(
         .noOcclusion()
         .randomTicks()
         .sound(SoundType.SLIME_BLOCK)
+        .mapColor(MapColor.COLOR_LIGHT_BLUE)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(

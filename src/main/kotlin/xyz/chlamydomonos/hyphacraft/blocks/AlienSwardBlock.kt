@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
@@ -19,7 +20,11 @@ import xyz.chlamydomonos.hyphacraft.utils.plant.FulgurfungusUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.PulveriumUtil
 
 class AlienSwardBlock : BaseHyphaBlock(
-    Properties.ofFullCopy(Blocks.DIRT).randomTicks().sound(SoundType.SLIME_BLOCK)
+    Properties.ofFullCopy(Blocks.DIRT)
+        .randomTicks()
+        .sound(SoundType.SLIME_BLOCK)
+        .mapColor(MapColor.COLOR_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         fun genModel(provider: ModBlockStateProvider) {

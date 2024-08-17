@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 import xyz.chlamydomonos.hyphacraft.blockentities.PulveriumBlockEntity
@@ -27,7 +28,13 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
 class PulveriumBlock : BaseHyphaEntityBlock(
-    Properties.ofFullCopy(Blocks.OAK_PLANKS).randomTicks().noOcclusion().sound(SoundType.SLIME_BLOCK).instabreak()
+    Properties.ofFullCopy(Blocks.OAK_PLANKS)
+        .randomTicks()
+        .noOcclusion()
+        .sound(SoundType.SLIME_BLOCK)
+        .instabreak()
+        .mapColor(MapColor.COLOR_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         val CODEC = simpleCodec { PulveriumBlock() }

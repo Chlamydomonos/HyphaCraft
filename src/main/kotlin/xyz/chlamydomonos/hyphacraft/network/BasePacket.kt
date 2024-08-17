@@ -113,7 +113,7 @@ abstract class BasePacket<P : Any>(val name: String, val direction: Direction, v
     val packetType = CustomPacketPayload.Type<Packet<P>>(NameUtil.getRL(name))
 
     class Packet<P : Any>(
-        val base: BasePacket<P>,
+        private val base: BasePacket<P>,
         val data: P
     ) : CustomPacketPayload {
         override fun type() = base.packetType
