@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blockentities.CarnivoravitisVineBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.ImmuneToHyphaExplosionBlock
@@ -24,6 +25,8 @@ class CarnivoravitisSeedlingBlock : ImmuneToHyphaExplosionBlock(
         .noCollission()
         .noLootTable()
         .sound(SoundType.SLIME_BLOCK)
+        .mapColor(MapColor.COLOR_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         fun genModel(provider: ModBlockStateProvider) {

@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -15,7 +16,11 @@ import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.TumidusioUtil
 
 class HardenedFungusShellBlock : BaseHyphaBlock(
-    Properties.ofFullCopy(Blocks.OAK_PLANKS).randomTicks().sound(SoundType.FUNGUS)
+    Properties.ofFullCopy(Blocks.OAK_PLANKS)
+        .randomTicks()
+        .sound(SoundType.FUNGUS)
+        .mapColor(MapColor.LAPIS)
+        .ignitedByLava()
 ) {
     override fun onBurnt(
         state: BlockState,

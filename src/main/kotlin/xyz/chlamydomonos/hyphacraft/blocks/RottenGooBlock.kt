@@ -11,11 +11,12 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.LiquidBlock
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.loaders.FluidLoader
 
 class RottenGooBlock : LiquidBlock(
     FluidLoader.ROTTEN_GOO.source,
-    Properties.ofFullCopy(Blocks.WATER)
+    Properties.ofFullCopy(Blocks.WATER).mapColor(MapColor.TERRACOTTA_GREEN).ignitedByLava()
 ) {
     override fun entityInside(state: BlockState, level: Level, pos: BlockPos, entity: Entity) {
         if (level.isClientSide) {

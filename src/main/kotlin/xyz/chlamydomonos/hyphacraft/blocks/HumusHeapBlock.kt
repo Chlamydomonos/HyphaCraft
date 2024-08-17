@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.item.DyeColor
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
@@ -20,7 +21,12 @@ import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 
 class HumusHeapBlock : CarpetBlock(
-    Properties.ofFullCopy(Blocks.CYAN_CARPET).sound(SoundType.SLIME_BLOCK).randomTicks().noCollission()
+    Properties.ofFullCopy(Blocks.CYAN_CARPET)
+        .sound(SoundType.SLIME_BLOCK)
+        .randomTicks()
+        .noCollission()
+        .mapColor(DyeColor.GRAY)
+        .ignitedByLava()
 ), BurnableHypha {
     override fun entityInside(state: BlockState, level: Level, pos: BlockPos, entity: Entity) {
         if(level.isClientSide) {

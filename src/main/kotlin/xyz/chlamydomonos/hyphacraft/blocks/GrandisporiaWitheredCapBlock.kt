@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.Vec3
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.neoforged.neoforge.client.model.generators.ModelProvider
@@ -30,6 +31,8 @@ class GrandisporiaWitheredCapBlock : BaseHyphaBlock(
     Properties.ofFullCopy(Blocks.DIRT)
         .sound(SoundType.FUNGUS)
         .randomTicks()
+        .mapColor(MapColor.COLOR_GRAY)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.SPORE_AMOUNT, 0))

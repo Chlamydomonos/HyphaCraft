@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.effect.MobEffectInstance
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
@@ -34,6 +35,8 @@ class MycovastusBlock : BaseHyphaBlock(
         .noOcclusion()
         .randomTicks()
         .sound(SoundType.SLIME_BLOCK)
+        .mapColor(DyeColor.LIGHT_BLUE)
+        .ignitedByLava()
 ), SimpleWaterloggedBlock {
     companion object {
         val SHAPE_1 = box(5.0, 0.0, 5.0, 11.0, 2.0, 11.0)

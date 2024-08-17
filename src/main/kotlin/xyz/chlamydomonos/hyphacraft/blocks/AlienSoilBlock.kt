@@ -6,6 +6,7 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
@@ -14,7 +15,12 @@ import xyz.chlamydomonos.hyphacraft.utils.CommonUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.GrandisporiaUtil
 import xyz.chlamydomonos.hyphacraft.utils.plant.TerraborerUtil
 
-class AlienSoilBlock : BaseHyphaBlock(Properties.ofFullCopy(Blocks.DIRT).randomTicks()) {
+class AlienSoilBlock : BaseHyphaBlock(
+    Properties.ofFullCopy(Blocks.DIRT)
+        .randomTicks()
+        .mapColor(MapColor.DEEPSLATE)
+        .ignitedByLava()
+) {
     companion object {
         const val EXPAND_RATE = 1.0f / 20.0f
     }

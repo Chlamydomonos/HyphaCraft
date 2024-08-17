@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.ImmuneToHyphaExplosionBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
@@ -22,6 +23,8 @@ class CarnivoravitisRootBlock : ImmuneToHyphaExplosionBlock(
     Properties.ofFullCopy(Blocks.OAK_PLANKS)
         .sound(SoundType.FUNGUS)
         .randomTicks()
+        .mapColor(MapColor.COLOR_LIGHT_BLUE)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.AGE, 3))

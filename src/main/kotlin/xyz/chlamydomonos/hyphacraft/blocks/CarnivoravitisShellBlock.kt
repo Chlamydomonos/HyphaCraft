@@ -9,13 +9,18 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.base.ImmuneToHyphaExplosionBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
 class CarnivoravitisShellBlock : ImmuneToHyphaExplosionBlock(
-    Properties.ofFullCopy(Blocks.OAK_PLANKS).sound(SoundType.FUNGUS).randomTicks()
+    Properties.ofFullCopy(Blocks.OAK_PLANKS)
+        .sound(SoundType.FUNGUS)
+        .randomTicks()
+        .mapColor(MapColor.TERRACOTTA_CYAN)
+        .ignitedByLava()
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.CAN_SECRETE, false))

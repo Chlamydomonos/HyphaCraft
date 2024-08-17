@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.shapes.CollisionContext
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
@@ -21,6 +22,8 @@ class GrandisporiaSmallCapBlock : BaseHyphaBlock(
         .noOcclusion()
         .sound(SoundType.SLIME_BLOCK)
         .randomTicks()
+        .mapColor(MapColor.COLOR_BLUE)
+        .ignitedByLava()
 ) {
     companion object {
         val SHAPE = box(0.0, 0.0, 0.0, 16.0, 13.0, 16.0)

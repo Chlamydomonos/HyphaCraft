@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
+import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blockentities.TumidusioHyphaBlockEntity
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaEntityBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
@@ -21,6 +22,7 @@ class TumidusioHyphaBlock : BaseHyphaEntityBlock(
         .sound(SoundType.SLIME_BLOCK)
         .ignitedByLava()
         .randomTicks()
+        .mapColor(MapColor.COLOR_BLUE)
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.PHASE, 0))

@@ -23,6 +23,7 @@ class XenolichenBlock : BaseHyphaEntityBlock(
         .sound(SoundType.SLIME_BLOCK)
         .ignitedByLava()
         .randomTicks()
+        .mapColor(MapColor.COLOR_BLUE)
 ) {
     init {
         registerDefaultState(defaultBlockState().setValue(ModProperties.PHASE, 0))

@@ -5,6 +5,7 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.ImmuneToHyphaExplosionBlock
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
@@ -12,7 +13,9 @@ import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
-class GrandisporiaWitheredStipeBlock : ImmuneToHyphaExplosionBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
+class GrandisporiaWitheredStipeBlock : ImmuneToHyphaExplosionBlock(
+    Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.LAPIS).ignitedByLava()
+) {
     companion object {
         fun genModel(provider: ModBlockStateProvider) {
             provider.simpleBlockWithItem(
