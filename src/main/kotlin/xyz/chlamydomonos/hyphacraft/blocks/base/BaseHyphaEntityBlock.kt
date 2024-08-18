@@ -15,7 +15,6 @@ abstract class BaseHyphaEntityBlock(properties: Properties) : BaseEntityBlock(pr
 
     override fun getFireSpreadSpeed(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction) = 5
 
-    @Suppress("OVERRIDE_DEPRECATION")
     override fun getRenderShape(state: BlockState) = RenderShape.MODEL
 
     override fun updateShape(

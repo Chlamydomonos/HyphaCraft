@@ -11,10 +11,6 @@ object NameUtil {
         return name is String && BuiltInRegistries.BLOCK.containsKey(ResourceLocation.parse(name))
     }
 
-    fun validateTagName(name: Any?): Boolean {
-        return name is String && ResourceLocation.tryParse(name) != null
-    }
-
     fun getRL(path: String) = ResourceLocation.fromNamespaceAndPath(HyphaCraft.MODID, path)
 
     fun path(block: Block) = BuiltInRegistries.BLOCK.getKey(block).path
