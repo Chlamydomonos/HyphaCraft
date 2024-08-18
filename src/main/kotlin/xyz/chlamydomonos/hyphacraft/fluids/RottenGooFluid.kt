@@ -22,5 +22,4 @@ class RottenGooFluid : BaseFluidType(
     1.0f,
     6.0f,
     customBlock = Supplier { BlockLoader.ROTTEN_GOO_BLOCK }
-){
-}
+)
