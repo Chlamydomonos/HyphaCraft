@@ -63,7 +63,7 @@ class AlienExplosiveBlock : Block(
         if (chunk.getData(DataAttachmentLoader.IS_ALIEN_FOREST)) {
             chunk.setData(DataAttachmentLoader.IS_ALIEN_FOREST, false)
             chunk.fillBiomesFromNoise(
-                { _, _, _, _ -> BiomeLoader.ANCIENT_ALIEN_FOREST(level) },
+                { _, _, _, _ -> BiomeLoader.ANCIENT_ALIEN_FOREST.get(level) },
                 level.chunkSource.randomState().sampler()
             )
             level.chunkSource.chunkMap.resendBiomesForChunks(listOf(chunk))

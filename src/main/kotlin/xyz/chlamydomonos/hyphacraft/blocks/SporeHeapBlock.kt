@@ -104,7 +104,7 @@ class SporeHeapBlock : CarpetBlock(
     override fun tick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         val chunk = level.getChunkAt(pos)
         chunk.fillBiomesFromNoise(
-            { _, _, _, _ -> BiomeLoader.ALIEN_FOREST(level) },
+            { _, _, _, _ -> BiomeLoader.ALIEN_FOREST.get(level) },
             level.chunkSource.randomState().sampler()
         )
         chunk.setData(DataAttachmentLoader.IS_ALIEN_FOREST, true)
