@@ -1,6 +1,5 @@
 package xyz.chlamydomonos.hyphacraft.loaders
 
-import net.minecraft.core.Holder
 import net.minecraft.core.HolderGetter
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.worldgen.BootstrapContext
@@ -9,11 +8,25 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
+import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.fml.common.EventBusSubscriber
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
+import terrablender.api.Regions
+import terrablender.api.SurfaceRuleManager
+import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.biomes.AlienForestBiome
 import xyz.chlamydomonos.hyphacraft.biomes.AncientAlienForestBiome
+import xyz.chlamydomonos.hyphacraft.biomes.ModRegion
 import xyz.chlamydomonos.hyphacraft.utils.NameUtil
 
+@EventBusSubscriber(modid = HyphaCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 object BiomeLoader {
+    class LoadedBiome(
+        val key: ResourceKey<Biome>
+    ) {
+        fun get(level: Level) = level.registryAccess().registryOrThrow(Registries.BIOME).getHolderOrThrow(key)
+    }
+
     class BiomeToRegister(
         val key: ResourceKey<Biome>,
         val builder: (HolderGetter<PlacedFeature>, HolderGetter<ConfiguredWorldCarver<*>>) -> Biome
@@ -31,12 +44,24 @@ object BiomeLoader {
 
     private fun register(
         name: String, builder: (HolderGetter<PlacedFeature>, HolderGetter<ConfiguredWorldCarver<*>>) -> Biome
-    ): (Level) -> Holder<Biome> {
+    ): LoadedBiome {
         val key = ResourceKey.create(Registries.BIOME, NameUtil.getRL(name))
         BIOMES.add(BiomeToRegister(key, builder))
-        return { it.registryAccess().registryOrThrow(Registries.BIOME).getHolderOrThrow(key) }
+        return LoadedBiome(key)
     }
 
     val ALIEN_FOREST = register("alien_forest", AlienForestBiome::create)
     val ANCIENT_ALIEN_FOREST = register("ancient_alien_forest", AncientAlienForestBiome::create)
+
+    @SubscribeEvent
+    fun onCommonSetup(event: FMLCommonSetupEvent) {
+        event.enqueueWork {
+            Regions.register(ModRegion())
+            SurfaceRuleManager.addSurfaceRules(
+                SurfaceRuleManager.RuleCategory.OVERWORLD,
+                HyphaCraft.MODID,
+                AncientAlienForestBiome.surfaceRule
+            )
+        }
+    }
 }

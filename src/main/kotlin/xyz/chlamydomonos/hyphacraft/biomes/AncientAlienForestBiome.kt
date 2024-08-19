@@ -2,8 +2,13 @@ package xyz.chlamydomonos.hyphacraft.biomes
 
 import net.minecraft.core.HolderGetter
 import net.minecraft.world.level.biome.*
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.levelgen.SurfaceRules
+import net.minecraft.world.level.levelgen.VerticalAnchor
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
+import xyz.chlamydomonos.hyphacraft.loaders.BiomeLoader
+import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 
 object AncientAlienForestBiome {
     fun create(
@@ -27,5 +32,22 @@ object AncientAlienForestBiome {
             .mobSpawnSettings(mobSpawnSettingBuilder.build())
             .generationSettings(biomeGenerationSettingBuilder.build())
             .build()
+    }
+
+    val surfaceRule by lazy {
+        SurfaceRules.ifTrue(
+            SurfaceRules.isBiome(BiomeLoader.ANCIENT_ALIEN_FOREST.key),
+            SurfaceRules.sequence(
+                SurfaceRules.ifTrue(
+                    SurfaceRules.verticalGradient(
+                        "bedrock_floor",
+                        VerticalAnchor.bottom(),
+                        VerticalAnchor.aboveBottom(5)
+                    ),
+                    SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())
+                ),
+                SurfaceRules.state(BlockLoader.HYPHACOTTA.block.defaultBlockState())
+            )
+        )
     }
 }
