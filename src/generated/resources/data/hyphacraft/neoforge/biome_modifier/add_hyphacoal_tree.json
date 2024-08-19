@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "hyphacraft:ancient_alien_forest",
+  "features": "hyphacraft:hyphacoal_tree",
+  "step": "vegetal_decoration"
+}
