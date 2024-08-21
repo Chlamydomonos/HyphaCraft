@@ -7,6 +7,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.event.EntityRenderersEvent
 import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.entity.models.TerraborerBombModel
+import xyz.chlamydomonos.hyphacraft.entity.renderers.HumifossorRenderer
 import xyz.chlamydomonos.hyphacraft.entity.renderers.SporeCloudRenderer
 import xyz.chlamydomonos.hyphacraft.entity.renderers.TerraborerBombRenderer
 import xyz.chlamydomonos.hyphacraft.entity.renderers.TransportRenderer
@@ -24,6 +25,7 @@ object EntityModelLoader {
             EntityRenderers.register(EntityLoader.TERRABORER_BOMB, ::TerraborerBombRenderer)
             EntityRenderers.register(EntityLoader.TRANSPORT, ::TransportRenderer)
             EntityRenderers.register(EntityLoader.SPORE_CLOUD, ::SporeCloudRenderer)
+            EntityRenderers.register(EntityLoader.HUMIFOSSOR, ::HumifossorRenderer)
         }
     }
 }
