@@ -2,26 +2,28 @@ package xyz.chlamydomonos.hyphacraft.entity.goals
 
 import net.minecraft.world.entity.ai.goal.Goal
 import net.minecraft.world.entity.player.Player
+import thedarkcolour.kotlinforforge.neoforge.forge.vectorutil.v3d.minus
 import xyz.chlamydomonos.hyphacraft.entity.entities.HumifossorEntity
 import java.util.*
+import kotlin.math.PI
+import kotlin.math.abs
+import kotlin.math.atan2
 
 class HumifossorHideGoal(
     val entity: HumifossorEntity
 ) : Goal() {
     companion object {
-        const val ANIMATION_LEN = 12
+        const val ANIMATION_LEN = 24
     }
 
     init {
-        flags = EnumSet.of(Goal.Flag.MOVE)
+        flags = EnumSet.of(Flag.MOVE)
     }
 
     private var player: Player? = null
-    private var coolDown = 0
-    private var stopping = true
 
     override fun canUse(): Boolean {
-        if (coolDown > 0) {
+        if (entity.coolDown > 0 && entity.state != HumifossorEntity.Companion.State.PLOUGHING) {
             return false
         }
 
@@ -29,54 +31,54 @@ class HumifossorHideGoal(
         if (player == null) {
             return false
         }
+
         val thePlayer = player!!
         if (thePlayer.isSpectator) {
             return false
         }
+
+        if (thePlayer.isCrouching) {
+            if (entity.distanceToSqr(thePlayer) < 1) {
+                return true
+            }
+
+            val yRot = entity.yRot / 180 * PI
+            val relative = thePlayer.position() - entity.position()
+            val angleToZ = atan2(relative.x, relative.z)
+            val angleToPlayer = abs(angleToZ - yRot)
+            if (angleToPlayer > PI / 4) {
+                return false
+            }
+        }
+
         return true
     }
 
     override fun start() {
-        super.start()
-        coolDown = ANIMATION_LEN
-        entity.state = HumifossorEntity.Companion.State.CURLING
-    }
-
-    override fun tick() {
-        super.tick()
-        if (stopping && coolDown == 0) {
-            entity.state = HumifossorEntity.Companion.State.EXPANDING
-            coolDown = ANIMATION_LEN
-        } else if (coolDown > 0) {
-            coolDown--
-        } else if (coolDown == 0) {
-            entity.state = HumifossorEntity.Companion.State.HIDING
+        if (entity.state != HumifossorEntity.Companion.State.HIDING) {
+            entity.target = player
+            entity.state = HumifossorEntity.Companion.State.CURLING
+            entity.coolDown = ANIMATION_LEN
         }
     }
 
     override fun canContinueToUse(): Boolean {
-        if (coolDown > 0) {
-            return true
-        }
-
-        if (player == null || !player!!.isAlive) {
+        val thePlayer = entity.target
+        if (thePlayer == null || !thePlayer.isAlive) {
             return false
         }
-
-        val thePlayer = player!!
-        if (thePlayer.isSpectator) {
-            return false
-        }
-
         if (entity.distanceToSqr(thePlayer) > 25) {
-            if (stopping) {
-                stopping = false
-                return false
-            }
-            stopping = true
-            return true
+            return false
         }
-
         return true
+    }
+
+    override fun stop() {
+        if (!entity.attacking) {
+            entity.target = null
+            entity.state = HumifossorEntity.Companion.State.EXPANDING
+            entity.removeArmor()
+            entity.coolDown = ANIMATION_LEN
+        }
     }
 }

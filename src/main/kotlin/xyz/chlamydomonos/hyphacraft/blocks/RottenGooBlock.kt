@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.LiquidBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.entity.ModEntityTags
 import xyz.chlamydomonos.hyphacraft.loaders.FluidLoader
 
 class RottenGooBlock : LiquidBlock(
@@ -26,7 +27,9 @@ class RottenGooBlock : LiquidBlock(
 
         if (entity is LivingEntity && entity.getFluidTypeHeight(FluidLoader.ROTTEN_GOO.type) > 0.0) {
             entity.addEffect(MobEffectInstance(MobEffects.CONFUSION, 300 ,0))
-            entity.addEffect(MobEffectInstance(MobEffects.POISON, 300, 2))
+            if (!entity.type.`is`(ModEntityTags.HYPHACRAFT_INSECT)) {
+                entity.addEffect(MobEffectInstance(MobEffects.POISON, 300, 2))
+            }
         }
     }
 

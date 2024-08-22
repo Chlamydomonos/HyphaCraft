@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.PipeBlock
+import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.base.BlockCopierEntity
 import xyz.chlamydomonos.hyphacraft.datacomponents.BlockHolder
 import xyz.chlamydomonos.hyphacraft.entity.entities.HumifossorEntity
@@ -103,11 +104,19 @@ class DebugStickItem : Item(
         interactionTarget: LivingEntity,
         usedHand: InteractionHand
     ): InteractionResult {
+        if (player.level().isClientSide) {
+            return InteractionResult.PASS
+        }
+
         if (interactionTarget !is HumifossorEntity) {
             return InteractionResult.PASS
         }
 
-        interactionTarget.controller.setAnimation(HumifossorEntity.CURL_ANIM)
+        if (player.isShiftKeyDown) {
+            interactionTarget.charged = !interactionTarget.charged
+        } else {
+            HyphaCraft.LOGGER.debug("state: {}", interactionTarget.state)
+        }
 
         return InteractionResult.SUCCESS
     }

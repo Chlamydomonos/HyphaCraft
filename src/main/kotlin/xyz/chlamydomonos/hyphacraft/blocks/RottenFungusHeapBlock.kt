@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.material.MapColor
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.entity.ModEntityTags
 
 class RottenFungusHeapBlock : CarpetBlock(
     Properties.ofFullCopy(Blocks.BLUE_CARPET)
@@ -31,7 +32,9 @@ class RottenFungusHeapBlock : CarpetBlock(
         val effect1 = MobEffectInstance(MobEffects.POISON, 200, 0)
         val effect2 = MobEffectInstance(MobEffects.CONFUSION, 200, 0)
         if(entity is LivingEntity) {
-            entity.addEffect(effect1)
+            if (!entity.type.`is`(ModEntityTags.HYPHACRAFT_INSECT)) {
+                entity.addEffect(effect1)
+            }
             entity.addEffect(effect2)
         }
     }

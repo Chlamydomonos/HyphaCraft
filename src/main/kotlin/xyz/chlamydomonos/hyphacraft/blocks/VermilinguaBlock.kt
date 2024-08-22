@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.MapColor
 import net.neoforged.neoforge.client.model.generators.ModelProvider
 import xyz.chlamydomonos.hyphacraft.blocks.base.BaseHyphaBlock
 import xyz.chlamydomonos.hyphacraft.datagen.ModBlockStateProvider
+import xyz.chlamydomonos.hyphacraft.entity.ModEntityTags
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockTagLoader
 import xyz.chlamydomonos.hyphacraft.loaders.EffectLoader
@@ -45,7 +46,9 @@ class VermilinguaBlock : BaseHyphaBlock(
         if (entity is LivingEntity && level.random.nextInt(200) == 0) {
             val effect1 = MobEffectInstance(MobEffects.POISON, 50, 0)
             val effect2 = MobEffectInstance(EffectLoader.COVERED_WITH_SPORE, 50, 0)
-            entity.addEffect(effect1)
+            if (!entity.type.`is`(ModEntityTags.HYPHACRAFT_INSECT)) {
+                entity.addEffect(effect1)
+            }
             entity.addEffect(effect2)
         }
     }

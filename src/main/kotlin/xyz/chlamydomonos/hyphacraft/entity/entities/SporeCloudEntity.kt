@@ -14,6 +14,7 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.MobCategory
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.AABB
+import xyz.chlamydomonos.hyphacraft.entity.ModEntityTags
 import xyz.chlamydomonos.hyphacraft.loaders.EffectLoader
 import xyz.chlamydomonos.hyphacraft.utils.ColorUtil
 import kotlin.math.log2
@@ -96,7 +97,9 @@ class SporeCloudEntity(entityType: EntityType<*>, level: Level) : Entity(entityT
             if (it is LivingEntity) {
                 val effect1 = MobEffectInstance(MobEffects.POISON, 600, 1)
                 val effect2 = MobEffectInstance(EffectLoader.COVERED_WITH_SPORE, 300, 2)
-                it.addEffect(effect1)
+                if (!it.type.`is`(ModEntityTags.HYPHACRAFT_INSECT)) {
+                    it.addEffect(effect1)
+                }
                 it.addEffect(effect2)
             }
         }
