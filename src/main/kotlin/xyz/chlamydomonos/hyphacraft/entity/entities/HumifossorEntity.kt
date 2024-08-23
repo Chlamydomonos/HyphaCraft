@@ -17,7 +17,6 @@ import software.bernie.geckolib.animation.AnimatableManager
 import software.bernie.geckolib.animation.AnimationController
 import software.bernie.geckolib.animation.RawAnimation
 import software.bernie.geckolib.util.GeckoLibUtil
-import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.entity.entities.HumifossorEntity.Companion.State.*
 import xyz.chlamydomonos.hyphacraft.entity.goals.HumifossorAttackGoal
 import xyz.chlamydomonos.hyphacraft.entity.goals.HumifossorChargeGoal
@@ -90,10 +89,7 @@ class HumifossorEntity(
             when (state) {
                 BASE -> if (it.isMoving) it.setAndContinue(WALK_ANIM) else it.setAndContinue(IDLE_ANIM)
                 HIDING -> if (it.isMoving) it.setAndContinue(ROLL_ANIM) else it.setAndContinue(HIDE_ANIM)
-                CURLING -> {
-                    HyphaCraft.LOGGER.debug("curl")
-                    it.setAndContinue(CURL_ANIM)
-                }
+                CURLING -> it.setAndContinue(CURL_ANIM)
                 EXPANDING -> it.setAndContinue(EXPAND_ANIM)
                 PLOUGHING -> it.setAndContinue(PLOUGH_ANIM)
             }
@@ -131,15 +127,21 @@ class HumifossorEntity(
 
     override fun tick() {
         super.tick()
+        if (level().isClientSide) {
+            return
+        }
+
         if (coolDown == 0) {
             when (state) {
                 CURLING -> {
                     state = HIDING
                     addArmor()
                 }
+
                 EXPANDING -> {
                     state = BASE
                 }
+
                 PLOUGHING -> {
                     state = BASE
                     val pos = blockPosition().below()
@@ -150,6 +152,7 @@ class HumifossorEntity(
                         level().setBlock(pos, BlockLoader.FERTILE_ALIEN_SWARD.block.defaultBlockState(), 3)
                     }
                 }
+
                 else -> {}
             }
         } else {
