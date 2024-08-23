@@ -2,14 +2,19 @@ package xyz.chlamydomonos.hyphacraft.items
 
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
+import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.PipeBlock
+import xyz.chlamydomonos.hyphacraft.HyphaCraft
 import xyz.chlamydomonos.hyphacraft.blockentities.base.BlockCopierEntity
 import xyz.chlamydomonos.hyphacraft.datacomponents.BlockHolder
+import xyz.chlamydomonos.hyphacraft.entity.entities.HumifossorEntity
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataComponentLoader
 import xyz.chlamydomonos.hyphacraft.utils.plant.CarnivoravitisUtil
@@ -91,5 +96,28 @@ class DebugStickItem : Item(
     override fun getName(stack: ItemStack): Component {
         val block = stack.get(DataComponentLoader.BLOCK_HOLDER)!!.block
         return super.getName(stack).copy().append(": ").append(block.name)
+    }
+
+    override fun interactLivingEntity(
+        stack: ItemStack,
+        player: Player,
+        interactionTarget: LivingEntity,
+        usedHand: InteractionHand
+    ): InteractionResult {
+        if (player.level().isClientSide) {
+            return InteractionResult.PASS
+        }
+
+        if (interactionTarget !is HumifossorEntity) {
+            return InteractionResult.PASS
+        }
+
+        if (player.isShiftKeyDown) {
+            interactionTarget.charged = !interactionTarget.charged
+        } else {
+            HyphaCraft.LOGGER.debug("state: {}", interactionTarget.state)
+        }
+
+        return InteractionResult.SUCCESS
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.CarpetBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockState
 import xyz.chlamydomonos.hyphacraft.blocks.utils.BurnableHypha
+import xyz.chlamydomonos.hyphacraft.entity.ModEntityTags
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DataAttachmentLoader
 
@@ -36,7 +37,9 @@ class HumusHeapBlock : CarpetBlock(
         val effect1 = MobEffectInstance(MobEffects.POISON, 100, 0)
         val effect2 = MobEffectInstance(MobEffects.CONFUSION, 300, 0)
         if(entity is LivingEntity) {
-            entity.addEffect(effect1)
+            if (!entity.type.`is`(ModEntityTags.HYPHACRAFT_INSECT)) {
+                entity.addEffect(effect1)
+            }
             entity.addEffect(effect2)
         }
     }

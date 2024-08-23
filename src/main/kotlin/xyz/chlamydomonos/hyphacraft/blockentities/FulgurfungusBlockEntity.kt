@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
 import net.neoforged.neoforge.network.PacketDistributor
 import xyz.chlamydomonos.hyphacraft.blocks.utils.ModProperties
+import xyz.chlamydomonos.hyphacraft.entity.entities.HumifossorEntity
 import xyz.chlamydomonos.hyphacraft.loaders.BlockEntityLoader
 import xyz.chlamydomonos.hyphacraft.loaders.BlockLoader
 import xyz.chlamydomonos.hyphacraft.loaders.DamageTypeLoader
@@ -78,7 +79,12 @@ class FulgurfungusBlockEntity(
             50.0,
             packet
         )
-        entity.hurt(DamageSource(DamageTypeLoader.HYPHA_LIGHTNING(level)), 10.0f)
+        if (entity is HumifossorEntity) {
+            entity.charged = true
+        } else {
+            entity.hurt(DamageSource(DamageTypeLoader.HYPHA_LIGHTNING(level)), 10.0f)
+        }
+
         level.setBlock(blockPos, BlockLoader.FULGURFUNGUS.block.defaultBlockState(), 3)
     }
 }
