@@ -57,6 +57,10 @@ class DebugStickItem : Item(
             return InteractionResult.SUCCESS
         }
 
+        if (level.getBlockState(context.clickedPos).block in BLOCK_COPIERS) {
+            return InteractionResult.SUCCESS
+        }
+
         val blockHolder = context.itemInHand.get(DataComponentLoader.BLOCK_HOLDER)!!
         val block = blockHolder.block
         val blockId = BLOCKS.indexOf(block)
